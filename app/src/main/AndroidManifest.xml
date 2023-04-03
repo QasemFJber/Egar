@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,14 +14,21 @@
         android:theme="@style/Theme.Egar"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.Home"
+            android:exported="false"
+            android:theme="@style/SplashNoActionBar"/>
+        <activity
             android:name=".Activities.ResetPassword"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/SplashNoActionBar"/>
         <activity
             android:name=".Activities.Register"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/SplashNoActionBar" />
         <activity
             android:name=".Activities.Login"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/SplashNoActionBar" />
         <activity
             android:name=".Activities.Splash"
             android:exported="true"
@@ -34,7 +42,7 @@
         <activity
             android:name=".Activities.MainActivity"
             android:exported="false"
-            android:theme="@style/SplashNoActionBar"/>
+            android:theme="@style/SplashNoActionBar" />
     </application>
 
 </manifest>

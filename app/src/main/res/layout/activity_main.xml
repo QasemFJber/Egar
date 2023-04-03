@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:background="#00000000"
         android:text="Skip"
-        android:textColor="@color/buttontext"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:textColor="#0B35AB"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,34 +24,39 @@
         android:id="@+id/slideViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="100dp"
+        android:layout_marginVertical="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ellipse1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ellipse1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/ellipse1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ellipse1"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <ImageView
-        android:id="@+id/ellipse2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ellipse2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/ellipse2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ellipse2"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
     <Button
         android:id="@+id/backbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#00000000"
+        android:background="@drawable/btn_pager"
         android:text="Back"
+        android:layout_marginBottom="22dp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/active"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -57,10 +64,15 @@
         android:id="@+id/nextbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#00000000"
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:background="@drawable/btn_pager"
         android:text="Next"
+        android:textColor="@color/active"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ellipse2" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
         android:id="@+id/indicator_layout"
