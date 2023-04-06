@@ -22,7 +22,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             R.drawable.page1,
             R.drawable.page2,
             R.drawable.page3,
-            R.drawable.page4
+            R.drawable.productdelivery
 
     };
 

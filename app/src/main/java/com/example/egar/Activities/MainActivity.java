@@ -1,202 +1,82 @@
 package com.example.egar.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.egar.Fragments.BottomNavigationFragments.Categories;
+import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
+import com.example.egar.Fragments.BottomNavigationFragments.Home;
+import com.example.egar.Fragments.BottomNavigationFragments.Profile;
 import com.example.egar.R;
 import com.example.egar.adapters.ViewPagerAdapter;
+import com.example.egar.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
+    Categories categories = new Categories();
+    Favorite favorite = new Favorite();
+    Home home = new Home();
+    Profile profile = new Profile();
 
-    ViewPager mSLideViewPager;
-    LinearLayout mDotLayout;
-    Button backbtn, nextbtn, skipbtn;
+    ActivityMainBinding binding;
 
-    TextView[] dots;
-    ViewPagerAdapter viewPagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        backbtn = findViewById(R.id.backbtn);
-        nextbtn = findViewById(R.id.nextbtn);
-        skipbtn = findViewById(R.id.skipButton);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        backbtn.setOnClickListener(new View.OnClickListener() {
+        binding.bottmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-
-                if (getitem(0) > 0){
-
-                    mSLideViewPager.setCurrentItem(getitem(-1),true);
-
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                item.setChecked(true);
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        item.setIcon(R.drawable.homeyi);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,home).commit();
+                        break;
+                    case R.id.profile:
+                        item.setIcon(R.drawable.useryi);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,profile).commit();
+                        break;
+                    case R.id.favorite:
+                        item.setIcon(R.drawable.baseline_favoriteyi_24);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,favorite).commit();
+                        break;
+                    case R.id.category:
+                        item.setIcon(R.drawable.baseline_categoryyl_24);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,categories).commit();
+                        break;
                 }
 
+                return false;
             }
         });
 
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (getitem(0) < 3)
-                    mSLideViewPager.setCurrentItem(getitem(1),true);
-                else {
-
-                    Intent i = new Intent(MainActivity.this,Login.class);
-                    startActivity(i);
-                    finish();
-
-                }
-
-            }
-        });
-
-        skipbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent i = new Intent(MainActivity.this,Login.class);
-                startActivity(i);
-                finish();
-
-            }
-        });
-
-        mSLideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        mDotLayout = (LinearLayout) findViewById(R.id.indicator_layout);
-
-        viewPagerAdapter = new ViewPagerAdapter(this);
-
-        mSLideViewPager.setAdapter(viewPagerAdapter);
-
-        setUpindicator(0);
-        mSLideViewPager.addOnPageChangeListener(viewListener);        backbtn = findViewById(R.id.backbtn);
-        nextbtn = findViewById(R.id.nextbtn);
-        skipbtn = findViewById(R.id.skipButton);
-
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (getitem(0) > 0){
-
-                    mSLideViewPager.setCurrentItem(getitem(-1),true);
-
-                }
-
-            }
-        });
-
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (getitem(0) < 3)
-                    mSLideViewPager.setCurrentItem(getitem(1),true);
-                else {
-
-                    Intent i = new Intent(MainActivity.this,Login.class);
-                    startActivity(i);
-                    finish();
-
-                }
-
-            }
-        });
-
-        skipbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent i = new Intent(MainActivity.this,Login.class);
-                startActivity(i);
-                finish();
-
-            }
-        });
-
-        mSLideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        mDotLayout = (LinearLayout) findViewById(R.id.indicator_layout);
-
-        viewPagerAdapter = new ViewPagerAdapter(this);
-
-        mSLideViewPager.setAdapter(viewPagerAdapter);
-
-        setUpindicator(0);
-        mSLideViewPager.addOnPageChangeListener(viewListener);
-    }
-
-    public void setUpindicator(int position){
-
-        dots = new TextView[4];
-        mDotLayout.removeAllViews();
-
-        for (int i = 0 ; i < dots.length ; i++){
-
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.inactive,getApplicationContext().getTheme()));
-            mDotLayout.addView(dots[i]);
-
-        }
-
-        dots[position].setTextColor(getResources().getColor(R.color.active,getApplicationContext().getTheme()));
 
     }
-
-    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-
-            setUpindicator(position);
-
-            if (position > 0){
-
-                backbtn.setVisibility(View.VISIBLE);
-
-            }else {
-
-                backbtn.setVisibility(View.INVISIBLE);
-
-            }
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
-
-    private int getitem(int i){
-
-        return mSLideViewPager.getCurrentItem() + i;
+    private void operationsSccren() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,home);
     }
-
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        operationsSccren();
+        setOnClick();
     }
 
     @Override
@@ -222,5 +102,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+    }
+
+    private void setOnClick(){
+        binding.imageNotification.setOnClickListener(this::onClick);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.image_notification:
+                Intent intent = new Intent(getApplicationContext(),Notifications.class);
+                startActivity(intent);
+                break;
+
+        }
     }
 }

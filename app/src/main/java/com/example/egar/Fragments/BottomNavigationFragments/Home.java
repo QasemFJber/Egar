@@ -3,12 +3,19 @@ package com.example.egar.Fragments.BottomNavigationFragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.egar.R;
+import com.example.egar.adapters.StoreAdapter;
+import com.example.egar.databinding.FragmentHomeBinding;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +23,7 @@ import com.example.egar.R;
  * create an instance of this fragment.
  */
 public class Home extends Fragment {
+    private  FragmentHomeBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +35,7 @@ public class Home extends Fragment {
     private String mParam2;
 
     public Home() {
-        // Required empty public constructor
+
     }
 
     /**
@@ -36,7 +44,7 @@ public class Home extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Home.
+     * @return A new instance of fragment Main.
      */
     // TODO: Rename and change types and number of parameters
     public static Home newInstance(String param1, String param2) {
@@ -55,12 +63,28 @@ public class Home extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding  = FragmentHomeBinding.inflate(inflater,container,false);
+        intiRecyclerViewStore();
+        return binding.getRoot();
+    }
+    private void intiRecyclerViewStore(){
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager manager3 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        GridLayoutManager manager2 = new GridLayoutManager(getActivity(),2);
+        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
+        binding.categoryrv.setLayoutManager(manager);
+        binding.categoryrv.setAdapter(adapter);
+//        binding.servicerv.setLayoutManager(manager3);
+//        binding.servicerv.setAdapter(adapter);
+//        binding.productrv.setLayoutManager(manager2);
+//        binding.productrv.setAdapter(adapter);
+
+
     }
 }

@@ -4,90 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
+    android:background="@color/active"
+    tools:context=".Activities.Main">
 
-
-    <Button
-        android:id="@+id/skipButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00000000"
-        android:text="Skip"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:textStyle="bold"
-        android:textColor="#0B35AB"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/slideViewPager"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="@dimen/_170sdp"
+        android:layout_marginTop="-99dp"
+        android:src="@drawable/bcak"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/ellipse1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/ellipse1"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_66sdp"
+        android:background="@drawable/login_layout">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/ellipse2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/ellipse2"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <Button
-        android:id="@+id/backbtn"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottm_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            app:itemTextColor="@color/white"
+            android:background="@drawable/bottom_nav_gradunt"
+            app:labelVisibilityMode="selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:menu="@menu/bottom_nav_menu"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentcontainer"
+            android:name="com.example.egar.Fragments.BottomNavigationFragments.Home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout"
+            tools:layout="@layout/fragment_home" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:id="@+id/image_notification"
+        android:layout_width="wrap_content"
+        android:padding="@dimen/_15sdp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_notifications_24"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_pager"
-        android:text="Back"
-        android:layout_marginBottom="22dp"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:textStyle="bold"
-        android:textSize="@dimen/_15ssp"
-        android:textColor="@color/active"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/nextbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:background="@drawable/btn_pager"
-        android:text="Next"
-        android:textColor="@color/active"
-        android:textSize="@dimen/_15ssp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/indicator_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:src="@drawable/baseline_segment_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/slideViewPager">
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    </LinearLayout>
-
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_39sdp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:layout_marginEnd="@dimen/_39sdp"
+        android:background="@drawable/edit_text_login"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/image_notification"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

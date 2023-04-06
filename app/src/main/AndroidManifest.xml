@@ -14,13 +14,16 @@
         android:theme="@style/Theme.Egar"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.Home"
+            android:name=".Activities.Notifications"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Pager_GetStarted"
             android:exported="false"
-            android:theme="@style/SplashNoActionBar"/>
+            android:theme="@style/SplashNoActionBar" />
         <activity
             android:name=".Activities.ResetPassword"
             android:exported="false"
-            android:theme="@style/SplashNoActionBar"/>
+            android:theme="@style/SplashNoActionBar" />
         <activity
             android:name=".Activities.Register"
             android:exported="false"

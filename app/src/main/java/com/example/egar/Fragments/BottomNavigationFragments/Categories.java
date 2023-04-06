@@ -3,12 +3,16 @@ package com.example.egar.Fragments.BottomNavigationFragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.egar.R;
+import com.example.egar.adapters.StoreAdapter;
+import com.example.egar.databinding.FragmentCategoriesBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +20,8 @@ import com.example.egar.R;
  * create an instance of this fragment.
  */
 public class Categories extends Fragment {
+    private FragmentCategoriesBinding binding;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +67,17 @@ public class Categories extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categories, container, false);
+        binding = FragmentCategoriesBinding.inflate(inflater,container,false);
+        intiRecyclerViewStore();
+        return binding.getRoot();
     }
+    private void intiRecyclerViewStore(){
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
+        binding.rvCategory.setAdapter(adapter);
+        binding.rvCategory.setLayoutManager(manager);
+
+
+    }
+
 }

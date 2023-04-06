@@ -1,12 +1,10 @@
 package com.example.egar.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
@@ -105,7 +103,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_login:
                 if (dataCheck()){
-                    Intent intent = new Intent(getApplicationContext(),Home.class);
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }else {
                     Toast.makeText(this, "The Input Fields Required", Toast.LENGTH_SHORT).show();
