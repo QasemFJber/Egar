@@ -13,7 +13,7 @@
         app:civ_border_width="2dp"
         android:id="@+id/imageView8"
         android:layout_marginStart="@dimen/_19sdp"
-        android:layout_marginTop="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_33sdp"
         android:src="@drawable/avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

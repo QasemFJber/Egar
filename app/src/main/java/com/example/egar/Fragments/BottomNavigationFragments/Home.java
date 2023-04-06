@@ -1,5 +1,6 @@
 package com.example.egar.Fragments.BottomNavigationFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.R;
+import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.StoreAdapter;
 import com.example.egar.databinding.FragmentHomeBinding;
 
@@ -71,13 +74,19 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         binding  = FragmentHomeBinding.inflate(inflater,container,false);
         intiRecyclerViewStore();
+        binding.tvCategoryShowAll.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), ShowAll_Items.class);
+            intent.putExtra("category","Categories");
+            startActivity(intent);
+        });
         return binding.getRoot();
     }
     private void intiRecyclerViewStore(){
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager manager3 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         GridLayoutManager manager2 = new GridLayoutManager(getActivity(),2);
-        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
+//        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
+        CategoryAdapter adapter = new CategoryAdapter(getActivity(),"bara brand ",R.drawable.women);
         binding.categoryrv.setLayoutManager(manager);
         binding.categoryrv.setAdapter(adapter);
 //        binding.servicerv.setLayoutManager(manager3);

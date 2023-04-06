@@ -87,12 +87,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/tv_category_show_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:text="show all"
                 android:textSize="14sp"
+                android:textColor="@color/light_blue_grey"
+                android:padding="@dimen/_13sdp"
                 app:layout_constraintBottom_toTopOf="@+id/categoryrv"
                 app:layout_constraintEnd_toEndOf="@+id/categoryrv"
                 app:layout_constraintTop_toTopOf="parent"

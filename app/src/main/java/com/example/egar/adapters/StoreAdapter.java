@@ -32,7 +32,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_store_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_category_item,parent,false);
         return new ViewHolder(view);
     }
 

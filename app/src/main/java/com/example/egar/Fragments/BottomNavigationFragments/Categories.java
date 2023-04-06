@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.egar.R;
+import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.StoreAdapter;
 import com.example.egar.databinding.FragmentCategoriesBinding;
 
@@ -72,8 +73,9 @@ public class Categories extends Fragment {
         return binding.getRoot();
     }
     private void intiRecyclerViewStore(){
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
+        GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
+//        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.coworking);
+        CategoryAdapter adapter = new CategoryAdapter(getActivity(),"Qasems",R.drawable.women);
         binding.rvCategory.setAdapter(adapter);
         binding.rvCategory.setLayoutManager(manager);
 
