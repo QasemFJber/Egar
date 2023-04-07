@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.egar.Dialog.ConfirmDialog;
+import com.example.egar.Dialog.DeliveredDialog;
 import com.example.egar.Fragments.BottomNavigationFragments.Categories;
 import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
 import com.example.egar.Fragments.BottomNavigationFragments.Home;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     Profile profile = new Profile();
 
     ActivityMainBinding binding;
+    DeliveredDialog dialog = new DeliveredDialog(this);
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private void setOnClick(){
         binding.imageNotification.setOnClickListener(this::onClick);
+        binding.menuDrw.setOnClickListener(this::onClick);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -115,6 +120,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             case R.id.image_notification:
                 Intent intent = new Intent(getApplicationContext(),Notifications.class);
                 startActivity(intent);
+                break;
+            case R.id.menu_drw:
+               dialog.startDialog();
                 break;
 
         }

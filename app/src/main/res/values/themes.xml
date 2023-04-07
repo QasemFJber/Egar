@@ -22,4 +22,9 @@
         <item name="android:windowExitAnimation">@anim/slid_out</item>
     </style>
 
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@anim/slid_in</item>
+        <item name="android:windowExitAnimation">@anim/slid_out</item>
+    </style>
+
 </resources>

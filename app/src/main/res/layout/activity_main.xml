@@ -65,11 +65,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/menu_drw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_13sdp"
-        android:layout_marginTop="@dimen/_13sdp"
+        android:padding="@dimen/_16sdp"
         android:src="@drawable/baseline_segment_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -80,9 +79,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_39sdp"
         android:layout_marginTop="@dimen/_13sdp"
+        android:queryHint="Search"
+        android:iconifiedByDefault="false"
         android:layout_marginEnd="@dimen/_39sdp"
         android:background="@drawable/edit_text_login"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/menu_drw"
         app:layout_constraintStart_toEndOf="@+id/image_notification"
         app:layout_constraintTop_toTopOf="parent" />
 
