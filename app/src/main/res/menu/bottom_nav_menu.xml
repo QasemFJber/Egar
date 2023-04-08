@@ -5,22 +5,24 @@
     <item android:title="Home"
         android:id="@+id/home"
         android:icon="@drawable/home"
-        app:showAsAction="ifRoom"
         />
     <item android:title="Profile"
         android:id="@+id/profile"
         android:icon="@drawable/user"
-        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:title=""
+        android:id="@+id/fab"
+        android:enabled="false"
         />
     <item android:title="Favorite"
         android:id="@+id/favorite"
         android:icon="@drawable/baseline_favorite_24"
-        app:showAsAction="ifRoom"
         />
     <item android:title="Categories"
         android:id="@+id/category"
         android:icon="@drawable/baseline_category_24"
-        app:showAsAction="ifRoom"
         />
 
 </menu>

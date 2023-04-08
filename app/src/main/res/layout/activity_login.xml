@@ -49,6 +49,7 @@
             android:layout_marginTop="@dimen/_33sdp"
             android:text="PHONE NUMBER"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -69,15 +70,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_22sdp"
             android:layout_marginTop="@dimen/_22sdp"
-            android:text="PASSWORD"
             android:autofillHints="password"
+            android:text="PASSWORD"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
 
@@ -129,8 +132,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginEnd="2dp"
-            android:text="I dont have an account?"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="I dont have an account ?"
+            android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="@+id/btn_login"
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="@dimen/_3sdp"
-            android:layout_marginEnd="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_17sdp"
             android:text="Create an account"
             android:textColor="@color/active"
             android:padding="@dimen/_13sdp"
@@ -161,7 +165,7 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:text="LOGIN"
         android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/componant"
         app:layout_constraintStart_toStartOf="parent"

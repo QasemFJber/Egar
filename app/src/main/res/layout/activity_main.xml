@@ -26,6 +26,7 @@
         >
 
 
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottm_nav"
             android:layout_width="match_parent"

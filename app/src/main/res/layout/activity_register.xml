@@ -36,6 +36,7 @@
             android:layout_marginTop="@dimen/_22sdp"
             android:text="PHONE NUMBER"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_user_name" />
 
@@ -66,6 +67,7 @@
             android:autofillHints="password"
             android:text="PASSWORD"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
 
@@ -150,6 +152,7 @@
             android:layout_marginTop="@dimen/_33sdp"
             android:text="USER NAME"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -179,7 +182,7 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:text="Create an account"
         android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_19ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
