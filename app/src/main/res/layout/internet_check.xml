@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/internet" />
+        app:lottie_rawRes="@raw/internetcon" />
 
     <TextView
         android:id="@+id/textView4"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="OOPS!"
-        android:textColor="@color/black"
+        android:textColor="@color/dark_blue"
         android:textSize="@dimen/_26ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="97dp"
         android:text="No Internet Connection"
-        android:textColor="@color/grey"
+        android:textColor="@color/active"
         android:textSize="@dimen/_19ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:text="Please check your connection"
-        android:textColor="@color/grey"
+        android:textColor="@color/blue_grey"
         android:textSize="@dimen/_13ssp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/btn_retry"
         android:text="RETRY"
-        android:textColor="#00BCD4"
+        android:textColor="@color/dark_blue"
         android:textColorHint="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
