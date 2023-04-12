@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "466999957188",
+    "project_id": "egar-278c6",
+    "storage_bucket": "egar-278c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466999957188:android:c71862500e3e37f912db91",
+        "android_client_info": {
+          "package_name": "com.example.egar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466999957188-n8ibqvs8kf90525mfmbkfj8igdvolk0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA97O152o31djRiB5K7hn5GUYJ94YNbPB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466999957188-n8ibqvs8kf90525mfmbkfj8igdvolk0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

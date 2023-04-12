@@ -96,6 +96,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         binding.createAccount.setOnClickListener(this::onClick);
         binding.btnBack.setOnClickListener(this::onClick);
         binding.forgotPassword.setOnClickListener(this::onClick);
+        binding.btnVisitor.setOnClickListener(this::onClick);
     }
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -120,6 +121,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.forgotPassword:
                 Intent intent3 = new Intent(getApplicationContext(),ResetPassword.class);
                 startActivity(intent3);
+                break;
+            case R.id.btn_visitor:
+                Intent visitorIntent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(visitorIntent);
                 break;
 
         }

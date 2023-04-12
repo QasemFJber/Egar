@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/_13sdp"
             android:text="Welcome again"
             android:textSize="@dimen/_22ssp"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/active"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -156,6 +156,7 @@
             app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -181,5 +182,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_13sdp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/_99sdp"
+            android:layout_height="2dp"
+            android:layout_weight="0.5"
+            android:layout_margin="@dimen/_6sdp"
+            android:layout_gravity="center"
+            android:background="@color/blue_grey"/>
+
+        <TextView
+            android:id="@+id/btn_visitor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login as a visitor"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/_5sdp"
+            android:textColor="@color/active"
+            android:textSize="18sp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="@dimen/_99sdp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@color/blue_grey"/>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
