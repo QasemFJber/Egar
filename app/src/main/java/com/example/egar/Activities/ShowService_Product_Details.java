@@ -19,7 +19,7 @@ public class ShowService_Product_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityShowServiceProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        operationsSccren();
+
     }
     private void operationsSccren() {
         getWindow().setStatusBarColor(ContextCompat.getColor(ShowService_Product_Details.this, R.color.black));
@@ -56,4 +56,34 @@ public class ShowService_Product_Details extends AppCompatActivity {
         dialog.show();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        operationsSccren();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 }
