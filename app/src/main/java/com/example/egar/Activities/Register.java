@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.egar.R;
 import com.example.egar.databinding.ActivityRegisterBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,30 +31,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private void screenOperations (){
         setOnClick();
     }
-    private boolean isValidPalestinianPhoneNumber(String phoneNumber) {
+    private boolean isValidPalestinianPhoneNumber() {
+        String phoneNumber = binding.etPhoneNumber.getText().toString().trim();
         String regexPattern = "^\\+970(5[0124567]|2[02456789]|59|7[23]|8[0123456])\\d{6}$";
-        String areaCodeRegexPattern = "^\\d{1,2}$";
-        String subscriberNumberRegexPattern = "^\\d{7}$";
 
         if (phoneNumber == null || phoneNumber.length() != 13) {
+            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).show();
+
             return false;
         }
 
-        String countryCode = phoneNumber.substring(0, 4);
-        String areaCode = phoneNumber.substring(4, 6);
-        String subscriberNumber = phoneNumber.substring(6);
-
-        if (!countryCode.equals("+970")) {
+        if (!phoneNumber.matches(regexPattern)) {
+            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).show();
             return false;
         }
-
-        if (!areaCode.matches(areaCodeRegexPattern)) {
-            return false;
-        }
-
-        // Add additional validation for area code if necessary
-
-        if (!subscriberNumber.matches(subscriberNumberRegexPattern)) {
+        if (phoneNumber.isEmpty()){
+            Snackbar.make(binding.getRoot(), "Please enter a  phone number", Snackbar.LENGTH_LONG).show();
             return false;
         }
 
@@ -63,7 +56,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private boolean dataCheck (){
         String name = binding.etUserName.getText().toString().trim();
         String email = binding.etEmail.getText().toString().trim();
-        String phone = binding.etPhoneNumber.getText().toString().trim();
         String password = binding.etPassword.getText().toString().trim();
 
         if (name.isEmpty()) {
@@ -78,9 +70,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }else if(!binding.checked.isChecked()) {
             Toast.makeText(this, "You must agree to the terms and conditions", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (isValidPalestinianPhoneNumber(phone)) {
-            return false;
         }
+
         return true;
     }
 
@@ -130,7 +121,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.btn_register:
-                if (dataCheck()){
+                if (dataCheck() || isValidPalestinianPhoneNumber()){
                     Intent intent1 = new Intent(getApplicationContext(),Login.class);
                     String email =binding.etEmail.getText().toString().trim();
                     String pass = binding.etPassword.getText().toString().trim();

@@ -2,6 +2,7 @@ package com.example.egar.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.egar.BroadcastReceivers.NetworkChangeListiners;
 import com.example.egar.R;
 import com.example.egar.databinding.ActivityLoginBinding;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -153,7 +155,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(this, "The Input Fields Required", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(binding.getRoot(), "Please enter Data", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this, R.color.red)).show();
                 }
                 break;
             case R.id.create_account:
