@@ -36,17 +36,17 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String regexPattern = "^\\+970(5[0124567]|2[02456789]|59|7[23]|8[0123456])\\d{6}$";
 
         if (phoneNumber == null || phoneNumber.length() != 13) {
-            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
 
             return false;
         }
 
         if (!phoneNumber.matches(regexPattern)) {
-            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
             return false;
         }
-        if (phoneNumber.isEmpty()){
-            Snackbar.make(binding.getRoot(), "Please enter a  phone number", Snackbar.LENGTH_LONG).show();
+        if (!phoneNumber.isEmpty()){
+            Snackbar.make(binding.getRoot(), "Please enter a  phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
             return false;
         }
 
@@ -68,7 +68,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             binding.etPhoneNumber.setError("Password field is Required");
             return false;
         }else if(!binding.checked.isChecked()) {
-            Toast.makeText(this, "You must agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+            Snackbar.make(binding.getRoot(),"You must agree to the terms and conditions",Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
             return false;
         }
 
@@ -121,7 +121,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.btn_register:
-                if (dataCheck() || isValidPalestinianPhoneNumber()){
+                if (dataCheck() && isValidPalestinianPhoneNumber()){
                     Intent intent1 = new Intent(getApplicationContext(),Login.class);
                     String email =binding.etEmail.getText().toString().trim();
                     String pass = binding.etPassword.getText().toString().trim();
@@ -129,7 +129,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     intent1.putExtra("password",pass);
                     startActivity(intent1);
                 }else {
-                    Toast.makeText(this, "The Input Fields Required", Toast.LENGTH_SHORT).show();
+
                 }
                 break;
             case R.id.btn_back:
