@@ -3,23 +3,28 @@ package com.example.egar.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.egar.R;
+import com.example.egar.databinding.ActivityResetPasswordBinding;
 
-public class ResetPassword extends AppCompatActivity {
+public class ResetPassword extends AppCompatActivity implements View.OnClickListener {
+    ActivityResetPasswordBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset_password);
+        binding = ActivityResetPasswordBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
     }
     private void operationsSccren() {
-        setTitle("Reset Password");
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_grey)));
+        setOnClick();
         getWindow().setStatusBarColor(ContextCompat.getColor(ResetPassword.this,R.color.black));
     }
 
@@ -85,4 +90,18 @@ public class ResetPassword extends AppCompatActivity {
         dialog.show();
     }
 
+    private void setOnClick(){
+        binding.btnBack.setOnClickListener(this);
+    }
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.btn_back:
+                onBackPressed();
+                break;
+        }
+
+    }
 }
