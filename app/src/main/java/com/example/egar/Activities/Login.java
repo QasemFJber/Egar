@@ -113,12 +113,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private  boolean setDataInInputFieldFromRegister (){
         Intent intent = getIntent();
-        String phone = intent.getStringExtra("phone");
+        String email = intent.getStringExtra("email");
         String password =intent.getStringExtra("password");
-        if (password == null && phone == null){
+        if (password == null && email == null){
             return false;
         }else {
-            binding.etPhoneNumber.setText(intent.getStringExtra("phone"));
+            binding.etPhoneNumber.setText(intent.getStringExtra("email"));
             binding.etPassword.setText(intent.getStringExtra("password"));
             return true;
         }

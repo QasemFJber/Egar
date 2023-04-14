@@ -33,24 +33,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_22sdp"
-            android:layout_marginTop="@dimen/_22sdp"
-            android:text="PHONE NUMBER"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="EMAIL"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_user_name" />
 
         <EditText
-            android:id="@+id/et_phone_number"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_22sdp"
-            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_22sdp"
             android:autofillHints="phone"
             android:background="@drawable/edit_text_login"
             android:ems="10"
-            android:hint="here phone number"
+            android:hint="here email"
             android:inputType="phone"
             android:padding="@dimen/_13sdp"
             android:textColorHint="@color/blue_grey"
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_22sdp"
-            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:autofillHints="password"
             android:text="PASSWORD"
             android:textColor="@color/black"
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_22sdp"
-            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_22sdp"
             android:background="@drawable/edit_text_login"
             android:ems="10"
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_33sdp"
-            android:layout_marginTop="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_18sdp"
             android:layout_marginEnd="@dimen/_33sdp"
             android:background="@color/active"
             android:text="REGISTER"
@@ -173,6 +173,35 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PHONE NUMBER"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+        <EditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_22sdp"
+            android:inputType="phone"
+            android:background="@drawable/edit_text_login"
+            android:hint="here phone number "
+            android:padding="@dimen/_12sdp"
+            android:textColorHint="@color/blue_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

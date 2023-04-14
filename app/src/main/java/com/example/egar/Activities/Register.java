@@ -29,26 +29,56 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void screenOperations (){
         setOnClick();
+    }
+    private boolean isValidPalestinianPhoneNumber(String phoneNumber) {
+        String regexPattern = "^\\+970(5[0124567]|2[02456789]|59|7[23]|8[0123456])\\d{6}$";
+        String areaCodeRegexPattern = "^\\d{1,2}$";
+        String subscriberNumberRegexPattern = "^\\d{7}$";
 
+        if (phoneNumber == null || phoneNumber.length() != 13) {
+            return false;
+        }
 
+        String countryCode = phoneNumber.substring(0, 4);
+        String areaCode = phoneNumber.substring(4, 6);
+        String subscriberNumber = phoneNumber.substring(6);
+
+        if (!countryCode.equals("+970")) {
+            return false;
+        }
+
+        if (!areaCode.matches(areaCodeRegexPattern)) {
+            return false;
+        }
+
+        // Add additional validation for area code if necessary
+
+        if (!subscriberNumber.matches(subscriberNumberRegexPattern)) {
+            return false;
+        }
+
+        return true;
     }
 
     private boolean dataCheck (){
-        String name = binding.etUserName.getText().toString();
-        String phone = binding.etPhoneNumber.getText().toString();
-        String password = binding.etPassword.getText().toString();
+        String name = binding.etUserName.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String phone = binding.etPhoneNumber.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
 
         if (name.isEmpty()) {
             binding.etUserName.setError("UserName field is Required");
             return false;
-        } else if (phone.isEmpty()) {
-            binding.etPhoneNumber.setError("PhoneNumber field is Required");
+        } else if (email.isEmpty()) {
+            binding.etEmail.setError("Email field is Required");
             return false;
         } else if (password.isEmpty()) {
             binding.etPhoneNumber.setError("Password field is Required");
             return false;
         }else if(!binding.checked.isChecked()) {
             Toast.makeText(this, "You must agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (isValidPalestinianPhoneNumber(phone)) {
             return false;
         }
         return true;
@@ -102,9 +132,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.btn_register:
                 if (dataCheck()){
                     Intent intent1 = new Intent(getApplicationContext(),Login.class);
-                    String phone =binding.etPhoneNumber.getText().toString().trim();
+                    String email =binding.etEmail.getText().toString().trim();
                     String pass = binding.etPassword.getText().toString().trim();
-                    intent1.putExtra("phone",phone);
+                    intent1.putExtra("email",email);
                     intent1.putExtra("password",pass);
                     startActivity(intent1);
                 }else {
