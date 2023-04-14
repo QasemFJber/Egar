@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,6 +58,7 @@ public class Pager_GetStarted extends AppCompatActivity {
 
                     Intent i = new Intent(Pager_GetStarted.this,Login.class);
                     startActivity(i);
+
                     finish();
 
                 }
@@ -70,7 +72,7 @@ public class Pager_GetStarted extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent i = new Intent(Pager_GetStarted.this,Login.class);
+                Intent i = new Intent(getApplicationContext(),Login.class);
                 startActivity(i);
                 finish();
 

@@ -114,6 +114,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.btn_back:
                 Intent intent2 = new Intent(getApplicationContext(),Login.class);
                 startActivity(intent2);
+                overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
                 break;
         }
     }

@@ -3,9 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:ignore="MissingDefaultResource">
 
-    <translate
-        android:duration="@android:integer/config_mediumAnimTime"
-        android:fromYDelta="0"
-        android:toYDelta="100%p"
-        />
+    <translate android:fromXDelta="0%" android:toXDelta="100%"
+        android:duration="300"/>
 </set>

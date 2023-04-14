@@ -2,10 +2,7 @@
 <set xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:ignore="MissingDefaultResource">
-    <translate
-        android:duration="@android:integer/config_mediumAnimTime"
-        android:fromYDelta="100%p"
-        android:toYDelta="0"
-        />
+    <translate android:fromXDelta="-100%" android:toXDelta="0%"
+        android:duration="300"/>
 
 </set>

@@ -159,10 +159,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.create_account:
                 Intent intent1 = new Intent(getApplicationContext(),Register.class);
                 startActivity(intent1);
+                overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
                 break;
                 case R.id.btn_back:
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent2);
+                    overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
                 break;
             case R.id.forgotPassword:
                 Intent intent3 = new Intent(getApplicationContext(),ResetPassword.class);
@@ -171,6 +173,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.btn_visitor:
                 Intent visitorIntent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(visitorIntent);
+                overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
                 break;
 
         }
