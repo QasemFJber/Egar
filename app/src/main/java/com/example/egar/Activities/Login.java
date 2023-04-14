@@ -155,7 +155,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }else {
-                    Snackbar.make(binding.getRoot(), "Please enter Data", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this, R.color.red)).show();
+                    Snackbar.make(binding.getRoot(), "Please enter Data , The Input Filed is Required", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this, R.color.bronze)).show();
                 }
                 break;
             case R.id.create_account:

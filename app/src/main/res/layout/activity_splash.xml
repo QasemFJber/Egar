@@ -9,16 +9,16 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="@dimen/_222sdp"
+        android:layout_marginTop="@dimen/_44sdp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/trt" />
+        app:lottie_rawRes="@raw/rere" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,15 +26,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Egar "
-        android:textSize="34sp"
+        android:textSize="@dimen/_33ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/animationView"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_222sdp"
+        android:layout_margin="@dimen/_15sdp"
+        android:padding="@dimen/_11sdp"
+        android:textStyle="bold"
+        android:textColor="@color/blue_grey"
+        android:textSize="@dimen/_15ssp"
+        android:text="Welcome to our rental app! Find the perfect home, office, car, equipment, or attire for any occasion with just a few clicks. Our user-friendly interface and friendly customer support team make renting a breeze. Thank you for choosing us!"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
