@@ -16,6 +16,9 @@ import com.example.egar.R;
 import com.example.egar.databinding.ActivityRegisterBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
     ActivityRegisterBinding binding;
@@ -30,28 +33,44 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void screenOperations (){
         setOnClick();
+
     }
     private boolean isValidPalestinianPhoneNumber() {
         String phoneNumber = binding.etPhoneNumber.getText().toString().trim();
-        String regexPattern = "^\\+970(5[0124567]|2[02456789]|59|7[23]|8[0123456])\\d{6}$";
-
-        if (phoneNumber == null || phoneNumber.length() != 13) {
-            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
-
-            return false;
-        }
-
-        if (!phoneNumber.matches(regexPattern)) {
-            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
-            return false;
-        }
-        if (!phoneNumber.isEmpty()){
+        if (phoneNumber.isEmpty()){
             Snackbar.make(binding.getRoot(), "Please enter a  phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
             return false;
+        } else if (phoneNumber.matches("^\\+970(59|56)\\d{7}$")) {
+            return true;
+        }else {
+            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number starting with 059 or 056.", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
+            return false;
         }
 
-        return true;
     }
+
+    public boolean isValidEmail() {
+        String email = binding.etEmail.getText().toString().trim();
+        boolean isValid = false;
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        if (email == null) {
+            isValid = false;
+        } else {
+            Matcher matcher = pattern.matcher(email);
+            isValid = matcher.matches();
+        }
+        if (!isValid) {
+            Snackbar.make(binding.getRoot(), "Invalid email address", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
+
+        }
+        return isValid;
+    }
+
+
+
 
     private boolean dataCheck (){
         String name = binding.etUserName.getText().toString().trim();
@@ -61,7 +80,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         if (name.isEmpty()) {
             binding.etUserName.setError("UserName field is Required");
             return false;
-        } else if (email.isEmpty()) {
+        } else if (email.isEmpty()  ) {
             binding.etEmail.setError("Email field is Required");
             return false;
         } else if (password.isEmpty()) {
@@ -121,7 +140,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.btn_register:
-                if (dataCheck() && isValidPalestinianPhoneNumber()){
+                if (dataCheck() && isValidPalestinianPhoneNumber() && isValidEmail()){
                     Intent intent1 = new Intent(getApplicationContext(),Login.class);
                     String email =binding.etEmail.getText().toString().trim();
                     String pass = binding.etPassword.getText().toString().trim();
