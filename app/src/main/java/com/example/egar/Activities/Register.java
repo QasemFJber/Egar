@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.egar.R;
+import com.example.egar.controllers.FirebaseAuthController;
 import com.example.egar.databinding.ActivityRegisterBinding;
+import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Matcher;
@@ -141,6 +143,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.btn_register:
                 if (dataCheck() && isValidPalestinianPhoneNumber() && isValidEmail()){
+                    register();
                     Intent intent1 = new Intent(getApplicationContext(),Login.class);
                     String email =binding.etEmail.getText().toString().trim();
                     String pass = binding.etPassword.getText().toString().trim();
@@ -188,6 +191,24 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             }
         });
         dialog.show();
+    }
+
+    private void register() {
+        FirebaseAuthController.getInstance().createAccount(binding.etUserName.getText().toString(),
+                binding.etEmail.getText().toString(),
+                binding.etPassword.getText().toString(),
+                new ProcessCallback() {
+                    @Override
+                    public void onSuccess(String message) {
+                        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.egar.R;
+import com.example.egar.controllers.FirebaseAuthController;
 
 public class Splash extends AppCompatActivity {
 
@@ -16,21 +17,13 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(),Login.class);
-                startActivity(intent);
-
-            }
-        },3333);
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        controlSplashActivity();
     }
 
     @Override
@@ -88,6 +81,16 @@ public class Splash extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+    private void controlSplashActivity() {
+        //3000ms - 3s
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), FirebaseAuthController.getInstance().isSignedIn() ? MainActivity.class : Login.class);
+                startActivity(intent);
+            }
+        }, 3000);
     }
 
 }

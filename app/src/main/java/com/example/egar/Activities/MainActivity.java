@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     DeliveredDialog dialog = new DeliveredDialog(this);
     TextView textView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

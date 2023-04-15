@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.example.egar.BroadcastReceivers.NetworkChangeListiners;
 import com.example.egar.R;
+import com.example.egar.controllers.FirebaseAuthController;
 import com.example.egar.databinding.ActivityLoginBinding;
+import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -120,19 +122,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if (password == null && email == null){
             return false;
         }else {
-            binding.etPhoneNumber.setText(intent.getStringExtra("email"));
+            binding.etEmail.setText(intent.getStringExtra("email"));
             binding.etPassword.setText(intent.getStringExtra("password"));
             return true;
         }
     }
     private boolean dataCheck (){
-        String phone = binding.etPhoneNumber.getText().toString();
+        String email = binding.etEmail.getText().toString();
         String password = binding.etPassword.getText().toString();
-         if (phone.isEmpty()) {
-            binding.etPhoneNumber.setError("PhoneNumber field is Required");
+         if (email.isEmpty()) {
+            binding.etEmail.setError("Email field is Required");
             return false;
         } else if (password.isEmpty()) {
-            binding.etPhoneNumber.setError("Password field is Required");
+            binding.etPassword.setError("Password field is Required");
             return false;
         }
          return true;
@@ -152,6 +154,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_login:
                 if (dataCheck()){
+                    login();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }else {
@@ -179,6 +182,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+    }
+    private void login() {
+        FirebaseAuthController.getInstance().signIn(binding.etEmail.getText().toString(),
+                binding.etPassword.getText().toString(),
+                new ProcessCallback() {
+                    @Override
+                    public void onSuccess(String message) {
+                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+
+                    }
+                });
     }
 
 
