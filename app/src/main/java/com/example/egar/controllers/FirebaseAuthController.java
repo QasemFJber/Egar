@@ -9,6 +9,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.util.Objects;
+
 public class FirebaseAuthController {
 
     private FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -50,7 +52,7 @@ public class FirebaseAuthController {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    if (auth.getCurrentUser().isEmailVerified()) {
+                    if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
                         //TODO: Login success, Navigate to home screen (FROM UI)
                         callback.onSuccess("Logged in successfully");
                     } else {
@@ -58,7 +60,7 @@ public class FirebaseAuthController {
                         callback.onFailure("Verify email to login");
                     }
                 } else {
-                    callback.onFailure(task.getException().getMessage());
+                    callback.onFailure(Objects.requireNonNull(task.getException()).getMessage());
                 }
             }
         });

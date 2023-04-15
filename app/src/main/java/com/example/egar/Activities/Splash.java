@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.egar.R;
+import com.example.egar.SharedPreferences.AppSharedPreferences;
 import com.example.egar.controllers.FirebaseAuthController;
 
 public class Splash extends AppCompatActivity {
@@ -17,6 +19,8 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+
     }
 
 
@@ -84,13 +88,21 @@ public class Splash extends AppCompatActivity {
     }
     private void controlSplashActivity() {
         //3000ms - 3s
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), FirebaseAuthController.getInstance().isSignedIn() ? MainActivity.class : Login.class);
-                startActivity(intent);
-            }
-        }, 3000);
-    }
+//        boolean isFirstRun = AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun", true);
+//        if (isFirstRun) {
+////           قم بعرض ViewPager
+////            AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", false).apply();
+//            Intent intent = new Intent(getApplicationContext(),Pager_GetStarted.class);
+//            startActivity(intent);
+//        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(getApplicationContext(), FirebaseAuthController.getInstance().isSignedIn() ? MainActivity.class : Login.class);
+                    startActivity(intent);
+                }
+            }, 3000);
+        }
+
 
 }

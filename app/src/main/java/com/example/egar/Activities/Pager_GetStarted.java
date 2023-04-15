@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.egar.R;
+import com.example.egar.SharedPreferences.AppSharedPreferences;
 import com.example.egar.adapters.ViewPagerAdapter;
 
 public class Pager_GetStarted extends AppCompatActivity {
@@ -58,7 +59,6 @@ public class Pager_GetStarted extends AppCompatActivity {
 
                     Intent i = new Intent(Pager_GetStarted.this,Login.class);
                     startActivity(i);
-
                     finish();
 
                 }
@@ -70,8 +70,6 @@ public class Pager_GetStarted extends AppCompatActivity {
         skipbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent i = new Intent(getApplicationContext(),Login.class);
                 startActivity(i);
                 finish();
@@ -201,6 +199,7 @@ public class Pager_GetStarted extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", false).apply();
 
     }
 

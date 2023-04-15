@@ -200,13 +200,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 new ProcessCallback() {
                     @Override
                     public void onSuccess(String message) {
-                        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
+                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
                         onBackPressed();
                     }
 
                     @Override
                     public void onFailure(String message) {
-                        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
+                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
                     }
                 });
     }
