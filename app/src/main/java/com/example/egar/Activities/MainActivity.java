@@ -2,30 +2,23 @@ package com.example.egar.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.egar.Dialog.ConfirmDialog;
 import com.example.egar.Dialog.DeliveredDialog;
 import com.example.egar.Fragments.BottomNavigationFragments.Categories;
 import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
 import com.example.egar.Fragments.BottomNavigationFragments.Home;
 import com.example.egar.Fragments.BottomNavigationFragments.Profile;
 import com.example.egar.R;
-import com.example.egar.adapters.ViewPagerAdapter;
+import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,8 +29,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     Profile profile = new Profile();
 
     ActivityMainBinding binding;
-    DeliveredDialog dialog = new DeliveredDialog(this);
-    TextView textView;
+
 
 
     @Override
@@ -75,37 +67,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
 
     }
-    @Override
-    public void onBackPressed() {
-        // Create an exit dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Exit");
-        builder.setMessage("Are you sure you want to exit?");
-        builder.setIcon(R.drawable.baseline_exit_to_app_24);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Close the application
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Dismiss the dialog and continue with the application
-                dialog.dismiss();
-            }
-        });
-        // Create the dialog and show it
-        AlertDialog dialog = builder.create();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                // Do nothing
-            }
-        });
-        dialog.show();
-    }
+
 
     private void operationsSccren() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,home);
@@ -157,7 +119,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.menu_drw:
-               dialog.startDialog();
+                FirebaseAuthController.getInstance().signOut();
+                Intent intentLogin = new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(intentLogin);
                 break;
 
         }
