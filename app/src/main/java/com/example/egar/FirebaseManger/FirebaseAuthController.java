@@ -1,4 +1,4 @@
-package com.example.egar.controllers;
+package com.example.egar.FirebaseManger;
 
 import androidx.annotation.NonNull;
 
@@ -81,6 +81,7 @@ public class FirebaseAuthController {
 
     public void signOut() {
         auth.signOut();
+
     }
 
     public boolean isSignedIn() {
