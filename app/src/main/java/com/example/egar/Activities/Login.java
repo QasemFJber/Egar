@@ -1,6 +1,5 @@
 package com.example.egar.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -13,21 +12,13 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.egar.BroadcastReceivers.NetworkChangeListiners;
 import com.example.egar.R;
-import com.example.egar.controllers.FirebaseAuthController;
+import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityLoginBinding;
 import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
-
-import java.util.concurrent.TimeUnit;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -155,8 +146,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.btn_login:
                 if (dataCheck()){
                     login();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
                 }else {
                     Snackbar.make(binding.getRoot(), "Please enter Data , The Input Filed is Required", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this, R.color.bronze)).show();
                 }
