@@ -27,37 +27,7 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
         setOnClick();
         getWindow().setStatusBarColor(ContextCompat.getColor(Notifications.this,R.color.white));
     }
-    @Override
-    public void onBackPressed() {
-        // Create an exit dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Exit");
-        builder.setMessage("Are you sure you want to exit?");
-        builder.setIcon(R.drawable.baseline_exit_to_app_24);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Close the application
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Dismiss the dialog and continue with the application
-                dialog.dismiss();
-            }
-        });
-        // Create the dialog and show it
-        AlertDialog dialog = builder.create();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                // Do nothing
-            }
-        });
-        dialog.show();
-    }
+
 
     @Override
     protected void onStart() {
@@ -91,7 +61,7 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
     }
 
     private void  setOnClick(){
-        binding.backToMain.setOnClickListener(this);
+        binding.backToMain.setOnClickListener(this::onClick);
     }
 
     @SuppressLint("NonConstantResourceId")
