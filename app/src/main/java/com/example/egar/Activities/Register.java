@@ -7,13 +7,11 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.egar.R;
-import com.example.egar.controllers.FirebaseAuthController;
+import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityRegisterBinding;
 import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
