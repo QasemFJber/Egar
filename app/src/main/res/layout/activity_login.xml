@@ -65,7 +65,7 @@
             android:hint="here email"
             android:textColorHint="@color/blue_grey"
             android:background="@drawable/edit_text_login"
-            android:inputType="phone"
+            android:inputType="textEmailAddress"
             android:autofillHints="emailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
