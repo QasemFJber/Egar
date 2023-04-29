@@ -13,10 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="SplashNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
     <style name="Nav">
         <item name="android:windowEnterAnimation">@anim/slid_in</item>
         <item name="android:windowExitAnimation">@anim/slid_out</item>
@@ -26,6 +28,15 @@
         <item name="android:windowEnterAnimation">@anim/slid_in</item>
         <item name="android:windowExitAnimation">@anim/slid_out</item>
     </style>
+
+    <style name="Theme.Egar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Egar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Egar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>
