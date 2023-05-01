@@ -1,5 +1,6 @@
 package com.example.egar.Fragments.BottomNavigationFragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,12 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.egar.Activities.ShowAll_Items;
+import com.example.egar.Models.Category;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.StoreAdapter;
 import com.example.egar.databinding.FragmentHomeBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +30,10 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class Home extends Fragment {
+    private RecyclerView categoryRecyclerView;
+    private CategoryAdapter categoryAdapter;
+    private List<Category> categoryList;
+
     private  FragmentHomeBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -86,9 +94,14 @@ public class Home extends Fragment {
         LinearLayoutManager manager3 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         GridLayoutManager manager2 = new GridLayoutManager(getActivity(),2);
 //        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
-        CategoryAdapter adapter = new CategoryAdapter(getActivity(),"bara brand ",R.drawable.women);
-        binding.categoryrv.setLayoutManager(manager);
-        binding.categoryrv.setAdapter(adapter);
+        setupCategoryRecyclerView(getActivity(), binding.categoryrv, addDataToRecyclerView(), new CategoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Category category) {
+                Snackbar.make(binding.getRoot(),category.getName(),Snackbar.LENGTH_LONG).show();
+
+            }
+        });
+
 //        binding.servicerv.setLayoutManager(manager3);
 //        binding.servicerv.setAdapter(adapter);
 //        binding.productrv.setLayoutManager(manager2);
@@ -96,4 +109,32 @@ public class Home extends Fragment {
 
 
     }
+    private List<Category> addDataToRecyclerView(){
+
+        categoryList = new ArrayList<>();
+        categoryList.add(new Category("Category 1", R.drawable.car));
+        categoryList.add(new Category("Category 2", R.drawable.coworking));
+        categoryList.add(new Category("Category 3", R.drawable.house));
+        categoryList.add(new Category("Category 4", R.drawable.maintenance));
+        categoryList.add(new Category("Category 5", R.drawable.man));
+        categoryList.add(new Category("Category 5", R.drawable.women));
+
+        return  categoryList;
+
+    }
+    private CategoryAdapter setupCategoryRecyclerView(Context context, RecyclerView recyclerView, List<Category> categories, CategoryAdapter.OnItemClickListener listener) {
+        // Set the layout manager for the RecyclerView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Initialize the adapter
+        CategoryAdapter adapter = new CategoryAdapter(categories, listener);
+
+        // Set the adapter for the RecyclerView
+        recyclerView.setAdapter(adapter);
+
+        return adapter;
+    }
+
+
 }
