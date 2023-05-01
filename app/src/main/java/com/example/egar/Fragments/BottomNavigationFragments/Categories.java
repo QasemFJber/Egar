@@ -1,19 +1,25 @@
 package com.example.egar.Fragments.BottomNavigationFragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.egar.Models.Category;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.StoreAdapter;
 import com.example.egar.databinding.FragmentCategoriesBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +27,11 @@ import com.example.egar.databinding.FragmentCategoriesBinding;
  * create an instance of this fragment.
  */
 public class Categories extends Fragment {
+    private RecyclerView categoryRecyclerView;
+    private CategoryAdapter categoryAdapter;
+    private List<Category> categoryList;
+
+
     private FragmentCategoriesBinding binding;
 
 
@@ -75,11 +86,41 @@ public class Categories extends Fragment {
     private void intiRecyclerViewStore(){
         GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
 //        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.coworking);
-        CategoryAdapter adapter = new CategoryAdapter(getActivity(),"Qasems",R.drawable.women);
-        binding.rvCategory.setAdapter(adapter);
-        binding.rvCategory.setLayoutManager(manager);
+        setupCategoryRecyclerView(getActivity(), binding.rvCategory, addDataToRecyclerView(), new CategoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Category category) {
+
+            }
+        });
 
 
     }
+    private List<Category> addDataToRecyclerView(){
+
+        categoryList = new ArrayList<>();
+        categoryList.add(new Category("Category 1", R.drawable.car));
+        categoryList.add(new Category("Category 2", R.drawable.coworking));
+        categoryList.add(new Category("Category 3", R.drawable.house));
+        categoryList.add(new Category("Category 4", R.drawable.maintenance));
+        categoryList.add(new Category("Category 5", R.drawable.man));
+        categoryList.add(new Category("Category 5", R.drawable.women));
+
+        return  categoryList;
+
+    }
+    private CategoryAdapter setupCategoryRecyclerView(Context context, RecyclerView recyclerView, List<Category> categories, CategoryAdapter.OnItemClickListener listener) {
+        // Set the layout manager for the RecyclerView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Initialize the adapter
+        CategoryAdapter adapter = new CategoryAdapter(categories, listener);
+
+        // Set the adapter for the RecyclerView
+        recyclerView.setAdapter(adapter);
+
+        return adapter;
+    }
+
 
 }
