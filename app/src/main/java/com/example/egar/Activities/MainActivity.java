@@ -21,10 +21,13 @@ import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
     Categories categories = new Categories();
     Favorite favorite = new Favorite();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
     Home home = new Home();
     Profile profile = new Profile();
 
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         binding.bottmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
