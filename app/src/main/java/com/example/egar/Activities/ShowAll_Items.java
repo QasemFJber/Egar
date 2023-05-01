@@ -27,6 +27,7 @@ public class ShowAll_Items extends AppCompatActivity implements View.OnClickList
         binding.tvTitle.setText(intent.getStringExtra("category"));
     }
     private void operationsSccren() {
+        setOnClick();
         getWindow().setStatusBarColor(ContextCompat.getColor(ShowAll_Items.this, R.color.black));
     }
 
