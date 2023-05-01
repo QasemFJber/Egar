@@ -135,7 +135,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private  void setOnClick(){
         binding.btnLogin.setOnClickListener(this::onClick);
         binding.createAccount.setOnClickListener(this::onClick);
-        binding.btnBack.setOnClickListener(this::onClick);
         binding.forgotPassword.setOnClickListener(this::onClick);
         binding.btnVisitor.setOnClickListener(this::onClick);
     }
@@ -154,11 +153,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Intent intent1 = new Intent(getApplicationContext(),Register.class);
                 startActivity(intent1);
                 overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
-                break;
-                case R.id.btn_back:
-                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent2);
-                    overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
                 break;
             case R.id.forgotPassword:
                 Intent intent3 = new Intent(getApplicationContext(),ResetPassword.class);
