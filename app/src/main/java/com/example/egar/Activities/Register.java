@@ -37,16 +37,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
     private boolean isValidPalestinianPhoneNumber() {
         String phoneNumber = binding.etPhoneNumber.getText().toString().trim();
-        if (phoneNumber.isEmpty()){
-            Snackbar.make(binding.getRoot(), "Please enter a  phone number", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
-            return false;
-        } else if (phoneNumber.matches("^\\+970(59|56)\\d{7}$")) {
+        if (phoneNumber.matches("^(059|056)\\d{7}$")) {
             return true;
-        }else {
-            Snackbar.make(binding.getRoot(), "Please enter a valid Palestinian phone number starting with 059 or 056.", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this,R.color.bronze)).show();
+        } else {
             return false;
         }
-
     }
 
     public boolean isValidEmail() {
@@ -68,9 +63,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }
         return isValid;
     }
-
-
-
 
     private boolean dataCheck (){
         String name = binding.etUserName.getText().toString().trim();
