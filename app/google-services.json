@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "466999957188",
-    "project_id": "egar-278c6",
-    "storage_bucket": "egar-278c6.appspot.com"
+    "project_number": "751722128315",
+    "project_id": "egar-29bae",
+    "storage_bucket": "egar-29bae.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:466999957188:android:c71862500e3e37f912db91",
+        "mobilesdk_app_id": "1:751722128315:android:29c7fa1691ab6a386bda9e",
         "android_client_info": {
           "package_name": "com.example.egar"
         }
       },
       "oauth_client": [
         {
-          "client_id": "466999957188-n8ibqvs8kf90525mfmbkfj8igdvolk0u.apps.googleusercontent.com",
+          "client_id": "751722128315-adfcdr7kld37cp1hd995a0tucdct8ivu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA97O152o31djRiB5K7hn5GUYJ94YNbPB0"
+          "current_key": "AIzaSyAYVXEPiFJf7-9Np6m3rv8pZhld4WLd3Ik"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "466999957188-n8ibqvs8kf90525mfmbkfj8igdvolk0u.apps.googleusercontent.com",
+              "client_id": "751722128315-adfcdr7kld37cp1hd995a0tucdct8ivu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
