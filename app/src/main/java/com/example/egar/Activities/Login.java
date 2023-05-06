@@ -131,7 +131,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
          return true;
     }
 
-
     private  void setOnClick(){
         binding.btnLogin.setOnClickListener(this::onClick);
         binding.createAccount.setOnClickListener(this::onClick);
