@@ -112,12 +112,12 @@ public class Home extends Fragment {
     private List<Category> addDataToRecyclerView(){
 
         categoryList = new ArrayList<>();
-        categoryList.add(new Category("Category 1", R.drawable.car));
-        categoryList.add(new Category("Category 2", R.drawable.coworking));
-        categoryList.add(new Category("Category 3", R.drawable.house));
-        categoryList.add(new Category("Category 4", R.drawable.maintenance));
-        categoryList.add(new Category("Category 5", R.drawable.man));
-        categoryList.add(new Category("Category 5", R.drawable.women));
+        categoryList.add(new Category("CARS", R.drawable.car));
+        categoryList.add(new Category("CO WORKING", R.drawable.coworking));
+        categoryList.add(new Category("HOUSE", R.drawable.house));
+        categoryList.add(new Category("MAINTENANCE", R.drawable.maintenance));
+        categoryList.add(new Category("MAN CLOTHES", R.drawable.man));
+        categoryList.add(new Category("WOMAN CLOTHES", R.drawable.women));
 
         return  categoryList;
 
