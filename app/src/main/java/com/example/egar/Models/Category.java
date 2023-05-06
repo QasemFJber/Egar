@@ -4,22 +4,19 @@ import android.graphics.drawable.Drawable;
 
 public class Category {
     private String name;
-    private Drawable imageUrl;
+    private int imageUrl;
 
-    public Category(String name, Drawable imageUrl) {
+    public Category(String name, int imageUrl) {
         this.name = name;
         this.imageUrl = imageUrl;
     }
 
-    public Category(String name, int coworking) {
-
-    }
 
     public String getName() {
         return name;
     }
 
-    public Drawable getImageUrl() {
+    public int getImageUrl() {
         return imageUrl;
     }
 
@@ -27,7 +24,7 @@ public class Category {
         this.name = name;
     }
 
-    public void setImageUrl(Drawable imageUrl) {
+    public void setImageUrl(int imageUrl) {
         this.imageUrl = imageUrl;
     }
 }
