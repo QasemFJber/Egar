@@ -11,11 +11,11 @@
         android:icon="@drawable/user"
         />
 
-    <item
+<!--    <item
         android:title=""
         android:id="@+id/fab"
         android:enabled="false"
-        />
+        />-->
     <item android:title="Favorite"
         android:id="@+id/favorite"
         android:icon="@drawable/baseline_favorite_24"

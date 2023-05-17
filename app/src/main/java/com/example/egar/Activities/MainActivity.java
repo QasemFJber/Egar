@@ -110,15 +110,15 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
 
     private void setOnClick(){
-        binding.imageNotification.setOnClickListener(this::onClick);
-        binding.menuDrw.setOnClickListener(this::onClick);
+/*        binding.imageNotification.setOnClickListener(this::onClick);
+        binding.menuDrw.setOnClickListener(this::onClick);*/
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.image_notification:
+/*            case R.id.image_notification:
                 Intent intent = new Intent(getApplicationContext(),Notifications.class);
                 startActivity(intent);
                 break;
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 FirebaseAuthController.getInstance().signOut();
                 Intent intentLogin = new Intent(getApplicationContext(),HomeActivity.class);
                 startActivity(intentLogin);
-                break;
+                break;*/
 
         }
     }

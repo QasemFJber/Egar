@@ -80,9 +80,10 @@ public class Categories extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentCategoriesBinding.inflate(inflater,container,false);
-        intiRecyclerViewStore();
+        //intiRecyclerViewStore();
         return binding.getRoot();
     }
+/*
     private void intiRecyclerViewStore(){
         GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
 //        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.coworking);
@@ -121,6 +122,7 @@ public class Categories extends Fragment {
 
         return adapter;
     }
+*/
 
 
 }

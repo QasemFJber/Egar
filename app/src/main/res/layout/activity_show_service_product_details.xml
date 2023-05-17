@@ -22,8 +22,9 @@
 
             <ImageView
                 android:id="@+id/proud_img"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +46,7 @@
                 android:text="Product Name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
                 android:layout_margin="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/proud_img" />
@@ -63,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_13sdp"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_16sdp"
                 android:text="523 شيكل "
                 android:textColor="@color/active"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,14 +74,16 @@
             <RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_33sdp"
+                android:layout_height="wrap_content"
+                android:scaleX="0.50"
+                android:scaleY="0.50"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
             <ImageView
                 android:id="@+id/imageView20"
-                android:layout_width="@dimen/_77sdp"
-                android:layout_height="@dimen/_77sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_margin="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_price"
@@ -89,10 +93,11 @@
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_16sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:text="Store Name (brand)"
-                android:textSize="@dimen/_15ssp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView20"
                 app:layout_constraintStart_toEndOf="@+id/imageView20"
                 app:layout_constraintTop_toTopOf="@+id/imageView20" />
 
@@ -100,11 +105,11 @@
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_16sdp"
+                android:layout_marginEnd="16dp"
                 android:text="3 pieces left"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toTopOf="@+id/textView27" />
 
             <TextView
                 android:id="@+id/textView29"
@@ -119,8 +124,10 @@
 
             <ImageView
                 android:id="@+id/imageView21"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_110sdp"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="@+id/textView29"
                 app:layout_constraintStart_toStartOf="@+id/textView29"
                 app:layout_constraintTop_toBottomOf="@+id/textView29"
                 app:srcCompat="@drawable/rectan" />
@@ -132,21 +139,22 @@
                 android:layout_margin="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView21" />
+                app:layout_constraintTop_toBottomOf="@+id/button" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_17sdp"
+                android:background="@color/dark_blue"
+                android:textAllCaps="false"
+                android:text="Add To Cart"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
-                android:layout_margin="@dimen/_17sdp"
-                android:text="Add to cart"
-                android:background="@color/dark_blue"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView29"
-                app:layout_constraintTop_toBottomOf="@+id/textView28" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

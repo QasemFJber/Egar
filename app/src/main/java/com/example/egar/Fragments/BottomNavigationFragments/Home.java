@@ -94,7 +94,7 @@ public class Home extends Fragment {
         LinearLayoutManager manager3 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         GridLayoutManager manager2 = new GridLayoutManager(getActivity(),2);
 //        StoreAdapter adapter = new StoreAdapter(getActivity(),"Qasem Brand", R.drawable.avatar);
-        setupCategoryRecyclerView(getActivity(), binding.categoryrv, addDataToRecyclerView(), new CategoryAdapter.OnItemClickListener() {
+        setupCategoryRecyclerView(getActivity(), binding.recyclerCategory, addDataToRecyclerView(), new CategoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Category category) {
                 Snackbar.make(binding.getRoot(),category.getName(),Snackbar.LENGTH_LONG).show();

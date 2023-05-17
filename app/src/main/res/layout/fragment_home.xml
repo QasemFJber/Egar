@@ -20,12 +20,11 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categoryrv"
+                android:id="@+id/recycler_category"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_13sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +75,12 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:text="Categories"
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.048"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,25 +88,71 @@
                 android:id="@+id/tv_category_show_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:padding="@dimen/_5sdp"
                 android:text="show all"
-                android:textSize="14sp"
                 android:textColor="@color/light_blue_grey"
-                android:padding="@dimen/_13sdp"
-                app:layout_constraintBottom_toTopOf="@+id/categoryrv"
-                app:layout_constraintEnd_toEndOf="@+id/categoryrv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@+id/recycler_category"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_80sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:src="@drawable/rectan"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="@+id/textView12"
                 app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Offers"
+                android:textColor="#000000"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
+
+            <TextView
+                android:id="@+id/tv_offers_show_all2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="show all"
+                android:textColor="@color/light_blue_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_offers"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_offers_show_all2" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rectan"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="@+id/textView13"
+                app:layout_constraintStart_toStartOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

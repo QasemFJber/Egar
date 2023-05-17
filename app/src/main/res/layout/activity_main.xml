@@ -7,6 +7,15 @@
     android:background="@color/active"
     tools:context=".Activities.Main">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/active"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -44,17 +53,17 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentcontainer"
             android:name="com.example.egar.Fragments.BottomNavigationFragments.Home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottm_nav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/constraintLayout"
-            app:layout_constraintBottom_toTopOf="@id/bottm_nav"
             tools:layout="@layout/fragment_home" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <ImageView
+<!--    <ImageView
         android:id="@+id/image_notification"
         android:layout_width="wrap_content"
         android:padding="@dimen/_15sdp"
@@ -63,18 +72,18 @@
         android:layout_marginTop="0dp"
         android:layout_marginStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageView
+<!--    <ImageView
         android:id="@+id/menu_drw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/_16sdp"
         android:src="@drawable/baseline_segment_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <SearchView
+<!-- <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,7 +95,7 @@
         android:background="@drawable/edit_text_login"
         app:layout_constraintEnd_toStartOf="@+id/menu_drw"
         app:layout_constraintStart_toEndOf="@+id/image_notification"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Egar"
         tools:targetApi="31">
         <activity
+            android:name=".ServiceProviderActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"

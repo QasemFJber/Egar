@@ -30,6 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <!--    <ImageView-->
     <!--        android:id="@+id/ellipse1"-->
     <!--        android:layout_width="wrap_content"-->
@@ -37,6 +38,7 @@
     <!--        android:src="@drawable/ellipse1"-->
     <!--        app:layout_constraintBottom_toBottomOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
 
     <!--    <ImageView-->
     <!--        android:id="@+id/ellipse2"-->
