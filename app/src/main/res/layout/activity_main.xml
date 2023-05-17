@@ -4,98 +4,170 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/active"
-    tools:context=".Activities.Main">
+    android:id="@+id/layout_parent"
+    tools:context=".Activities.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+        android:id="@+id/app_bar_home"
+        android:layout_width="0dp"
         android:layout_height="@dimen/_45sdp"
         android:background="@color/active"
+        app:elevation="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+         />
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_170sdp"
-        android:layout_marginTop="-99dp"
-        android:src="@drawable/bcak"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentView"
+        android:name="com.example.egar.Fragments.BottomNavigationFragments.Home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/navView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_home"
+        tools:layout="@layout/fragment_home" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <LinearLayout
+        android:id="@+id/navView"
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_66sdp"
-        >
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:elevation="@dimen/_30sdp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_2sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_2sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottm_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            app:itemTextColor="@color/white"
-            android:background="@color/active"
-            app:labelVisibilityMode="selected"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:menu="@menu/bottom_nav_menu"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentcontainer"
-            android:name="com.example.egar.Fragments.BottomNavigationFragments.Home"
+        <LinearLayout
+            android:id="@+id/homeLayout"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/bottm_nav"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/constraintLayout"
-            tools:layout="@layout/fragment_home" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_2sdp">
+
+            <ImageView
+                android:id="@+id/homeImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/tv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:visibility="gone"
+                android:textColor="@color/home"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold" />
 
 
-<!--    <ImageView
-        android:id="@+id/image_notification"
-        android:layout_width="wrap_content"
-        android:padding="@dimen/_15sdp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_notifications_24"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        </LinearLayout>
 
-<!--    <ImageView
-        android:id="@+id/menu_drw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_16sdp"
-        android:src="@drawable/baseline_segment_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        <LinearLayout
+            android:id="@+id/categoryLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_1sdp">
 
-<!-- <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_39sdp"
-        android:layout_marginTop="@dimen/_13sdp"
-        android:queryHint="Search"
-        android:iconifiedByDefault="false"
-        android:layout_marginEnd="@dimen/_39sdp"
-        android:background="@drawable/edit_text_login"
-        app:layout_constraintEnd_toStartOf="@+id/menu_drw"
-        app:layout_constraintStart_toEndOf="@+id/image_notification"
-        app:layout_constraintTop_toTopOf="parent" />-->
+            <ImageView
+                android:id="@+id/categoryImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:visibility="gone"
+                android:textColor="@color/category"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cartLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_2sdp">
+
+            <ImageView
+                android:id="@+id/cartImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/tv_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cart"
+                android:visibility="gone"
+                android:textColor="@color/cart"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_2sdp">
+
+            <ImageView
+                android:id="@+id/personImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/tv_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Person"
+                android:visibility="gone"
+                android:textColor="@color/person"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
