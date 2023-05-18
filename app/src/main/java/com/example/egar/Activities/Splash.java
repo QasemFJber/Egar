@@ -10,6 +10,7 @@ import android.os.Handler;
 
 import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
+import com.example.egar.SharedPreferences.AppSharedPreferences;
 
 public class Splash extends AppCompatActivity {
 
@@ -59,16 +60,22 @@ public class Splash extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
     }
-    private void controlSplashActivity() {
-        //3000ms - 3s
-//        boolean isFirstRun = AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun", true);
-//        if (isFirstRun) {
-////           قم بعرض ViewPager
-////            AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", false).apply();
-//            Intent intent = new Intent(getApplicationContext(),Pager_GetStarted.class);
-//            startActivity(intent);
-//        } else {
-        }
+    private boolean showViewPagerAndGoToNextScreenIfNeeded() {
+        boolean isFirstRun = AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun", true);
+        if (isFirstRun) {
+            // عرض ViewPager
+            Intent intent = new Intent(getApplicationContext(), Pager_GetStarted.class);
+            startActivity(intent);
 
+            // ...
+            // تحديث حالة عرض الـViewPager
+            AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", false).apply();
+            return true;
+        } else {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            return false;
+        }
+    }
 
 }
