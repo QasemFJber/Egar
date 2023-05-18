@@ -34,9 +34,11 @@ public class FirebaseAuthController {
                 if (task.isSuccessful()) {
                     auth.getCurrentUser().sendEmailVerification();
 
+
                     UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                             .setDisplayName(name)
                             .build();
+
                     auth.getCurrentUser().updateProfile(request);
 
                     auth.signOut();
@@ -90,4 +92,5 @@ public class FirebaseAuthController {
     public boolean isSignedIn() {
         return auth.getCurrentUser() != null;
     }
+
 }
