@@ -40,6 +40,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         if (phoneNumber.matches("^(059|056)\\d{7}$")) {
             return true;
         } else {
+            Snackbar.make(binding.getRoot(),"Enter The Valid Palestinian Phone Number ",Snackbar.LENGTH_LONG).show();
             return false;
         }
     }
@@ -185,8 +186,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void register() {
         FirebaseAuthController.getInstance().createAccount(binding.etUserName.getText().toString(),
-                binding.etEmail.getText().toString(),
-                binding.etPassword.getText().toString(),
+                binding.etEmail.getText().toString().trim(),
+                binding.etPassword.getText().toString().trim(),
+                binding.etPhoneNumber.getText().toString().trim(),
                 new ProcessCallback() {
                     @Override
                     public void onSuccess(String message) {

@@ -4,12 +4,21 @@ import androidx.annotation.NonNull;
 
 import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class FirebaseAuthController {
@@ -27,29 +36,40 @@ public class FirebaseAuthController {
         return instance;
     }
 
-    public void createAccount(String name, String email, String password, ProcessCallback callback) {
+    public void createAccount(String name, String email, String password, String phoneNumber, ProcessCallback callback) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     auth.getCurrentUser().sendEmailVerification();
 
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    CollectionReference usersRef = db.collection("users");
 
-                    UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(name)
-                            .build();
+                    Map<String, Object> userData = new HashMap<>();
+                    userData.put("name", name);
+                    userData.put("email", email);
+                    userData.put("phoneNumber", phoneNumber);
 
-                    auth.getCurrentUser().updateProfile(request);
-
-                    auth.signOut();
-                    callback.onSuccess("Account created successfully");
+                    usersRef.document(auth.getCurrentUser().getUid())
+                            .set(userData)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    callback.onSuccess("Account created successfully");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    callback.onFailure(e.getMessage());
+                                }
+                            });
                 } else {
                     callback.onFailure(task.getException().getMessage());
                 }
             }
         });
-
-
     }
 
     public void signIn(String email, String password, ProcessCallback callback) {
@@ -70,6 +90,8 @@ public class FirebaseAuthController {
             }
         });
     }
+
+
 
     public void forgetPassword(String email, ProcessCallback callback) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
