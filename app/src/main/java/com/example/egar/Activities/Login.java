@@ -1,5 +1,6 @@
 package com.example.egar.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -18,7 +19,15 @@ import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityLoginBinding;
 import com.example.egar.interfaces.ProcessCallback;
+import com.example.egar.interfaces.ProviderTypeCallback;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -143,7 +152,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_login:
                 if (dataCheck()){
-                    login();
+                    loginAndCheckProviderType();
                 }else {
                     Snackbar.make(binding.getRoot(), "Please enter Data , The Input Filed is Required", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(this, R.color.bronze)).show();
                 }
@@ -165,24 +174,109 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         }
     }
-    private void login() {
+    private void showServiceProvidersDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alert");
+        builder.setMessage("We offer an app for service providers. Would you like to use the Service Providers application?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               finish();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Snackbar.make(binding.getRoot(), "We offer an app for service providers. Would you like to use the Service Providers application?", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.bronze)).show();
+
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    private void loginAndCheckProviderType() {
         FirebaseAuthController.getInstance().signIn(binding.etEmail.getText().toString(),
                 binding.etPassword.getText().toString(),
                 new ProcessCallback() {
                     @Override
                     public void onSuccess(String message) {
-                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_LONG).show();
+                        checkProviderTypeAndRedirect(new ProviderTypeCallback() {
+                            @Override
+                            public void onRegularUserSignedIn() {
+                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onProviderSignedIn() {
+                                showServiceProvidersDialog();
+                            }
+
+                            @Override
+                            public void onUserNotSignedIn() {
+                                Snackbar.make(binding.getRoot(),"Please Register Account",Snackbar.LENGTH_LONG).show();
+                            }
+                        });
                     }
 
                     @Override
                     public void onFailure(String message) {
-                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
-
+                        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private void checkProviderTypeAndRedirect(ProviderTypeCallback callback) {
+        String userId = getCurrentUserId();
+        if (userId != null) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            CollectionReference usersCollection = db.collection("users");
+            CollectionReference serviceProvidersCollection = db.collection("serviceproviders");
+
+            usersCollection.document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null && document.exists()) {
+                            // User exists in 'users' collection
+                            // Perform desired actions for regular user
+                            callback.onRegularUserSignedIn();
+                        } else {
+                            // User does not exist in 'users' collection
+                            // Check 'serviceproviders' collection
+                            serviceProvidersCollection.document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot serviceProviderDocument = task.getResult();
+                                        if (serviceProviderDocument != null && serviceProviderDocument.exists()) {
+                                            // User exists in 'serviceproviders' collection
+                                            // Perform desired actions for service provider
+                                            callback.onProviderSignedIn();
+                                        } else {
+                                            // User does not exist in 'serviceproviders' collection as well
+                                            // Handle the case when user is not signed in
+                                            callback.onUserNotSignedIn();
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    private String getCurrentUserId() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            return user.getUid();
+        }
+        return null;
     }
 
 
