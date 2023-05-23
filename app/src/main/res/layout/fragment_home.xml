@@ -114,6 +114,53 @@
                 app:layout_constraintStart_toStartOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
+            <TextView
+                android:id="@+id/textTop_rated_stores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_10sdp"                android:text="Top Rated Stores"
+                android:textColor="#000000"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_offers" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rectan"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="@+id/textTop_rated_stores"
+                app:layout_constraintStart_toStartOf="@+id/textTop_rated_stores"
+                app:layout_constraintTop_toBottomOf="@+id/textTop_rated_stores" />
+
+            <TextView
+                android:id="@+id/tv_Top_rated_stores_show_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="show all"
+                android:textColor="@color/light_blue_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_offers" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_Top_rated_stores"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_Top_rated_stores_show_all" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

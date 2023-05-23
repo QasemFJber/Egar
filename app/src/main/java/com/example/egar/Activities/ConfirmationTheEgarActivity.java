@@ -4,15 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.egar.databinding.ActivityServiceProviderBinding;
+import com.example.egar.databinding.ActivityConfirmationTheEgarBinding;
 
-public class ServiceProviderActivity extends AppCompatActivity {
-    ActivityServiceProviderBinding binding;
+public class ConfirmationTheEgarActivity extends AppCompatActivity {
+    ActivityConfirmationTheEgarBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityServiceProviderBinding.inflate(getLayoutInflater());
+        binding = ActivityConfirmationTheEgarBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
 }

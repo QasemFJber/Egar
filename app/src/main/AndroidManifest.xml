@@ -9,13 +9,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<!--    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" /> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -26,6 +24,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Egar"
         tools:targetApi="31">
+        <activity
+            android:name=".ConfirmationTheEgarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetermineRentStandardsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EvaluationActivity"
+            android:exported="false" />
         <activity
             android:name=".ServiceProviderActivity"
             android:exported="false" />
