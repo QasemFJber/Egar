@@ -7,11 +7,11 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_88sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_90sdp"
         app:cardCornerRadius="@dimen/_15sdp"
-        app:cardElevation="@dimen/_2sdp"
-        android:layout_margin="@dimen/_8sdp"
+        app:cardElevation="@dimen/_5sdp"
+        android:layout_margin="@dimen/_3sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,24 +23,23 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/category_image"
-                android:layout_width="@dimen/_55sdp"
-                android:layout_height="@dimen/_55sdp"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:layout_margin="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/women" />
+                 />
 
             <TextView
                 android:id="@+id/category_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_12sdp"
+                android:layout_margin="@dimen/_3sdp"
                 android:text="Work Space"
-                android:paddingBottom="@dimen/_9sdp"
                 android:textStyle="italic"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_11sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/category_image" />
