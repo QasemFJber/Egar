@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.egar.Activities.ShowAll_Items;
+import com.example.egar.Activities.ShowCategoriesActivity;
 import com.example.egar.Models.Category;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
@@ -25,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends Fragment  implements OnItemClickListener {
+public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener {
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
     private List<Category> categoryList;
@@ -44,11 +45,7 @@ public class Home extends Fragment  implements OnItemClickListener {
         binding  = FragmentHomeBinding.inflate(inflater,container,false);
         addDataToRecyclerView();
         initializeView();
-        binding.tvCategoryShowAll.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), ShowAll_Items.class);
-            intent.putExtra("category","Categories");
-            startActivity(intent);
-        });
+
         return binding.getRoot();
     }
     private List<Category> addDataToRecyclerView(){
@@ -67,6 +64,7 @@ public class Home extends Fragment  implements OnItemClickListener {
 
 
     private void initializeView(){
+        setOnclick();
         initializeRecyclerAdapter();
     }
     private void initializeRecyclerAdapter(){
@@ -77,8 +75,29 @@ public class Home extends Fragment  implements OnItemClickListener {
 
     @Override
     public void onItemClick(Category category) {
+        Intent intent = new Intent(getActivity(), ShowCategoriesActivity.class);
+        intent.putExtra("category_name",category.getName());
+        startActivity(intent);
 
     }
+    private void setOnclick(){
+        binding.tvCategoryShowAll.setOnClickListener(this::onClick);
+        binding.tvOffersShowAll2.setOnClickListener(this::onClick);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tv_category_show_all){
+            Intent intent = new Intent(getActivity(), ShowAll_Items.class);
+            intent.putExtra("category","Categories");
+            startActivity(intent);
+
+        }if (v.getId() == R.id.tv_offers_show_all2){
+
+        }
+    }
+
 
     @Override
     public void onDestroyView() {

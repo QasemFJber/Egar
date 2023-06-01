@@ -25,6 +25,12 @@
         android:theme="@style/Theme.Egar"
         tools:targetApi="31">
         <activity
+            android:name=".OffersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowCategoriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ConfirmationTheEgarActivity"
             android:exported="false" />
         <activity
@@ -35,6 +41,9 @@
             android:exported="false" />
         <activity
             android:name=".ServiceProviderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ShowCategoriesActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
@@ -55,6 +64,10 @@
             android:exported="false" />
         <activity
             android:name=".Activities.ShowAll_Items"
+            android:exported="false" />
+
+        <activity
+            android:name=".Activities.OffersActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.Notifications"
