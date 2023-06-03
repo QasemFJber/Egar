@@ -66,7 +66,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         public void sava(Category category) {
 
             binding.categoryTitle.setText(category.getName());
-            binding.categoryImage.setBackgroundResource(category.getImageUrl());
+            binding.categoryImageIcon.setBackgroundResource(category.getIcon());
+            binding.imageUrl.setBackgroundResource(category.getImageUrl());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -6,17 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.BottomNavigationFragments.Home">
 
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/home_round"
+        android:drawableStart="@drawable/baseline_search"
+        android:drawablePadding="@dimen/_5sdp"
+        android:hint="search products"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:textColor="@color/active"
+        android:textColorHint="@color/active"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/search"
+        app:srcCompat="@drawable/baseline_notifications_24" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/search">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -36,7 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:text="Categories"
                 android:textColor="#000000"
                 android:textSize="@dimen/_16ssp"
@@ -48,8 +75,7 @@
                 android:id="@+id/tv_category_show_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginEnd="16dp"
                 android:padding="@dimen/_5sdp"
                 android:text="show all"
                 android:textColor="@color/light_blue_grey"
@@ -62,8 +88,8 @@
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:src="@drawable/rectan"
                 android:scaleType="centerCrop"
+                android:src="@drawable/rectan"
                 app:layout_constraintEnd_toEndOf="@+id/text1"
                 app:layout_constraintStart_toStartOf="@+id/text1"
                 app:layout_constraintTop_toBottomOf="@+id/text1" />
@@ -72,8 +98,8 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:text="Offers"
                 android:textColor="#000000"
                 android:textSize="@dimen/_16ssp"
@@ -99,8 +125,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_offers_show_all2" />
 
@@ -108,8 +134,8 @@
                 android:id="@+id/imageView3"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/rectan"
                 android:scaleType="centerCrop"
+                android:src="@drawable/rectan"
                 app:layout_constraintEnd_toEndOf="@+id/textView13"
                 app:layout_constraintStart_toStartOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -118,8 +144,9 @@
                 android:id="@+id/textTop_rated_stores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginStart="@dimen/_10sdp"                android:text="Top Rated Stores"
+                android:text="Top Rated Stores"
                 android:textColor="#000000"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
@@ -130,8 +157,8 @@
                 android:id="@+id/imageView5"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/rectan"
                 android:scaleType="centerCrop"
+                android:src="@drawable/rectan"
                 app:layout_constraintEnd_toEndOf="@+id/textTop_rated_stores"
                 app:layout_constraintStart_toStartOf="@+id/textTop_rated_stores"
                 app:layout_constraintTop_toBottomOf="@+id/textTop_rated_stores" />

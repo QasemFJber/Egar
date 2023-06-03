@@ -6,11 +6,21 @@ public class Category {
     private String name;
     private int imageUrl;
 
-    public Category(String name, int imageUrl) {
+    private int icon;
+
+    public Category(String name, int imageUrl, int icon) {
         this.name = name;
         this.imageUrl = imageUrl;
+        this.icon = icon;
     }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
 
     public String getName() {
         return name;

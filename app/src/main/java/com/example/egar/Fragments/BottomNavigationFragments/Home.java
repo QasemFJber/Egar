@@ -19,6 +19,7 @@ import com.example.egar.Models.Category;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.StoreAdapter;
+
 import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,11 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener {
-    private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
     private List<Category> categoryList;
 
-    private  FragmentHomeBinding binding;
+    private FragmentHomeBinding binding;
 
 
     public Home() {
@@ -51,12 +51,12 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private List<Category> addDataToRecyclerView(){
 
         categoryList = new ArrayList<>();
-        categoryList.add(new Category("CARS", R.drawable.car));
-        categoryList.add(new Category("CO WORKING", R.drawable.coworking));
-        categoryList.add(new Category("HOUSE", R.drawable.house));
-        categoryList.add(new Category("MAINTENANCE", R.drawable.maintenance));
-        categoryList.add(new Category("MAN CLOTHES", R.drawable.man));
-        categoryList.add(new Category("WOMAN CLOTHES", R.drawable.women));
+        categoryList.add(new Category("Cars",R.drawable.img_cars ,R.drawable.car));
+        categoryList.add(new Category("Workspaces",R.drawable.img_workspaces ,R.drawable.coworking));
+        categoryList.add(new Category("House",R.drawable.img_home ,R.drawable.house));
+        categoryList.add(new Category("Equipment",R.drawable.img_equipment ,R.drawable.maintenance));
+        categoryList.add(new Category("Wedding clothes",R.drawable.img_wedding_clothes ,R.drawable.man));
+        //categoryList.add(new Category("WOMAN CLOTHES", ,R.drawable.women));
 
         return  categoryList;
 

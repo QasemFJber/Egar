@@ -7,16 +7,6 @@
     android:id="@+id/layout_parent"
     tools:context=".Activities.MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_home"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@color/active"
-        app:elevation="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentView"
@@ -26,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/navView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar_home"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_home" />
 
     <LinearLayout
