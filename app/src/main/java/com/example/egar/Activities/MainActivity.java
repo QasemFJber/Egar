@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     .commit();
 
 
-            binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart);
-            binding.categoryImage.setBackgroundResource(R.drawable.baseline_category);
-            binding.personImage.setBackgroundResource(R.drawable.baseline_person);
+            binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart_selected);
+            binding.categoryImage.setBackgroundResource(R.drawable.baseline_category_selected);
+            binding.personImage.setBackgroundResource(R.drawable.baseline_person_selected);
 
 
             binding.tvHome.setVisibility(View.VISIBLE);
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     .commit();
             binding.tvCategory.setVisibility(View.VISIBLE);
             binding.categoryImage.setBackgroundResource(R.drawable.baseline_category_selected);
-            binding.categoryLayout.setBackgroundResource(R.drawable.category_round);
+            binding.categoryLayout.setBackgroundResource(R.drawable.home_round);
         }
 
         if (selectedTab ==3){
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     .commit();
             binding.tvCart.setVisibility(View.VISIBLE);
             binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart_selected);
-            binding.cartLayout.setBackgroundResource(R.drawable.cart_round);
+            binding.cartLayout.setBackgroundResource(R.drawable.home_round);
         }
 
         if (selectedTab ==4){
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     .commit();
             binding.tvPerson.setVisibility(View.VISIBLE);
             binding.personImage.setBackgroundResource(R.drawable.baseline_person_selected);
-            binding.personLayout.setBackgroundResource(R.drawable.person_round);
+            binding.personLayout.setBackgroundResource(R.drawable.home_round);
         }
 
     }
@@ -148,9 +148,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 binding.tvCategory.setVisibility(View.GONE);
 
 
+/*
                 binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart);
                 binding.categoryImage.setBackgroundResource(R.drawable.baseline_category);
                 binding.personImage.setBackgroundResource(R.drawable.baseline_person);
+*/
 
 
 
@@ -181,17 +183,19 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 binding.tvPerson.setVisibility(View.GONE);
                 binding.tvHome.setVisibility(View.GONE);
 
+/*
                 binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart);
                 binding.homeImage.setBackgroundResource(R.drawable.baseline_home);
                 binding.personImage.setBackgroundResource(R.drawable.baseline_person);
+*/
 
-                binding.cartLayout.setBackgroundResource(R.color.white);
-                binding.personLayout.setBackgroundResource(R.color.white);
-                binding.homeLayout.setBackgroundResource(R.color.white);
+                binding.cartLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                binding.personLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                binding.homeLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                 binding.tvCategory.setVisibility(View.VISIBLE);
                 binding.categoryImage.setBackgroundResource(R.drawable.baseline_category_selected);
-                binding.categoryLayout.setBackgroundResource(R.drawable.category_round);
+                binding.categoryLayout.setBackgroundResource(R.drawable.home_round);
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1f);
                 scaleAnimation.setDuration(400);
@@ -211,17 +215,17 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 binding.tvPerson.setVisibility(View.GONE);
                 binding.tvCategory.setVisibility(View.GONE);
 
-                binding.homeImage.setBackgroundResource(R.drawable.baseline_home);
+        /*        binding.homeImage.setBackgroundResource(R.drawable.baseline_home);
                 binding.categoryImage.setBackgroundResource(R.drawable.baseline_category);
                 binding.personImage.setBackgroundResource(R.drawable.baseline_person);
-
-                binding.homeLayout.setBackgroundResource(R.color.white);
-                binding.personLayout.setBackgroundResource(R.color.white);
-                binding.categoryLayout.setBackgroundResource(R.color.white);
+*/
+                binding.homeLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                binding.personLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                binding.categoryLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                 binding.tvCart.setVisibility(View.VISIBLE);
                 binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart_selected);
-                binding.cartLayout.setBackgroundResource(R.drawable.cart_round);
+                binding.cartLayout.setBackgroundResource(R.drawable.home_round);
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1f);
                 scaleAnimation.setDuration(400);
@@ -241,17 +245,17 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 binding.tvHome.setVisibility(View.GONE);
                 binding.tvCategory.setVisibility(View.GONE);
 
-                binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart);
+   /*             binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart);
                 binding.categoryImage.setBackgroundResource(R.drawable.baseline_category);
                 binding.homeImage.setBackgroundResource(R.drawable.baseline_home);
-
-                binding.cartLayout.setBackgroundResource(R.color.white);
-                binding.homeLayout.setBackgroundResource(R.color.white);
-                binding.categoryLayout.setBackgroundResource(R.color.white);
+*/
+                binding.cartLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                binding.homeLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                binding.categoryLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                 binding.tvPerson.setVisibility(View.VISIBLE);
                 binding.personImage.setBackgroundResource(R.drawable.baseline_person_selected);
-                binding.personLayout.setBackgroundResource(R.drawable.person_round);
+                binding.personLayout.setBackgroundResource(R.drawable.home_round);
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1f);
                 scaleAnimation.setDuration(400);

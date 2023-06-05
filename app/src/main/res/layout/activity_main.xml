@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:layout_alignParentBottom="true"
-        android:background="#FFF"
+        android:background="@drawable/shape_button_nav"
         android:elevation="@dimen/_30sdp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="Home"
                 android:visibility="gone"
-                android:textColor="@color/home"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="Category"
                 android:visibility="gone"
-                android:textColor="@color/category"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_11ssp"
                 android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cart"
                 android:visibility="gone"
-                android:textColor="@color/cart"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_11ssp"
                 android:textStyle="bold" />
 
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:text="Person"
                 android:visibility="gone"
-                android:textColor="@color/person"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold" />
 
