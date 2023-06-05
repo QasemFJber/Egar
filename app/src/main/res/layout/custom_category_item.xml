@@ -7,7 +7,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_80sdp"
+        android:layout_width="@dimen/_90sdp"
         android:layout_height="@dimen/_90sdp"
         app:cardCornerRadius="@dimen/_15sdp"
         app:cardElevation="@dimen/_5sdp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/_80sdp"
+            android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:id="@+id/imageUrl"
             android:background="@drawable/image1">
@@ -26,7 +26,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#7C000000"/>
+                android:background="#7C000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/category_image_icon"
