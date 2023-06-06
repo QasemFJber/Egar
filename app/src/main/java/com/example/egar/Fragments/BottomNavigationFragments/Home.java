@@ -58,7 +58,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         categoryList.add(new Category("House",R.drawable.img_home ,R.drawable.ic_house));
         categoryList.add(new Category("Equipment",R.drawable.img_equipment ,R.drawable.ic_maintenance));
         categoryList.add(new Category("Wedding clothes",R.drawable.img_wedding_clothes ,R.drawable.ic_man));
-        //categoryList.add(new Category("WOMAN CLOTHES", ,R.drawable.women));
+        categoryList.add(new Category("Woman Clothes",R.drawable.img_women ,R.drawable.women));
 
         return  categoryList;
 
