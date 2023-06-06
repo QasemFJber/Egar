@@ -35,30 +35,7 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
         operationsSccren();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
 
     private void  setOnClick(){
         binding.backToMain.setOnClickListener(this::onClick);

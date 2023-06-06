@@ -20,13 +20,13 @@
         android:textColor="@color/active"
         android:textColorHint="@color/active"
         android:layout_marginTop="@dimen/_15sdp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView22"
+        app:layout_constraintEnd_toStartOf="@+id/img_notifications"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
-        android:id="@+id/imageView22"
+        android:id="@+id/img_notifications"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         app:layout_constraintBottom_toBottomOf="@+id/search"

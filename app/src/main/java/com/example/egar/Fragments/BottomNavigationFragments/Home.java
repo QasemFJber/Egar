@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.egar.Activities.Notifications;
 import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
 import com.example.egar.Models.Category;
@@ -84,11 +85,17 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private void setOnclick(){
         binding.tvCategoryShowAll.setOnClickListener(this::onClick);
         binding.tvOffersShowAll2.setOnClickListener(this::onClick);
+        binding.imgNotifications.setOnClickListener(this::onClick);
     }
 
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.img_notifications){
+            Intent intent=new Intent(getActivity(), Notifications.class);
+            startActivity(intent);
+
+        }
         if (v.getId() == R.id.tv_category_show_all){
             Intent intent = new Intent(getActivity(), ShowAll_Items.class);
             intent.putExtra("category","Categories");
