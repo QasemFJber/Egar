@@ -56,6 +56,12 @@ public class Profile extends Fragment  implements View.OnClickListener {
                 startActivity(intent);*/
 
                 break;
+            case R.id.btn_favorite:
+
+              /*  Intent intent = new Intent(getActivity(), Login.class);
+                startActivity(intent);*/
+
+                break;
         }
 
     }

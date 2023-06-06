@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/search"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_38sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:background="@drawable/home_round"
         android:drawableStart="@drawable/baseline_search"
@@ -27,8 +27,8 @@
 
     <ImageView
         android:id="@+id/imageView22"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
         app:layout_constraintBottom_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/search"
@@ -94,18 +94,67 @@
                 app:layout_constraintStart_toStartOf="@+id/text1"
                 app:layout_constraintTop_toBottomOf="@+id/text1" />
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_product"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.512"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_product_show_all" />
+
+
+            <TextView
+                android:id="@+id/text_p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Product"
+                android:textColor="#000000"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_product_show_all" />
+
+            <TextView
+                android:id="@+id/tv_product_show_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="@dimen/_12sdp"
+
+                android:padding="@dimen/_5sdp"
+                android:text="show all"
+                android:textColor="@color/light_blue_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@+id/recycler_category"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
+
+            <ImageView
+                android:id="@+id/imageView_p"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/rectan"
+                app:layout_constraintEnd_toEndOf="@+id/text_p"
+                app:layout_constraintStart_toStartOf="@+id/text_p"
+                app:layout_constraintTop_toBottomOf="@+id/text_p" />
+
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:text="Offers"
                 android:textColor="#000000"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
+                app:layout_constraintTop_toTopOf="@+id/tv_offers_show_all2" />
 
             <TextView
                 android:id="@+id/tv_offers_show_all2"
@@ -118,7 +167,7 @@
                 android:textColor="@color/light_blue_grey"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
+                app:layout_constraintTop_toBottomOf="@+id/recycler_product" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_offers"
