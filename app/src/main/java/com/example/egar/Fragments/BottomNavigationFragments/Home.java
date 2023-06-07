@@ -9,21 +9,27 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.egar.Activities.Notifications;
 import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
 import com.example.egar.Models.Category;
+import com.example.egar.Models.Product;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.StoreAdapter;
 
 
+import com.example.egar.adapters.productHome.ProductHomeAdapter;
+import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.OnItemClickListener;
+import com.example.egar.interfaces.OnProductFetchListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -32,6 +38,8 @@ import java.util.List;
 public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener {
     private CategoryAdapter categoryAdapter;
     private List<Category> categoryList;
+    List<Product> productList;
+    private ProductHomeAdapter adapter;
 
     private FragmentHomeBinding binding;
 
@@ -67,12 +75,17 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
     private void initializeView(){
         setOnclick();
+        getProduct();
         initializeRecyclerAdapter();
     }
     private void initializeRecyclerAdapter(){
         categoryAdapter = new CategoryAdapter(categoryList,this);
         binding.recyclerCategory.setAdapter(categoryAdapter);
         binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+
+        adapter = new ProductHomeAdapter(productList);
+        binding.recyclerProduct.setAdapter(adapter);
+        binding.recyclerProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
     }
 
     @Override
@@ -104,6 +117,31 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         }if (v.getId() == R.id.tv_offers_show_all2){
 
         }
+    }
+
+    private void getProduct(){
+        ProductController.getInstance().getAllProducts(new OnProductFetchListener() {
+            @Override
+            public void onFetchLListSuccess(ArrayList<Product> list) {
+               // Toast.makeText(getActivity(), ""+list, Toast.LENGTH_SHORT).show();
+               // Log.d("GET", "onFetchLListSuccess: "+list);
+                productList.addAll(list);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFetchSuccess(Product product) {
+               // productList.add(product);
+               // Log.d("GET", "onFetchSuccess: "+ product);
+
+            }
+
+            @Override
+            public void onFetchFailure(String message) {
+                Log.d("GET", "onFetchFailure: "+message);
+
+            }
+        });
     }
 
 

@@ -99,12 +99,12 @@
                 android:id="@+id/recycler_product"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_product_show_all" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView_p" />
 
 
             <TextView
@@ -112,26 +112,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Product"
                 android:textColor="#000000"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_product_show_all" />
-
-            <TextView
-                android:id="@+id/tv_product_show_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="@dimen/_12sdp"
-
-                android:padding="@dimen/_5sdp"
-                android:text="show all"
-                android:textColor="@color/light_blue_grey"
-                android:textSize="@dimen/_11ssp"
-                app:layout_constraintEnd_toEndOf="@+id/recycler_category"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
+                app:layout_constraintTop_toBottomOf="@+id/recycler_Top_rated_stores" />
 
             <ImageView
                 android:id="@+id/imageView_p"
@@ -160,14 +147,13 @@
                 android:id="@+id/tv_offers_show_all2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:padding="@dimen/_5sdp"
                 android:text="show all"
                 android:textColor="@color/light_blue_grey"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_product" />
+                app:layout_constraintTop_toBottomOf="@+id/recycler_category" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_offers"
