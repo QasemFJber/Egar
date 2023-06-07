@@ -1,5 +1,9 @@
 package com.example.egar.Activities;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -7,9 +11,11 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.egar.Manifest;
 import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityRegisterBinding;
@@ -23,6 +29,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     ActivityRegisterBinding binding;
 
+    private ActivityResultLauncher<Void> cameraRL;
+
+    private ActivityResultLauncher<String> permissionRL;
+
+    private Uri pickedImageUri;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +46,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void screenOperations (){
         setOnClick();
+        setupActivityResults();
 
     }
     private boolean isValidPalestinianPhoneNumber() {
@@ -93,35 +107,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
 
     private void setOnClick(){
         binding.singin.setOnClickListener(this::onClick);
         binding.btnRegister.setOnClickListener(this::onClick);
         binding.btnBack.setOnClickListener(this::onClick);
+        binding.image.setOnClickListener(this::onClick);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -149,6 +140,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 Intent intent2 = new Intent(getApplicationContext(),Login.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
+                break;
+
+            case R.id.image:
+                selectImage();
                 break;
         }
     }
@@ -202,5 +197,40 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     }
                 });
     }
+
+
+
+    private void selectImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && data != null && data.getData() != null) {
+            pickedImageUri = data.getData();
+            binding.image.setImageURI(pickedImageUri);
+        }
+    }
+
+    private void setupActivityResults() {
+        permissionRL = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
+            @Override
+            public void onActivityResult(Boolean result) {
+                if (result) {
+                    cameraRL.launch(null);
+
+                }
+            }
+        });
+    }
+
+/*    private void pickImage() {
+        permissionRL.launch(Manifest.permission.CAMERA);
+    }*/
 
 }
