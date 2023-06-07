@@ -61,7 +61,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private List<Category> addDataToRecyclerView(){
 
         categoryList = new ArrayList<>();
-        categoryList.add(new Category("Cars",R.drawable.img_cars ,R.drawable.ic_car));
+        categoryList.add(new Category("cars",R.drawable.img_cars ,R.drawable.ic_car));
         categoryList.add(new Category("Workspaces",R.drawable.img_workspaces ,R.drawable.ic_maintenance));
         categoryList.add(new Category("House",R.drawable.img_home ,R.drawable.ic_house));
         categoryList.add(new Category("Equipment",R.drawable.img_equipment ,R.drawable.ic_maintenance));

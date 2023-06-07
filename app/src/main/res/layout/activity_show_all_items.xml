@@ -38,6 +38,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <ImageView
+            android:id="@+id/image_no_data"
+            android:layout_width="@dimen/_222sdp"
+            android:layout_height="@dimen/_222sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rv_items"
+            app:srcCompat="@drawable/check" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

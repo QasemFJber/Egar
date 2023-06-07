@@ -97,8 +97,8 @@ public class ProductController {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     // Get a list of products
                     ArrayList<Product> productList = new ArrayList<>();
-                    int productCount = queryDocumentSnapshots.size(); // عدد المنتجات الكلي
-                    AtomicInteger processedCount = new AtomicInteger(0); // عدد المنتجات المعالجة حتى الآن
+                    int productCount = queryDocumentSnapshots.size();
+                    AtomicInteger processedCount = new AtomicInteger(0);
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         // Retrieve product data
@@ -169,44 +169,30 @@ public class ProductController {
         });
     }
 
-    public void getAllProductsByProviderType(String providerType, OnProductFetchListener listener) {
-        // Get all products from Firestore where serviceProviderId matches
+    public void getAllProductsByCategory(String category, OnProductFetchListener listener) {
         db.collection("products")
-                .whereEqualTo("serviceProviderId", providerType)
+                .whereEqualTo("category", category)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // Get a list of products
                     ArrayList<Product> productList = new ArrayList<>();
-                    int productCount = queryDocumentSnapshots.size(); // Total product count
-                    AtomicInteger processedCount = new AtomicInteger(0); // Number of products processed so far
+                    int productCount = queryDocumentSnapshots.size();
+                    AtomicInteger processedCount = new AtomicInteger(0);
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        // Retrieve product data
                         Product product = document.toObject(Product.class);
-
-                        // Retrieve image URL from the product data
                         String imageUrl = String.valueOf(product.getImageUrl());
 
-                        // Download the image from Firebase Storage
                         FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl).getDownloadUrl()
                                 .addOnSuccessListener(uri -> {
-                                    // Set the downloaded image URL to the product
                                     product.setImageUrl(Uri.parse(uri.toString()));
-
-                                    // Add the product to the list
                                     productList.add(product);
 
-                                    // Increase the processed count
                                     int count = processedCount.incrementAndGet();
-
-                                    // Check if all products have been processed
                                     if (count == productCount) {
-                                        // Return the list of products to the listener
                                         listener.onFetchLListSuccess(productList);
                                     }
                                 })
                                 .addOnFailureListener(e -> {
-                                    // Handle image download failure
                                     listener.onFetchFailure("Failed to download product image");
                                 });
                     }

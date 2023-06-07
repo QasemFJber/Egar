@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.egar.Models.Product;
 import com.example.egar.R;
@@ -30,19 +30,21 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         binding = ActivityShowCategoriesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        Intent intent = getIntent();
-        category_name= intent.getStringExtra("category_name");
-
-
-        binding.tvTitleCategory.setText(category_name);
         initializeView();
+        Toast.makeText(this, getCategory(), Toast.LENGTH_SHORT).show();
     }
 
     private void initializeView() {
         initializeRecyclerAdapter();
         getAllProducts();
         setOnclick();
+    }
+
+    private String getCategory(){
+        Intent intent = getIntent();
+        category_name= intent.getStringExtra("category_name");
+        binding.tvTitleCategory.setText(category_name);
+        return category_name;
     }
 
     private void initializeRecyclerAdapter() {
@@ -57,12 +59,12 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
     }
 
     private void getAllProducts(){
-        ProductController.getInstance().getAllProducts(category_name, new OnProductFetchListener() {
+        ProductController.getInstance().getAllProductsByCategory(getCategory(), new OnProductFetchListener() {
             @Override
             public void onFetchLListSuccess(ArrayList<Product> list) {
+                Toast.makeText(ShowCategoriesActivity.this, "list size is "+list.size(), Toast.LENGTH_SHORT).show();
                 products.clear();
                 products.addAll(list);
-                Log.d("EGAR", "onFetchLListSuccess: ");
                 adapter.notifyDataSetChanged();
             }
 
