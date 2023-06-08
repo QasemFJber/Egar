@@ -1,22 +1,22 @@
 package com.example.egar.Models;
 
-import android.net.Uri;
 
 public class Product {
     private String id;
-    private String serviceProviderId; // New field for merchant ID
+    private String serviceProviderId;
     private String name;
     private String description;
     private double price;
-    private Uri imageUrl;
+    private String imageUrl;
     private boolean isFavorite;
     private int quantityInCart;
-    private String category; // New field for product category
+    private String category;
 
+    private Provider provider;
     public Product() {
     }
 
-    public Product(String serviceProviderId ,String name, String description, double price, Uri imageUrl, int quantityInCart, String category) {
+    public Product(String serviceProviderId , String name, String description, double price, String imageUrl, int quantityInCart, String category, com.example.egar.Models.Provider provider) {
         this.serviceProviderId = serviceProviderId;
         this.name = name;
         this.description = description;
@@ -24,9 +24,10 @@ public class Product {
         this.imageUrl = imageUrl;
         this.quantityInCart = quantityInCart;
         this.category = category;
+        this.provider = provider;
     }
 
-    public Product(String id, String serviceProviderId, String name, String description, double price, Uri imageUrl, String category) {
+    public Product(String id, String serviceProviderId, String name, String description, double price, String imageUrl, String category) {
         this.id = id;
         this.serviceProviderId = serviceProviderId;
         this.name = name;
@@ -38,6 +39,24 @@ public class Product {
         this.category = category;
     }
 
+    public Product(String name, String description, double price, String imageUrl, int quantityInCart, String category, Provider provider) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.quantityInCart = quantityInCart;
+        this.category = category;
+        this.provider = provider;
+    }
+
+
+    public com.example.egar.Models.Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(com.example.egar.Models.Provider provider) {
+        this.provider = provider;
+    }
 
     public String getCategory() {
         return category;
@@ -87,11 +106,11 @@ public class Product {
         this.price = price;
     }
 
-    public Uri getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(Uri imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
