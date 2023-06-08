@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.egar.Manifest;
 import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityRegisterBinding;
@@ -184,6 +183,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 binding.etEmail.getText().toString().trim(),
                 binding.etPassword.getText().toString().trim(),
                 binding.etPhoneNumber.getText().toString().trim(),
+                pickedImageUri,
                 new ProcessCallback() {
                     @Override
                     public void onSuccess(String message) {

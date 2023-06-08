@@ -14,13 +14,14 @@ import com.example.egar.adapters.product.ProductAdapter;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivityShowCategoriesBinding;
 import com.example.egar.interfaces.OnProductFetchListener;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class ShowCategoriesActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityShowCategoriesBinding binding;
 
-    private ArrayList<Product> products = new ArrayList<>();
+    private final ArrayList<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
     String category_name;
 
@@ -70,11 +71,13 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
 
             @Override
             public void onFetchSuccess(Product product) {
+                Toast.makeText(ShowCategoriesActivity.this, product.getCategory(), Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onFetchFailure(String message) {
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
 
             }
         });
