@@ -31,6 +31,7 @@ import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnProductFetchListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,25 +121,24 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     }
 
     private void getProduct(){
-        ProductController.getInstance().getAllProducts(new OnProductFetchListener() {
+        ProductController.getInstance().getAllProductsByProviderId(FirebaseAuth.getInstance().getCurrentUser().getUid(),new OnProductFetchListener() {
             @Override
             public void onFetchLListSuccess(ArrayList<Product> list) {
-               // Toast.makeText(getActivity(), ""+list, Toast.LENGTH_SHORT).show();
-               // Log.d("GET", "onFetchLListSuccess: "+list);
+                productList.clear();
                 productList.addAll(list);
-                adapter.notifyDataSetChanged();
+                adapter.notifyItemRangeInserted(0,list.size());
             }
 
             @Override
             public void onFetchSuccess(Product product) {
-               // productList.add(product);
-               // Log.d("GET", "onFetchSuccess: "+ product);
+                Snackbar.make(binding.getRoot(),"product Size is "+product.getCategory().toLowerCase(),Snackbar.LENGTH_LONG).show();
+
 
             }
 
             @Override
             public void onFetchFailure(String message) {
-                Log.d("GET", "onFetchFailure: "+message);
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
 
             }
         });
