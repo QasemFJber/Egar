@@ -112,6 +112,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         binding.btnRegister.setOnClickListener(this::onClick);
         binding.btnBack.setOnClickListener(this::onClick);
         binding.image.setOnClickListener(this::onClick);
+        binding.animationView.setOnClickListener(this::onClick);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -141,7 +142,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
                 break;
 
-            case R.id.image:
+            case R.id.animationView:
                 selectImage();
                 break;
         }
@@ -188,7 +189,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onSuccess(String message) {
                         Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
-                        onBackPressed();
+
                     }
 
                     @Override
@@ -214,6 +215,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         if (requestCode == 100 && data != null && data.getData() != null) {
             pickedImageUri = data.getData();
             binding.image.setImageURI(pickedImageUri);
+            binding.animationView.setVisibility(View.GONE);
+            binding.image.setVisibility(View.VISIBLE);
         }
     }
 

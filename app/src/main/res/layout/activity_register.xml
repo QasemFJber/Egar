@@ -48,9 +48,24 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:src="@drawable/img_add_image"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/img_add_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/upload" />
 
                 <TextView
                     android:id="@+id/textView3"
