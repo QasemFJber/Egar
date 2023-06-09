@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.BottomNavigationFragments.Home">
 
+<!--
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search" />-->
+
     <EditText
         android:id="@+id/search"
         android:layout_width="0dp"
@@ -44,8 +54,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5sdp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_category"
@@ -98,14 +108,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_product"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.512"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_p" />
-
 
             <TextView
                 android:id="@+id/text_p"

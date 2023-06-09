@@ -18,7 +18,8 @@ import java.util.List;
 
 public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeViewHolder> {
 
-     private List<Product> products = new ArrayList<>() ;
+
+    private List<Product> products  ;
     private ItemCallback callback;
 
     public ProductHomeAdapter(List<Product> products) {
@@ -35,7 +36,6 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeViewHold
     @Override
     public void onBindViewHolder(@NonNull ProductHomeViewHolder holder, int position) {
         holder.savaData(products.get(position));
-
     }
 
     @Override

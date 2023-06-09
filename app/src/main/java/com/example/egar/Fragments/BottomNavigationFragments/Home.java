@@ -28,10 +28,12 @@ import com.example.egar.adapters.StoreAdapter;
 import com.example.egar.adapters.productHome.ProductHomeAdapter;
 import com.example.egar.controllers.CategoryController;
 import com.example.egar.controllers.ProductController;
+
 import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnProductFetchListener;
 import com.example.egar.interfaces.ProcessCallback;
+import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -41,7 +43,7 @@ import java.util.List;
 public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener {
     private CategoryAdapter categoryAdapter;
     private List<Category> categoryList;
-    List<Product> productList;
+    private final ArrayList<Product> products = new ArrayList<>();
     private ProductHomeAdapter adapter;
 
     private FragmentHomeBinding binding;
@@ -85,9 +87,10 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.recyclerCategory.setAdapter(categoryAdapter);
         binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
-        adapter = new ProductHomeAdapter(productList);
+        adapter = new ProductHomeAdapter(products);
         binding.recyclerProduct.setAdapter(adapter);
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
+       // binding.recyclerProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -122,6 +125,24 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     }
 
     private void getProduct(){
+
+        ProductController.getInstance().getAllProducts(new ProductCallback() {
+            @Override
+            public void onSuccess(List<Product> productList) {
+              //  Toast.makeText(getActivity(), "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
+                products.clear();
+                products.addAll(productList);
+                adapter.notifyDataSetChanged();
+              //  adapter.notifyItemRangeInserted(0,productList.size());
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+        });
+
+/*
         ProductController.getInstance().getAllProductsByProviderId(FirebaseAuth.getInstance().getCurrentUser().getUid(),new OnProductFetchListener() {
             @Override
             public void onFetchLListSuccess(ArrayList<Product> list) {
@@ -143,6 +164,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
             }
         });
+*/
     }
 
 

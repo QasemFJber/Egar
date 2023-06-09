@@ -62,10 +62,10 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
     }
 
     private void getAllProducts(){
-        ProductController.getInstance().getAllProducts(new ProductCallback() {
+        ProductController.getInstance().getProductsByCategory(getCategory(), new ProductCallback() {
             @Override
             public void onSuccess(List<Product> productList) {
-                Toast.makeText(ShowCategoriesActivity.this, "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ShowCategoriesActivity.this, "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
                 products.clear();
                 products.addAll(productList);
                 adapter.notifyDataSetChanged();
@@ -73,31 +73,9 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
 
             @Override
             public void onFailure(String message) {
-                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
 
             }
         });
-//        ProductController.getInstance().getAllProductsByCategory(getCategory(), new OnProductFetchListener() {
-//            @Override
-//            public void onFetchLListSuccess(ArrayList<Product> list) {
-//                Toast.makeText(ShowCategoriesActivity.this, "list size is "+list.size(), Toast.LENGTH_SHORT).show();
-//                products.clear();
-//                products.addAll(list);
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFetchSuccess(Product product) {
-//                Toast.makeText(ShowCategoriesActivity.this, product.getCategory(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void onFetchFailure(String message) {
-//                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
-//
-//            }
-//        });
     }
 
     @Override
