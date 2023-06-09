@@ -12,11 +12,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.egar.BroadcastReceivers.NetworkChangeListiners;
+import com.example.egar.Models.Category;
 import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
+import com.example.egar.SharedPreferences.AppSharedPreferences;
+import com.example.egar.controllers.CategoryController;
 import com.example.egar.databinding.ActivityLoginBinding;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProviderTypeCallback;
@@ -28,6 +33,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -79,6 +87,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void screenOperations (){
         setOnClick();
        setDataInInputFieldFromRegister();
+            addCategoriesToDatabase();
 
     }
 
@@ -194,8 +203,41 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         builder.setCancelable(false);
         builder.show();
     }
+    private void addCategoriesToDatabase() {
+        List<Category> categoryList = addDataToRecyclerView();
+
+        CategoryController categoryController = CategoryController.getInstance();
+        categoryController.addCategories(categoryList, new ProcessCallback() {
+            @Override
+            public void onSuccess(String message) {
+//                AppSharedPreferences.getInstance().getEditor().putString("category","categoryAdded").apply();
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(String error) {
+                Snackbar.make(binding.getRoot(),error,Snackbar.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+    private List<Category> addDataToRecyclerView() {
+        List<Category> categoryList = new ArrayList<>();
+        categoryList.add(new Category("cars", R.drawable.img_cars, R.drawable.ic_car));
+        categoryList.add(new Category("Workspaces", R.drawable.img_workspaces, R.drawable.ic_maintenance));
+        categoryList.add(new Category("House", R.drawable.img_home, R.drawable.ic_house));
+        categoryList.add(new Category("Equipment", R.drawable.img_equipment, R.drawable.ic_maintenance));
+        categoryList.add(new Category("Wedding clothes", R.drawable.img_wedding_clothes, R.drawable.ic_man));
+        categoryList.add(new Category("Woman Clothes", R.drawable.img_women, R.drawable.women));
+        return categoryList;
+    }
+
+
+
 
     private void loginAndCheckProviderType() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseAuthController.getInstance().signIn(binding.etEmail.getText().toString(),
                 binding.etPassword.getText().toString(),
                 new ProcessCallback() {
@@ -205,8 +247,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         checkProviderTypeAndRedirect(new ProviderTypeCallback() {
                             @Override
                             public void onRegularUserSignedIn() {
-                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                startActivity(intent);
+                                if (auth.getCurrentUser() != null){
+                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    startActivity(intent);
+                                }else {
+
+                                }
+
                             }
 
                             @Override
@@ -216,7 +263,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             @Override
                             public void onUserNotSignedIn() {
-                                Snackbar.make(binding.getRoot(),"Please Register Account",Snackbar.LENGTH_LONG).show();
+                                if (auth.getCurrentUser() != null){
+                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    startActivity(intent);
+                                }else {
+                                    Snackbar.make(binding.getRoot(),"Please Register Your Account",Snackbar.LENGTH_LONG).show();
+                                }
                             }
                         });
                     }

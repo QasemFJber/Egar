@@ -8,19 +8,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.egar.Models.Category;
 import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.SharedPreferences.AppSharedPreferences;
+import com.example.egar.controllers.CategoryController;
+import com.example.egar.databinding.ActivitySplashBinding;
+import com.example.egar.interfaces.ProcessCallback;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Splash extends AppCompatActivity {
+    ActivitySplashBinding binding;
+    private List<Category> categoryList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
     }
+
 
 
     @Override
@@ -50,6 +63,7 @@ public class Splash extends AppCompatActivity {
         super.onStop();
         finish();
     }
+
 
     @Override
     protected void onDestroy() {

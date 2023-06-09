@@ -26,10 +26,12 @@ import com.example.egar.adapters.StoreAdapter;
 
 
 import com.example.egar.adapters.productHome.ProductHomeAdapter;
+import com.example.egar.controllers.CategoryController;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnProductFetchListener;
+import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -60,7 +62,6 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         return binding.getRoot();
     }
     private List<Category> addDataToRecyclerView(){
-
         categoryList = new ArrayList<>();
         categoryList.add(new Category("cars",R.drawable.img_cars ,R.drawable.ic_car));
         categoryList.add(new Category("Workspaces",R.drawable.img_workspaces ,R.drawable.ic_maintenance));
@@ -143,6 +144,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             }
         });
     }
+
 
 
     @Override
