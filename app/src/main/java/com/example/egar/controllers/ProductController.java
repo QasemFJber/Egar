@@ -9,8 +9,12 @@ import androidx.annotation.NonNull;
 
 
 import com.example.egar.Models.Product;
+import com.example.egar.Models.Provider;
 import com.example.egar.interfaces.OnProductFetchListener;
 
+import com.example.egar.interfaces.ProductCallback;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -18,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProductController {
@@ -71,72 +76,97 @@ public class ProductController {
                 });
     }
 
-    public void getAllProducts(OnProductFetchListener listener) {
-        db.collection("products")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // Get a list of products
-                    ArrayList<Product> productList = new ArrayList<>();
-                    int productCount = queryDocumentSnapshots.size();
-                    AtomicInteger processedCount = new AtomicInteger(0);
+    public void getAllProducts(ProductCallback callback) {
+        CollectionReference productsCollection = FirebaseFirestore.getInstance().collection("products");
+        CollectionReference providersCollection = FirebaseFirestore.getInstance().collection("serviceproviders");
 
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Product product = document.toObject(Product.class);
+        productsCollection.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<Product> productList = new ArrayList<>();
 
-                        String imageUrl = document.getString("imageUrl");
+            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                String id = documentSnapshot.getId();
+                String name = documentSnapshot.getString("name");
+                String description = documentSnapshot.getString("description");
+                double price = documentSnapshot.getDouble("price");
+                boolean isFavorite = documentSnapshot.getBoolean("isFavorite");
+                int quantityInCart = documentSnapshot.getLong("quantityInCart").intValue();
+                String category = documentSnapshot.getString("category");
+                String providerId = documentSnapshot.getString("provider.id");
 
-                        FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl).getDownloadUrl()
-                                .addOnSuccessListener(uri -> {
-                                    product.setImageUrl(uri.toString());
+                // Retrieve the imageUrl from the document snapshot
+                String imageUrl = documentSnapshot.getString("imageUrl");
 
-                                    productList.add(product);
+                // Retrieve the provider data using the providerId
+                providersCollection.document(providerId).get().addOnSuccessListener(providerDocumentSnapshot -> {
+                    if (providerDocumentSnapshot.exists()) {
+                        String providerName = providerDocumentSnapshot.getString("name");
+                        String providerAddress = providerDocumentSnapshot.getString("address");
+                        String providerPhoneNumber = providerDocumentSnapshot.getString("phoneNumber");
 
-                                    int count = processedCount.incrementAndGet();
-                                    if (count == productCount) {
-                                        listener.onFetchLListSuccess(productList);
-                                    }
-                                })
-                                .addOnFailureListener(e -> {
-                                    listener.onFetchFailure("Failed to download product image");
-                                });
+                        Provider provider = new Provider(providerId, providerName, providerAddress, providerPhoneNumber);
+
+                        Product product = new Product(id, name, description, price, isFavorite, quantityInCart, category, provider, imageUrl);
+                        productList.add(product);
+
+                        if (productList.size() == queryDocumentSnapshots.size()) {
+                            callback.onSuccess(productList);
+                        }
+                    } else {
+                        callback.onFailure("Provider document does not exist");
                     }
-                })
-                .addOnFailureListener(e -> {
-                    listener.onFetchFailure("Failed to fetch products");
+                }).addOnFailureListener(e -> {
+                    callback.onFailure(e.getMessage());
                 });
+            }
+        }).addOnFailureListener(e -> {
+            callback.onFailure(e.getMessage());
+        });
     }
 
-    public void getAllProductsByCategory(String category, OnProductFetchListener listener) {
-        db.collection("products")
-                .whereEqualTo("category", category)
+    public void getProductsByCategory(String category, ProductCallback callback) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference productsCollection = db.collection("products");
+
+        productsCollection.whereEqualTo("category", category)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    ArrayList<Product> productList = new ArrayList<>();
-                    int productCount = queryDocumentSnapshots.size();
-                    AtomicInteger processedCount = new AtomicInteger(0);
+                    List<Product> products = new ArrayList<>();
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        String id = documentSnapshot.getId();
+                        String name = documentSnapshot.getString("name");
+                        String description = documentSnapshot.getString("description");
+                        double price = documentSnapshot.getDouble("price");
+                        boolean isFavorite = documentSnapshot.getBoolean("isFavorite");
+                        int quantityInCart = documentSnapshot.getLong("quantityInCart").intValue();
+                        String productCategory = documentSnapshot.getString("category");
+                        String providerId = documentSnapshot.getString("provider.id");
+                        String imageUrl = documentSnapshot.getString("imageUrl");
 
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Product product = document.toObject(Product.class);
-                        String imageUrl = String.valueOf(product.getImageUrl());
+                        DocumentReference providerRef = db.collection("serviceproviders").document(providerId);
+                        providerRef.get().addOnSuccessListener(providerDocumentSnapshot -> {
+                            if (providerDocumentSnapshot.exists()) {
+                                String providerName = providerDocumentSnapshot.getString("name");
+                                String providerEmail = providerDocumentSnapshot.getString("email");
+                                String providerPhoneNumber = providerDocumentSnapshot.getString("phoneNumber");
 
-                        FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl).getDownloadUrl()
-                                .addOnSuccessListener(uri -> {
-                                    product.setImageUrl(uri.toString());
-                                    productList.add(product);
+                                Provider provider = new Provider(providerId, providerName, providerEmail, providerPhoneNumber);
 
-                                    int count = processedCount.incrementAndGet();
-                                    if (count == productCount) {
-                                        listener.onFetchLListSuccess(productList);
-                                    }
-                                })
-                                .addOnFailureListener(e -> {
-                                    listener.onFetchFailure("Failed to download product image");
-                                });
+                                Product product = new Product(id, name, description, price, isFavorite, quantityInCart, productCategory, provider, imageUrl);
+                                products.add(product);
+
+                                if (products.size() == queryDocumentSnapshots.size()) {
+                                    callback.onSuccess(products);
+                                }
+                            } else {
+                                callback.onFailure("Provider document does not exist");
+                            }
+                        }).addOnFailureListener(e -> {
+                            callback.onFailure(e.getMessage());
+                        });
                     }
                 })
                 .addOnFailureListener(e -> {
-                    // Return the error message to the listener
-                    listener.onFetchFailure("Failed to fetch products");
+                    callback.onFailure(e.getMessage());
                 });
     }
 

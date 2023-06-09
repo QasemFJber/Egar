@@ -14,9 +14,11 @@ import com.example.egar.adapters.product.ProductAdapter;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivityShowCategoriesBinding;
 import com.example.egar.interfaces.OnProductFetchListener;
+import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShowCategoriesActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityShowCategoriesBinding binding;
@@ -60,27 +62,42 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
     }
 
     private void getAllProducts(){
-        ProductController.getInstance().getAllProductsByCategory(getCategory(), new OnProductFetchListener() {
+        ProductController.getInstance().getAllProducts(new ProductCallback() {
             @Override
-            public void onFetchLListSuccess(ArrayList<Product> list) {
-                Toast.makeText(ShowCategoriesActivity.this, "list size is "+list.size(), Toast.LENGTH_SHORT).show();
+            public void onSuccess(List<Product> productList) {
+                Toast.makeText(ShowCategoriesActivity.this, "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
                 products.clear();
-                products.addAll(list);
+                products.addAll(productList);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFetchSuccess(Product product) {
-                Toast.makeText(ShowCategoriesActivity.this, product.getCategory(), Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onFetchFailure(String message) {
+            public void onFailure(String message) {
                 Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
 
             }
         });
+//        ProductController.getInstance().getAllProductsByCategory(getCategory(), new OnProductFetchListener() {
+//            @Override
+//            public void onFetchLListSuccess(ArrayList<Product> list) {
+//                Toast.makeText(ShowCategoriesActivity.this, "list size is "+list.size(), Toast.LENGTH_SHORT).show();
+//                products.clear();
+//                products.addAll(list);
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFetchSuccess(Product product) {
+//                Toast.makeText(ShowCategoriesActivity.this, product.getCategory(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void onFetchFailure(String message) {
+//                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+//
+//            }
+//        });
     }
 
     @Override
