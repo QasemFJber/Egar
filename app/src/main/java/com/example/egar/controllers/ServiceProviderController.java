@@ -36,6 +36,7 @@ public class ServiceProviderController {
                 serviceProvider.setAddress(document.getString("address"));
                 serviceProvider.setCity(document.getString("city"));
                 serviceProvider.setBio(document.getString("bio"));
+                serviceProvider.setImage(document.getString("image"));
                 serviceProvidersList.add(serviceProvider);
             }
             listener.onFetchSuccess(serviceProvidersList);
