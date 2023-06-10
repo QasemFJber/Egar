@@ -41,7 +41,7 @@ public class FirebaseAuthController {
         return instance;
     }
 
-    public void createAccount(String name, String email, String password, String phoneNumber, Uri profileImageUri, ProcessCallback callback) {
+    public void createAccount(String id ,String name, String email, String password, String phoneNumber, Uri profileImageUri, ProcessCallback callback) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 auth.getCurrentUser().sendEmailVerification();
