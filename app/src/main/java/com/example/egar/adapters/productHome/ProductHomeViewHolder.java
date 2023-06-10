@@ -35,7 +35,11 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
     public void savaData(Product product){
         binding.tvProductName.setText(product.getName());
         binding.tvPrinc.setText(String.valueOf(product.getPrice()));
-        //binding.imgProduct.setImageURI(Uri.parse(product.getImageUrl()));
+       // binding.tvProviderName.setText(product.getProvider().getName());
+        binding.tvProviderName.setText("ProviderName");
+        //binding.tvProviderType.setText(product.getProvider().getProviderType());
+        binding.tvProviderType.setText("ProviderType");
+
         Picasso.get().load(product.getImageUrl()).into(binding.imgProduct);
 
 

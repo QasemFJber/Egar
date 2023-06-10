@@ -28,6 +28,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder /*implements View
 
     public void savaData(Product product){
         binding.tvProductShow.setText(product.getName());
+        binding.tvProductPrice.setText(String.valueOf(product.getPrice()));
+        binding.tvProductDescription.setText(product.getDescription());
         //binding.imgProductShow.setImageURI(Uri.parse(product.getImageUrl()));
         Picasso.get().load(product.getImageUrl()).into(binding.imgProductShow);
 /*
