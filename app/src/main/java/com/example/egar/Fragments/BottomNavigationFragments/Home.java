@@ -20,8 +20,10 @@ import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
 import com.example.egar.Models.Category;
 import com.example.egar.Models.Product;
+import com.example.egar.Models.Provider;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
+import com.example.egar.adapters.ProviderAdapter.ProviderAdapter;
 import com.example.egar.adapters.StoreAdapter;
 
 
@@ -29,9 +31,11 @@ import com.example.egar.adapters.productHome.ProductHomeAdapter;
 import com.example.egar.controllers.CategoryController;
 import com.example.egar.controllers.ProductController;
 
+import com.example.egar.controllers.ServiceProviderController;
 import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnProductFetchListener;
+import com.example.egar.interfaces.OnServiceProviderFetchListener;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
@@ -41,12 +45,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener {
-    private CategoryAdapter categoryAdapter;
-    private List<Category> categoryList;
-    private final ArrayList<Product> products = new ArrayList<>();
-    private ProductHomeAdapter adapter;
-
     private FragmentHomeBinding binding;
+    private List<Category> categoryList ;
+    private final ArrayList<Product> products = new ArrayList<>();
+    private List<Provider> providers = new ArrayList<>();
+    private CategoryAdapter categoryAdapter;
+    private ProductHomeAdapter productHomeAdapter;
+    private ProviderAdapter providerAdapter;
+
 
 
     public Home() {
@@ -80,6 +86,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private void initializeView(){
         setOnclick();
         getProduct();
+        getProvider();
         initializeRecyclerAdapter();
     }
     private void initializeRecyclerAdapter(){
@@ -87,10 +94,16 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.recyclerCategory.setAdapter(categoryAdapter);
         binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
-        adapter = new ProductHomeAdapter(products);
-        binding.recyclerProduct.setAdapter(adapter);
+        productHomeAdapter = new ProductHomeAdapter(products);
+        binding.recyclerProduct.setAdapter(productHomeAdapter);
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
        // binding.recyclerProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        providerAdapter = new ProviderAdapter(providers);
+        binding.recyclerTopRatedStores.setAdapter(providerAdapter);
+        binding.recyclerTopRatedStores.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+
+
     }
 
     @Override
@@ -132,7 +145,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
               //  Toast.makeText(getActivity(), "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
                 products.clear();
                 products.addAll(productList);
-                adapter.notifyDataSetChanged();
+                productHomeAdapter.notifyDataSetChanged();
               //  adapter.notifyItemRangeInserted(0,productList.size());
             }
 
@@ -165,6 +178,25 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             }
         });
 */
+    }
+
+
+
+    private void getProvider(){
+        ServiceProviderController.getInstance().getAllServiceProviders(new OnServiceProviderFetchListener() {
+            @Override
+            public void onFetchSuccess(List<Provider> serviceProviders) {
+                providers.clear();
+                providers.addAll(serviceProviders);
+                providerAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFetchFailure(String errorMessage) {
+
+            }
+        });
     }
 
 

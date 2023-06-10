@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceProviderController {
-    private ServiceProviderController instance;
+    private static ServiceProviderController instance;
     private ServiceProviderController(){}
 
-    public ServiceProviderController getInstance() {
+    public static ServiceProviderController getInstance() {
         if (instance == null){
             instance= new ServiceProviderController();
         }
