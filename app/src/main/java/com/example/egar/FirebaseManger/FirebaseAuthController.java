@@ -64,7 +64,17 @@ public class FirebaseAuthController {
 
                                 userRef.set(user)
                                         .addOnSuccessListener(aVoid -> {
-                                            callback.onSuccess("Account created successfully");
+                                            // Store the document ID in the user object
+                                            user.setId(userRef.getId());
+
+                                            // Update the user data with the updated user object
+                                            userRef.set(user)
+                                                    .addOnSuccessListener(aVoid1 -> {
+                                                        callback.onSuccess("Account created successfully");
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        callback.onFailure(e.getMessage());
+                                                    });
                                         })
                                         .addOnFailureListener(e -> {
                                             callback.onFailure(e.getMessage());

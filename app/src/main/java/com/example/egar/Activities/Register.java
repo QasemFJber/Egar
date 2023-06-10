@@ -182,12 +182,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void register() {
-        String id = FirebaseAuth.getInstance().getUid();
         String name =binding.etUserName.getText().toString();
         String email =binding.etEmail.getText().toString().trim();
         String pass =binding.etPassword.getText().toString().trim();
         String phone =binding.etPhoneNumber.getText().toString().trim();
-        User user = new User(id,name,email,pass,phone);
+        User user = new User(name,email,pass,phone);
         FirebaseAuthController.getInstance().createAccount(user, pickedImageUri, new ProcessCallback() {
             @Override
             public void onSuccess(String message) {
