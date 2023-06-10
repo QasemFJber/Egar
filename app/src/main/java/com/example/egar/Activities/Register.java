@@ -15,11 +15,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.egar.Models.User;
 import com.example.egar.R;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.databinding.ActivityRegisterBinding;
 import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -180,23 +182,25 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void register() {
-        FirebaseAuthController.getInstance().createAccount(binding.etUserName.getText().toString(),
-                binding.etEmail.getText().toString().trim(),
-                binding.etPassword.getText().toString().trim(),
-                binding.etPhoneNumber.getText().toString().trim(),
-                pickedImageUri,
-                new ProcessCallback() {
-                    @Override
-                    public void onSuccess(String message) {
-                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+        String id = FirebaseAuth.getInstance().getUid();
+        String name =binding.etUserName.getText().toString();
+        String email =binding.etEmail.getText().toString().trim();
+        String pass =binding.etPassword.getText().toString().trim();
+        String phone =binding.etPhoneNumber.getText().toString().trim();
+        User user = new User(id,name,email,pass,phone);
+        FirebaseAuthController.getInstance().createAccount(user, pickedImageUri, new ProcessCallback() {
+            @Override
+            public void onSuccess(String message) {
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
 
-                    }
+            }
 
-                    @Override
-                    public void onFailure(String message) {
-                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
-                    }
-                });
+            @Override
+            public void onFailure(String message) {
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+
+            }
+        });
     }
 
 

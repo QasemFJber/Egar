@@ -254,7 +254,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_8sdp"
-        android:text="Create an account"
+        android:text="Create an Account"
         android:textColor="@color/white"
         android:textSize="@dimen/_19ssp"
         android:textStyle="bold"

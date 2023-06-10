@@ -39,6 +39,7 @@ public class Profile extends Fragment  implements View.OnClickListener {
 
     private void  setOnClick(){
         binding.btnUpdate.setOnClickListener(this::onClick);
+        binding.logout.setOnClickListener(this);
     }
 
     @Override
@@ -51,10 +52,10 @@ public class Profile extends Fragment  implements View.OnClickListener {
                 break;
 
             case R.id.logout:
-              /*  FirebaseAuthController.getInstance().signOut();
+                FirebaseAuthController.getInstance().signOut();
+                getActivity().finish();
                 Intent intent = new Intent(getActivity(), Login.class);
-                startActivity(intent);*/
-
+                startActivity(intent);
                 break;
             case R.id.btn_favorite:
 

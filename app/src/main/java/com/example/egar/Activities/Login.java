@@ -250,6 +250,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 if (auth.getCurrentUser() != null){
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
+                                    finish();
                                 }else {
 
                                 }
@@ -293,24 +294,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document != null && document.exists()) {
-                            // User exists in 'users' collection
-                            // Perform desired actions for regular user
+
                             callback.onRegularUserSignedIn();
                         } else {
-                            // User does not exist in 'users' collection
-                            // Check 'serviceproviders' collection
                             serviceProvidersCollection.document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot serviceProviderDocument = task.getResult();
                                         if (serviceProviderDocument != null && serviceProviderDocument.exists()) {
-                                            // User exists in 'serviceproviders' collection
-                                            // Perform desired actions for service provider
+
                                             callback.onProviderSignedIn();
                                         } else {
-                                            // User does not exist in 'serviceproviders' collection as well
-                                            // Handle the case when user is not signed in
+
                                             callback.onUserNotSignedIn();
                                         }
                                     }

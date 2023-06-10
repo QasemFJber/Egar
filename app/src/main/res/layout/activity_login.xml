@@ -147,7 +147,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_17sdp"
-            android:text="Create an account"
+            android:text="Create an Account"
             android:textColor="@color/active"
             android:padding="@dimen/_13sdp"
             android:textSize="@dimen/_11sdp"
