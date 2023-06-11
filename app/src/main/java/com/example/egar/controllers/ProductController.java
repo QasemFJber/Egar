@@ -93,17 +93,20 @@ public class ProductController {
                 String category = documentSnapshot.getString("category");
                 String providerId = documentSnapshot.getString("provider.id");
 
-                // Retrieve the imageUrl from the document snapshot
                 String imageUrl = documentSnapshot.getString("imageUrl");
 
-                // Retrieve the provider data using the providerId
                 providersCollection.document(providerId).get().addOnSuccessListener(providerDocumentSnapshot -> {
                     if (providerDocumentSnapshot.exists()) {
                         String providerName = providerDocumentSnapshot.getString("name");
-                        String providerAddress = providerDocumentSnapshot.getString("address");
+                        String providerEmail = providerDocumentSnapshot.getString("email");
+                        String providerType = providerDocumentSnapshot.getString("providerType");
                         String providerPhoneNumber = providerDocumentSnapshot.getString("phoneNumber");
+                        String providerAddress = providerDocumentSnapshot.getString("address");
+                        String providerCity = providerDocumentSnapshot.getString("city");
+                        String providerBio = providerDocumentSnapshot.getString("bio");
+                        String providerImage = providerDocumentSnapshot.getString("image");
 
-                        Provider provider = new Provider(providerId, providerName, providerAddress, providerPhoneNumber);
+                        Provider provider = new Provider(providerId, providerName, providerEmail, providerType, providerPhoneNumber, providerAddress, providerCity, providerBio, providerImage);
 
                         Product product = new Product(id, name, description, price, isFavorite, quantityInCart, category, provider, imageUrl);
                         productList.add(product);
