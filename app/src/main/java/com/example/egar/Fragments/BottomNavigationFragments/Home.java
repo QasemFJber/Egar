@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.egar.Activities.Notifications;
+import com.example.egar.Activities.Service_Provider_Store_Details;
 import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
 import com.example.egar.Models.Category;
@@ -33,6 +34,7 @@ import com.example.egar.controllers.ProductController;
 
 import com.example.egar.controllers.ServiceProviderController;
 import com.example.egar.databinding.FragmentHomeBinding;
+import com.example.egar.interfaces.ItemCallbackProvider;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnProductFetchListener;
 import com.example.egar.interfaces.OnServiceProviderFetchListener;
@@ -41,10 +43,11 @@ import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener {
+public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener, ItemCallbackProvider {
     private FragmentHomeBinding binding;
     private List<Category> categoryList ;
     private final ArrayList<Product> products = new ArrayList<>();
@@ -100,6 +103,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
        // binding.recyclerProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         providerAdapter = new ProviderAdapter(providers);
+        providerAdapter.setCallbackProvider(this::onItemClick);
         binding.recyclerTopRatedStores.setAdapter(providerAdapter);
         binding.recyclerTopRatedStores.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
@@ -205,5 +209,13 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onItemClick(Provider provider) {
+        Intent intent = new Intent(getActivity(), Service_Provider_Store_Details.class);
+        intent.putExtra("provider", (Serializable) provider);
+        //intent.putExtra("category_name",category.getName());
+        startActivity(intent);
     }
 }

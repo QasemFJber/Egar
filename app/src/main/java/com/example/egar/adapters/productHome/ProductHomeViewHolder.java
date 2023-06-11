@@ -41,19 +41,23 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
         binding.tvProviderType.setText("ProviderType");
 
         Picasso.get().load(product.getImageUrl()).into(binding.imgProduct);
-
-
+        binding.layoutItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onItem(product.getId());
+            }
+        });
 
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.layoutItem) {
+/*        if (v.getId() == R.id.layoutItem) {
             if (callback != null) {
                 callback.onItem(getAdapterPosition());
             }
-        }
+        }*/
 
     }
 }

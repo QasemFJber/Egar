@@ -34,7 +34,7 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
         binding = ActivityShowCategoriesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initializeView();
-        Toast.makeText(this, getCategory(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, getCategory(), Toast.LENGTH_SHORT).show();
     }
 
     private void initializeView() {

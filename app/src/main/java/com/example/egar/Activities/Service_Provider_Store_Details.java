@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.egar.Models.Provider;
 import com.example.egar.R;
 import com.example.egar.databinding.ActivityServiceProviderStoreDetailsBinding;
+import com.squareup.picasso.Picasso;
 
 public class Service_Provider_Store_Details extends AppCompatActivity {
     ActivityServiceProviderStoreDetailsBinding binding;
@@ -17,11 +20,13 @@ public class Service_Provider_Store_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityServiceProviderStoreDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getDetails();
     }
-    @Override
+/*    @Override
     public void onBackPressed() {
+       // onBackPressed();
         // Create an exit dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+*//*        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
         builder.setMessage("Are you sure you want to exit?");
         builder.setIcon(R.drawable.baseline_exit_to_app_24);
@@ -47,8 +52,8 @@ public class Service_Provider_Store_Details extends AppCompatActivity {
                 // Do nothing
             }
         });
-        dialog.show();
-    }
+        dialog.show();*//*
+    }*/
 
     @Override
     protected void onStart() {
@@ -56,28 +61,11 @@ public class Service_Provider_Store_Details extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+    private void getDetails(){
+        Provider provider = (Provider) getIntent().getSerializableExtra("provider");
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+        binding.tvNameAdmin.setText(provider.getName());
+        binding.tvLoction.setText(provider.getAddress());
+        Picasso.get().load(provider.getImage()).into(binding.imgProvider);
     }
 }

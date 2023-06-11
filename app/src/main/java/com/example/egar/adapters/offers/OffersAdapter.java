@@ -20,7 +20,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull OffersViewHolder holder, int position) {
-
+        holder.savaData();
     }
 
     @Override

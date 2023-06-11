@@ -41,18 +41,53 @@
             android:textSize="@dimen/_18ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/_65sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rectan"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_rec"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:padding="@dimen/_5sdp"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/textloction"
@@ -64,7 +99,18 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_18ssp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView_rec" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rectan"
+            app:layout_constraintEnd_toEndOf="@+id/textloction"
+            app:layout_constraintStart_toStartOf="@+id/textloction"
+            app:layout_constraintTop_toBottomOf="@+id/textloction" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.cardview.widget.CardView
@@ -76,6 +122,7 @@
         android:layout_marginEnd="@dimen/_20sdp"
         app:cardCornerRadius="@dimen/_15sdp"
         app:cardElevation="@dimen/_10sdp"
+        android:backgroundTint="#0F3460"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,26 +137,33 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_loction"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/tv_loction"
                 app:layout_constraintTop_toTopOf="@+id/tv_loction"
+
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/place" />
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_provider"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_margin="@dimen/_15sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/avatar" />
 
 
             <TextView
                 android:id="@+id/tv_nameAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:text="name admin"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_18ssp"
                 android:textStyle="bold"
-                android:textColor="@color/active"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_provider"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -118,10 +172,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="TextView ......."
+                android:textColor="@color/white"
                 android:textSize="@dimen/_16ssp"
-                android:textColor="@color/active"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_nameAdmin"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nameAdmin" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
