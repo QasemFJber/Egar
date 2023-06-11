@@ -30,88 +30,118 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/shape_bac">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_80sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="product "
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="@dimen/_65sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/rectan"
-            app:layout_constraintEnd_toEndOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView_rec"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_10sdp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_60sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/_5sdp"
-
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="product "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/rectan"
+                    app:layout_constraintEnd_toEndOf="@+id/textView5"
+                    app:layout_constraintStart_toStartOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_230sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:cardElevation="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_5sdp">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/textloction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="Loction"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView_rec" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/rectan"
+                    app:layout_constraintEnd_toEndOf="@+id/textloction"
+                    app:layout_constraintStart_toStartOf="@+id/textloction"
+                    app:layout_constraintTop_toBottomOf="@+id/textloction" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:cardElevation="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
-
-        </androidx.cardview.widget.CardView>
-
-
-
-        <TextView
-            android:id="@+id/textloction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Loction"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView_rec" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="@dimen/_65sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/rectan"
-            app:layout_constraintEnd_toEndOf="@+id/textloction"
-            app:layout_constraintStart_toStartOf="@+id/textloction"
-            app:layout_constraintTop_toBottomOf="@+id/textloction" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
