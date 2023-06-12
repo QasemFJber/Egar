@@ -20,23 +20,12 @@ public class ProductViewHolder extends RecyclerView.ViewHolder /*implements View
         super(binding.getRoot());
         this.binding=binding;
         this.callbackProduct=callbackProduct;
-        initializeView();
-    }
-
-    private void initializeView() {
-        setOnClickListeners();
-    }
-
-    private void setOnClickListeners() {
-       // binding.imgDelete.setOnClickListener(this::onClick);
-        //binding.noteItemView.setOnClickListener(this::onClick);
     }
 
     public void savaData(Product product){
         binding.tvProductShow.setText(product.getName());
         binding.tvProductPrice.setText(String.valueOf(product.getPrice()));
         binding.tvProductDescription.setText(product.getDescription());
-        //binding.imgProductShow.setImageURI(Uri.parse(product.getImageUrl()));
         Picasso.get().load(product.getImageUrl()).into(binding.imgProductShow);
 
         binding.getRoot().setOnClickListener(new View.OnClickListener() {

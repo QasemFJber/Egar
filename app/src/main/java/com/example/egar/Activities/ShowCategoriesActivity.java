@@ -25,7 +25,7 @@ import java.util.List;
 public class ShowCategoriesActivity extends AppCompatActivity implements View.OnClickListener , ItemCallbackProduct {
     ActivityShowCategoriesBinding binding;
 
-    private final ArrayList<Product> products = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
     private ProductAdapter adapter;
     String category_name;
 
@@ -92,7 +92,6 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
     public void onItemClick(Product product) {
         Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details.class);
         intent.putExtra("product", (Serializable) product);
-        //intent.putExtra("category_name",category.getName());
         startActivity(intent);
 
     }

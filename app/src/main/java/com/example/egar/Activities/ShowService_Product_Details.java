@@ -80,7 +80,5 @@ public class ShowService_Product_Details extends AppCompatActivity {
         Picasso.get().load(product().getImageUrl()).into(binding.productImg);
         Picasso.get().load(product().getProvider().getImage()).into(binding.imageProviderImg);
 
-
-
     }
 }

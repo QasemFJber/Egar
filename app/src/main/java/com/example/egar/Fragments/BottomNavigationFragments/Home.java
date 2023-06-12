@@ -19,6 +19,7 @@ import com.example.egar.Activities.Notifications;
 import com.example.egar.Activities.Service_Provider_Store_Details;
 import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
+import com.example.egar.Activities.ShowService_Product_Details;
 import com.example.egar.Models.Category;
 import com.example.egar.Models.Product;
 import com.example.egar.Models.Provider;
@@ -34,6 +35,7 @@ import com.example.egar.controllers.ProductController;
 
 import com.example.egar.controllers.ServiceProviderController;
 import com.example.egar.databinding.FragmentHomeBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.ItemCallbackProvider;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnProductFetchListener;
@@ -47,10 +49,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener, ItemCallbackProvider {
+public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener, ItemCallbackProvider, ItemCallbackProduct {
     private FragmentHomeBinding binding;
     private List<Category> categoryList ;
-    private final ArrayList<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
     private List<Provider> providers = new ArrayList<>();
     private CategoryAdapter categoryAdapter;
     private ProductHomeAdapter productHomeAdapter;
@@ -98,6 +100,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
         productHomeAdapter = new ProductHomeAdapter(products);
+        productHomeAdapter.setCallback(this::onItemClick);
         binding.recyclerProduct.setAdapter(productHomeAdapter);
         binding.recyclerProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
        // binding.recyclerProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -215,7 +218,14 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     public void onItemClick(Provider provider) {
         Intent intent = new Intent(getActivity(), Service_Provider_Store_Details.class);
         intent.putExtra("provider", (Serializable) provider);
-        //intent.putExtra("category_name",category.getName());
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(Product product) {
+        Intent intent = new Intent(getActivity(), ShowService_Product_Details .class);
+        intent.putExtra("product", (Serializable) product);
+        startActivity(intent);
+
     }
 }

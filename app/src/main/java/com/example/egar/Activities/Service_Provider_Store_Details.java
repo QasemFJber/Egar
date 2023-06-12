@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,13 +16,15 @@ import com.example.egar.adapters.product.ProductAdapter;
 import com.example.egar.adapters.productShowProvider.ProductShowProviderAdapter;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivityServiceProviderStoreDetailsBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.OnProductFetchListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service_Provider_Store_Details extends AppCompatActivity {
+public class Service_Provider_Store_Details extends AppCompatActivity implements ItemCallbackProduct {
     ActivityServiceProviderStoreDetailsBinding binding;
 
     List<Product> products = new ArrayList<>();
@@ -79,7 +82,7 @@ public class Service_Provider_Store_Details extends AppCompatActivity {
     }
     private void initializeRecyclerAdapter() {
         adapter = new ProductShowProviderAdapter(products);
-        //adapter.setCallback(this);
+        adapter.setCallbackProduct(this::onItemClick);
         binding.recyclerViewProduct.setAdapter(adapter);
         binding.recyclerViewProduct.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
@@ -117,5 +120,13 @@ public class Service_Provider_Store_Details extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Product product) {
+        Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details .class);
+        intent.putExtra("product", (Serializable) product);
+        startActivity(intent);
+
     }
 }

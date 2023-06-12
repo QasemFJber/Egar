@@ -15,8 +15,8 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
-     List<Product> products ;
-    ItemCallbackProduct callbackProduct;
+    private List<Product> products ;
+    private ItemCallbackProduct callbackProduct;
 
 
     public ProductAdapter(List<Product> products) {
@@ -42,7 +42,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     @Override
     public int getItemCount() {
-        return products.size() ;
+        if (products == null) {
+            return 0;
+        } else {
+            return products.size();
+        }
     }
 
 

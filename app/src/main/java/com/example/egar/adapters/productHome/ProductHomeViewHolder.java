@@ -9,14 +9,15 @@ import com.example.egar.Models.Product;
 import com.example.egar.R;
 import com.example.egar.databinding.ItemProductsBinding;
 import com.example.egar.interfaces.ItemCallback;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.squareup.picasso.Picasso;
 
 public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
      ItemProductsBinding binding;
-     ItemCallback callback;
+     ItemCallbackProduct callback;
 
-    public ProductHomeViewHolder(ItemProductsBinding binding, ItemCallback callback) {
+    public ProductHomeViewHolder(ItemProductsBinding binding, ItemCallbackProduct callback) {
         super(binding.getRoot());
         this.binding=binding;
         this.callback=callback;
@@ -35,18 +36,21 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
     public void savaData(Product product){
         binding.tvProductName.setText(product.getName());
         binding.tvPrinc.setText(String.valueOf(product.getPrice()));
-       // binding.tvProviderName.setText(product.getProvider().getName());
-        binding.tvProviderName.setText("ProviderName");
-        //binding.tvProviderType.setText(product.getProvider().getProviderType());
-        binding.tvProviderType.setText("ProviderType");
+        binding.tvProviderName.setText(product.getProvider().getName());
+        //binding.tvProviderName.setText("ProviderName");
+        binding.tvProviderType.setText(product.getProvider().getProviderType());
+       // binding.tvProviderType.setText("ProviderType");
 
         Picasso.get().load(product.getImageUrl()).into(binding.imgProduct);
-        binding.layoutItem.setOnClickListener(new View.OnClickListener() {
+
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onItem(product.getId());
+                callback.onItemClick(product);
+
             }
         });
+
 
     }
 

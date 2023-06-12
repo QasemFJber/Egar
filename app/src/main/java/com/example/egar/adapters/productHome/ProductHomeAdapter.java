@@ -11,6 +11,7 @@ import com.example.egar.Models.Product;
 import com.example.egar.adapters.product.ProductViewHolder;
 import com.example.egar.databinding.ItemProductsBinding;
 import com.example.egar.interfaces.ItemCallback;
+import com.example.egar.interfaces.ItemCallbackProduct;
 
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeViewHold
 
 
     private List<Product> products  ;
-    private ItemCallback callback;
+    private ItemCallbackProduct callback;
 
     public ProductHomeAdapter(List<Product> products) {
         this.products = products;
@@ -48,7 +49,7 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeViewHold
     }
 
 
-    public void setCallback(ItemCallback callback) {
+    public void setCallback(ItemCallbackProduct callback) {
         this.callback = callback;
     }
 }
