@@ -1,19 +1,25 @@
 package com.example.egar.adapters.product;
 
+import android.view.View;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.egar.Models.Product;
 import com.example.egar.databinding.ItemProductShowBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.squareup.picasso.Picasso;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
 
     ItemProductShowBinding binding;
 
-    public ProductViewHolder(ItemProductShowBinding binding) {
+    ItemCallbackProduct callbackProduct;
+
+    public ProductViewHolder(ItemProductShowBinding binding, ItemCallbackProduct callbackProduct) {
         super(binding.getRoot());
         this.binding=binding;
+        this.callbackProduct=callbackProduct;
         initializeView();
     }
 
@@ -32,16 +38,14 @@ public class ProductViewHolder extends RecyclerView.ViewHolder /*implements View
         binding.tvProductDescription.setText(product.getDescription());
         //binding.imgProductShow.setImageURI(Uri.parse(product.getImageUrl()));
         Picasso.get().load(product.getImageUrl()).into(binding.imgProductShow);
-/*
-        binding.imgDelete.setOnClickListener(new View.OnClickListener() {
+
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (callback != null) {
-                    callback.onDelete(product);
-                }
+                callbackProduct.onItemClick(product);
             }
         });
-*/
+
 
     }
 

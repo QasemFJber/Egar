@@ -1,7 +1,9 @@
 package com.example.egar.Models;
 
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String id;
     private String serviceProviderId;
     private String name;

@@ -13,14 +13,16 @@ import com.example.egar.R;
 import com.example.egar.adapters.product.ProductAdapter;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivityShowCategoriesBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.OnProductFetchListener;
 import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowCategoriesActivity extends AppCompatActivity implements View.OnClickListener {
+public class ShowCategoriesActivity extends AppCompatActivity implements View.OnClickListener , ItemCallbackProduct {
     ActivityShowCategoriesBinding binding;
 
     private final ArrayList<Product> products = new ArrayList<>();
@@ -52,7 +54,7 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
 
     private void initializeRecyclerAdapter() {
         adapter = new ProductAdapter(products);
-        //adapter.setCallback(this);
+        adapter.setCallbackProduct(this::onItemClick);
         binding.recItemsCategory.setAdapter(adapter);
         binding.recItemsCategory.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
@@ -84,5 +86,14 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
            onBackPressed();
            finish();
         }
+    }
+
+    @Override
+    public void onItemClick(Product product) {
+        Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details.class);
+        intent.putExtra("product", (Serializable) product);
+        //intent.putExtra("category_name",category.getName());
+        startActivity(intent);
+
     }
 }

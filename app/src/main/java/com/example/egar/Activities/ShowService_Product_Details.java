@@ -7,8 +7,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import com.example.egar.Models.Product;
 import com.example.egar.R;
 import com.example.egar.databinding.ActivityShowServiceProductDetailsBinding;
+import com.squareup.picasso.Picasso;
 
 public class ShowService_Product_Details extends AppCompatActivity {
 
@@ -19,11 +21,13 @@ public class ShowService_Product_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityShowServiceProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getDetails();
 
     }
     private void operationsSccren() {
         getWindow().setStatusBarColor(ContextCompat.getColor(ShowService_Product_Details.this, R.color.black));
     }
+/*
     @Override
     public void onBackPressed() {
         // Create an exit dialog
@@ -55,35 +59,28 @@ public class ShowService_Product_Details extends AppCompatActivity {
         });
         dialog.show();
     }
+*/
 
     @Override
     protected void onStart() {
         super.onStart();
-        operationsSccren();
+       // operationsSccren();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private Product product(){
+        Product product = (Product) getIntent().getSerializableExtra("product");
+        return product;
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
+    private void getDetails(){
+        binding.tvTextProductName.setText(product().getName());
+        binding.tvTextDescription.setText(product().getDescription());
+        binding.tvPrice.setText(String.valueOf(product().getPrice()));
+        binding.tvTextproviderName.setText(product().getProvider().getName());
+        Picasso.get().load(product().getImageUrl()).into(binding.productImg);
+        Picasso.get().load(product().getProvider().getImage()).into(binding.imageProviderImg);
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 }
