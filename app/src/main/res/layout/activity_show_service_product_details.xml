@@ -114,50 +114,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_TextproviderName" />
 
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_16sdp"
-                android:text="similar products"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_providerImg" />
-
-            <ImageView
-                android:id="@+id/imageView21"
-                android:layout_width="@dimen/_110sdp"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="@+id/textView29"
-                app:layout_constraintStart_toStartOf="@+id/textView29"
-                app:layout_constraintTop_toBottomOf="@+id/textView29"
-                app:srcCompat="@drawable/rectan" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_similar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
-
             <Button
                 android:id="@+id/button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_200sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@color/dark_blue"
-                android:textAllCaps="false"
                 android:text="Add To Cart"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                app:layout_constraintTop_toBottomOf="@+id/image_providerImg" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
