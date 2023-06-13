@@ -115,7 +115,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_TextproviderName" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_toSet"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_200sdp"
@@ -123,7 +123,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@color/dark_blue"
-                android:text="Add To Cart"
+                android:text="To Set"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp"
