@@ -29,6 +29,7 @@ import com.example.egar.adapters.ProviderAdapter.ProviderAdapter;
 import com.example.egar.adapters.StoreAdapter;
 
 
+import com.example.egar.adapters.offers.OffersAdapter;
 import com.example.egar.adapters.productHome.ProductHomeAdapter;
 import com.example.egar.controllers.CategoryController;
 import com.example.egar.controllers.ProductController;
@@ -57,6 +58,8 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private CategoryAdapter categoryAdapter;
     private ProductHomeAdapter productHomeAdapter;
     private ProviderAdapter providerAdapter;
+
+    private OffersAdapter offersAdapter;
 
 
 
@@ -109,6 +112,11 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         providerAdapter.setCallbackProvider(this::onItemClick);
         binding.recyclerTopRatedStores.setAdapter(providerAdapter);
         binding.recyclerTopRatedStores.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+
+        //offersAdapter =new OffersAdapter();
+       // binding.recyclerOffers.setAdapter(offersAdapter);
+       // binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+
 
 
     }
