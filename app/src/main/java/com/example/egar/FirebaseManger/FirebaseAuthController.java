@@ -6,11 +6,16 @@ import androidx.annotation.NonNull;
 
 import com.example.egar.Models.User;
 import com.example.egar.interfaces.ProcessCallback;
+import com.example.egar.interfaces.SignInStatusListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -131,51 +136,51 @@ public class FirebaseAuthController {
         auth.signOut();
     }
 
-    public boolean isSignedIn(){
-        return auth != null;
-    }
-//    public void isSignedIn(final SignInStatusListener listener) {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if (user != null) {
-//            String userId = user.getUid();
-//
-//            FirebaseFirestore db = FirebaseFirestore.getInstance();
-//
-//            DocumentReference userRef = db.collection("users").document(userId);
-//            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                @Override
-//                public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                    if (documentSnapshot.exists()) {
-//                        listener.onUserSignedInAsRegularUser(userId);
-//                    } else {
-//                        DocumentReference adminUserRef = db.collection("serviceproviders").document(userId);
-//                        adminUserRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                if (documentSnapshot.exists()) {
-//                                    listener.onUserSignedInAsAdminUser(userId);
-//                                } else {
-//                                    listener.onUserNotSignedIn(userId);
-//                                }
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//
-//                            }
-//                        });
-//                    }
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    // Handle the error
-//                }
-//            });
-//        } else {
-//            listener.onUserNotSignedIn(user.getUid());
-//        }
+//    public boolean isSignedIn(){
+//        return auth != null;
 //    }
+    public void isSignedIn(final SignInStatusListener listener) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            DocumentReference userRef = db.collection("users").document(userId);
+            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot userSnapshot) {
+                    if (userSnapshot.exists()) {
+                        listener.onUserSignedInAsRegularUser(userId);
+                    } else {
+                        DocumentReference serviceProviderRef = db.collection("serviceproviders").document(userId);
+                        serviceProviderRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot serviceProviderSnapshot) {
+                                if (serviceProviderSnapshot.exists()) {
+                                    listener.onUserSignedInAsAdminUser(userId);
+                                } else {
+                                    listener.onUserNotSignedIn(userId);
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle the error
+                            }
+                        });
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Handle the error
+                }
+            });
+        } else {
+            listener.onUserNotSignedIn(null);
+        }
+    }
 
 
 }
