@@ -15,6 +15,7 @@ import com.example.egar.SharedPreferences.AppSharedPreferences;
 import com.example.egar.controllers.CategoryController;
 import com.example.egar.databinding.ActivitySplashBinding;
 import com.example.egar.interfaces.ProcessCallback;
+import com.example.egar.interfaces.SignInStatusListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -42,8 +43,24 @@ public class Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), FirebaseAuthController.getInstance().isSignedIn() ? MainActivity.class : Login.class);
-                startActivity(intent);
+              FirebaseAuthController.getInstance().isSignedIn(new SignInStatusListener() {
+                  @Override
+                  public void onUserSignedInAsRegularUser(String id) {
+                      Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                      startActivity(intent);
+                  }
+
+                  @Override
+                  public void onUserSignedInAsAdminUser(String id) {
+                      Snackbar.make(binding.getRoot(),""+id,Snackbar.LENGTH_LONG).show();
+                  }
+
+                  @Override
+                  public void onUserNotSignedIn(String uid) {
+                      Intent intent = new Intent(getApplicationContext(), Login.class);
+                      startActivity(intent);
+                  }
+              });
             }
         }, 3000);
     }
