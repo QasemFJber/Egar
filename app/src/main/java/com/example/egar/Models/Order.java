@@ -1,29 +1,40 @@
 package com.example.egar.Models;
 
+import android.location.Location;
+
+import com.example.egar.enams.OrderStatus;
+
 import java.util.Date;
 
 public class Order {
     private String orderId;
-    private String customerId;
+    private String userId;
     private String serviceProviderId;
     private int quantity;
     private double totalAmount;
-    private Date orderDate ;
+    private Date orderDate;
+    private OrderStatus orderStatus;
+    private String paymentMethod;
+    private Location shippingLocation;
 
     public Order() {
         // Required empty constructor for Firebase
     }
 
-    public Order(String orderId, String customerId, String serviceProviderId, int quantity, double totalAmount, Date orderDate) {
+    public Order(String orderId, String userId, String serviceProviderId, int quantity, double totalAmount, Date orderDate, OrderStatus orderStatus, String paymentMethod, Location shippingLocation) {
         this.orderId = orderId;
-        this.customerId = customerId;
+        this.userId = userId;
         this.serviceProviderId = serviceProviderId;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
-        this.orderDate=orderDate;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.paymentMethod = paymentMethod;
+        this.shippingLocation = shippingLocation;
     }
 
     // Getters and Setters
+
     public String getOrderId() {
         return orderId;
     }
@@ -32,12 +43,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getServiceProviderId() {
@@ -71,5 +82,28 @@ public class Order {
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
-}
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Location getShippingLocation() {
+        return shippingLocation;
+    }
+
+    public void setShippingLocation(Location shippingLocation) {
+        this.shippingLocation = shippingLocation;
+    }
+}
