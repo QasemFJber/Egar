@@ -183,26 +183,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         }
     }
-    private void showServiceProvidersDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Alert");
-        builder.setMessage("We offer an app for service providers. Would you like to use the Service Providers application?");
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-               finish();
-            }
-        });
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Snackbar.make(binding.getRoot(), "We offer an app for service providers. Would you like to use the Service Providers application?", Snackbar.LENGTH_LONG).setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.bronze)).show();
-
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
     private void addCategoriesToDatabase() {
         List<Category> categoryList = addDataToRecyclerView();
 
@@ -238,7 +218,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private void loginAndCheckProviderType() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseAuthController.getInstance().signIn(binding.etEmail.getText().toString(),
+        FirebaseAuthController.getInstance().signIn(
+                binding.etEmail.getText().toString(),
                 binding.etPassword.getText().toString(),
                 new ProcessCallback() {
                     @Override
