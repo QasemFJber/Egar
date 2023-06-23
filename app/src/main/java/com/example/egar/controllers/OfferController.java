@@ -4,6 +4,7 @@ import com.example.egar.Models.Offer;
 import com.example.egar.Models.Product;
 import com.example.egar.interfaces.OnAllOffersFetch;
 
+import com.example.egar.interfaces.OnOfferFetchListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -20,21 +21,14 @@ public class OfferController {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         offersCollection = db.collection(COLLECTION_PATH);
     }
-    public static void getProductsOnOffer(CollectionReference offersCollection, OnAllOffersFetch callback) {
+    public void getAllOffers(OnOfferFetchListener callback) {
         offersCollection.get()
-                .addOnSuccessListener(querySnapshot -> {
-                    List<Product> productsOnOffer = new ArrayList<>();
-
-                    for (DocumentSnapshot document : querySnapshot) {
-                        Offer offer = document.toObject(Offer.class);
-                        Product product = offer.getProduct();
-                        productsOnOffer.add(product);
-                    }
-
-                    callback.onSuccess(productsOnOffer);
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Offer> offersList = queryDocumentSnapshots.toObjects(Offer.class);
+                    callback.onListFetchSuccess(offersList);
                 })
                 .addOnFailureListener(e -> {
-                    callback.onFailure(e.getMessage());
+                    callback.onListFetchFailure(e.getMessage());
                 });
     }
 
