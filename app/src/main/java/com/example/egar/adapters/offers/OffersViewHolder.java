@@ -1,8 +1,5 @@
 package com.example.egar.adapters.offers;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.egar.databinding.ItemOffersBinding;
@@ -15,15 +12,15 @@ public class OffersViewHolder extends RecyclerView.ViewHolder {
         this.binding=binding;
     }
 
-    public void savaData(){
-        binding.textNameProduct.setText("");
-        binding.textPrice.setText("");
-        binding.textDiscountPercentage.setText("");
-        binding.textPriceDiscount.setText("");
+/*    public void savaData(Offer offer){
+        binding.textNameProduct.setText(offer.getProductName());
+        binding.textPrice.setText(String.valueOf(offer.getPrice()));
+        binding.textDiscountPercentage.setText("10-");
+        binding.textPriceDiscount.setText(String.valueOf(offer.getPrice()));
         Picasso.get().load("").into(binding.imageProduct);
         Picasso.get().load("").into(binding.imageProvider);
 
 
 
-    }
+    }*/
 }

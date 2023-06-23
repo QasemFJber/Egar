@@ -8,7 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.egar.databinding.ItemOffersBinding;
 
+import java.util.List;
+
 public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder> {
+
+/*    List<Offer> offerList;
+
+    public OffersAdapter(List<Offer> offerList) {
+        this.offerList = offerList;
+    }*/
 
     @NonNull
     @Override
@@ -20,7 +28,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull OffersViewHolder holder, int position) {
-        holder.savaData();
+      //  holder.savaData(offerList.get(position));
     }
 
     @Override
