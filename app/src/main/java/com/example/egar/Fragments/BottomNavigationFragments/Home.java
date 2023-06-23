@@ -117,7 +117,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
         offersAdapter =new OffersAdapter(offerList);
         binding.recyclerOffers.setAdapter(offersAdapter);
-        binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        binding.recyclerOffers.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
 
 

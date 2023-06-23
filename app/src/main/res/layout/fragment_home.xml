@@ -166,7 +166,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_offers"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
+                android:layout_height="@dimen/_180sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"

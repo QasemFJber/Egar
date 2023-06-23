@@ -2,11 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/_280sdp"
     app:cardCornerRadius="@dimen/_15sdp"
-    android:layout_margin="@dimen/_3sdp"
+    android:layout_margin="@dimen/_5sdp"
     app:cardElevation="@dimen/_10sdp"
-    android:layout_height="@dimen/_180sdp">
+    android:layout_height="@dimen/_150sdp">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -48,7 +48,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_height="@dimen/_65sdp"
         android:background="@drawable/shape_bac"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,11 +58,11 @@
             android:id="@+id/text_nameProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="124dp"
             android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_80sdp"
             android:text="name product"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20ssp"
+            android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,13 +75,13 @@
             android:padding="@dimen/_2sdp"
             android:paddingStart="@dimen/_8sdp"
             android:paddingEnd="@dimen/_8sdp"
-            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:text="200"
             android:textColor="@color/active"
-            android:textSize="@dimen/_18ssp"
+            android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linearLayout3"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -89,15 +89,15 @@
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/shape_bac_offers"
             android:orientation="horizontal"
-            android:padding="@dimen/_2sdp"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingEnd="@dimen/_8sdp"
+            android:padding="@dimen/_1sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/text_price">
 
             <TextView
                 android:id="@+id/text_price_discount"
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:text="200"
                 android:textColor="@color/active"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -114,13 +114,13 @@
                 android:padding="@dimen/_2sdp"
                 android:text="$"
                 android:textColor="@color/active"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <View
             android:id="@+id/divider"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
             android:layout_height="2dp"
             android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/text_price"
