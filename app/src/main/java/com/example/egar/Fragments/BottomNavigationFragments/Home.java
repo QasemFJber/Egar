@@ -40,6 +40,7 @@ import com.example.egar.interfaces.OnOfferFetchListener;
 import com.example.egar.interfaces.OnServiceProviderFetchListener;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProductCallback;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -218,56 +219,15 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private void getOffer(){
         offerController.getAllOffers(new OnOfferFetchListener() {
             @Override
-            public void onAddOfferSuccess(String offerId) {
-
-            }
-
-            @Override
-            public void onAddOfferFailure(String message) {
-
-            }
-
-            @Override
-            public void onUpdateOfferSuccess() {
-
-            }
-
-            @Override
-            public void onUpdateOfferFailure(String message) {
-
-            }
-
-            @Override
-            public void onDeleteOfferSuccess() {
-
-            }
-
-            @Override
-            public void onDeleteOfferFailure(String message) {
-
-            }
-
-            @Override
-            public void onGetOffersByServiceProviderIdSuccess(List<Offer> offers) {
-
-            }
-
-            @Override
-            public void onGetOffersByServiceProviderIdFailure(String message) {
-
-            }
-
-            @Override
             public void onListFetchSuccess(List<Offer> offersList) {
                 offerList.clear();
                 offerList.addAll(offersList);
                 offersAdapter.notifyDataSetChanged();
-
             }
 
             @Override
             public void onListFetchFailure(String message) {
-
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
             }
         });
     }

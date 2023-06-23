@@ -18,6 +18,9 @@ public class Offer {
         this.endDate = endDate;
     }
 
+    public Offer() {
+    }
+
     public String getId() {
         return id;
     }

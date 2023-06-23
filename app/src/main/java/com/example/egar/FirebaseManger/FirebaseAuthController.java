@@ -139,48 +139,49 @@ public class FirebaseAuthController {
 //    public boolean isSignedIn(){
 //        return auth != null;
 //    }
-    public void isSignedIn(final SignInStatusListener listener) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String userId = user.getUid();
+//    public void isSignedIn(final SignInStatusListener listener) {
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user != null) {
+//            String userId = user.getUid();
+//
+//            FirebaseFirestore db = FirebaseFirestore.getInstance();
+//
+//            DocumentReference userRef = db.collection("users").document(userId);
+//            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                @Override
+//                public void onSuccess(DocumentSnapshot userSnapshot) {
+//                    if (userSnapshot.exists()) {
+//                        listener.onUserSignedInAsRegularUser(userId);
+//                    } else {
+//                        DocumentReference serviceProviderRef = db.collection("serviceproviders").document(userId);
+//                        serviceProviderRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onSuccess(DocumentSnapshot serviceProviderSnapshot) {
+//                                if (serviceProviderSnapshot.exists()) {
+//                                    listener.onUserSignedInAsAdminUser(userId);
+//                                } else {
+//                                    listener.onUserNotSignedIn(userId);
+//                                }
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                // Handle the error
+//                            }
+//                        });
+//                    }
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    // Handle the error
+//                }
+//            });
+//        } else {
+//            listener.onUserNotSignedIn(null);
+//        }
+//    }
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-            DocumentReference userRef = db.collection("users").document(userId);
-            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot userSnapshot) {
-                    if (userSnapshot.exists()) {
-                        listener.onUserSignedInAsRegularUser(userId);
-                    } else {
-                        DocumentReference serviceProviderRef = db.collection("serviceproviders").document(userId);
-                        serviceProviderRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot serviceProviderSnapshot) {
-                                if (serviceProviderSnapshot.exists()) {
-                                    listener.onUserSignedInAsAdminUser(userId);
-                                } else {
-                                    listener.onUserNotSignedIn(userId);
-                                }
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Handle the error
-                            }
-                        });
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    // Handle the error
-                }
-            });
-        } else {
-            listener.onUserNotSignedIn(null);
-        }
-    }
 
 
 }
