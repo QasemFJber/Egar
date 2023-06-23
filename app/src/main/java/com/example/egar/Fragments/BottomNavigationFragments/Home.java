@@ -1,6 +1,5 @@
 package com.example.egar.Fragments.BottomNavigationFragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,11 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.egar.Activities.Notifications;
 import com.example.egar.Activities.Service_Provider_Store_Details;
@@ -26,12 +23,10 @@ import com.example.egar.Models.Provider;
 import com.example.egar.R;
 import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.ProviderAdapter.ProviderAdapter;
-import com.example.egar.adapters.StoreAdapter;
 
 
 import com.example.egar.adapters.offers.OffersAdapter;
 import com.example.egar.adapters.productHome.ProductHomeAdapter;
-import com.example.egar.controllers.CategoryController;
 import com.example.egar.controllers.ProductController;
 
 import com.example.egar.controllers.ServiceProviderController;
@@ -39,12 +34,9 @@ import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.ItemCallbackProvider;
 import com.example.egar.interfaces.OnItemClickListener;
-import com.example.egar.interfaces.OnProductFetchListener;
 import com.example.egar.interfaces.OnServiceProviderFetchListener;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProductCallback;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -55,6 +47,8 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private List<Category> categoryList ;
     private List<Product> products = new ArrayList<>();
     private List<Provider> providers = new ArrayList<>();
+
+    //private List<Offer> offers = new ArrayList<>();
     private CategoryAdapter categoryAdapter;
     private ProductHomeAdapter productHomeAdapter;
     private ProviderAdapter providerAdapter;
@@ -113,7 +107,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.recyclerTopRatedStores.setAdapter(providerAdapter);
         binding.recyclerTopRatedStores.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
-        //offersAdapter =new OffersAdapter();
+       // offersAdapter =new OffersAdapter(offers);
        // binding.recyclerOffers.setAdapter(offersAdapter);
        // binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
@@ -213,6 +207,21 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             }
         });
     }
+
+/*    private void getOffer(){
+        OfferController offerController =new OfferController();
+        offerController.getAllOffers(new ProcessCallback() {
+            @Override
+            public void onSuccess(String message) {
+
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+        });
+    }*/
 
 
 
