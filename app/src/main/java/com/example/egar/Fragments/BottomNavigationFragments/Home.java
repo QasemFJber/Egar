@@ -18,6 +18,7 @@ import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
 import com.example.egar.Activities.ShowService_Product_Details;
 import com.example.egar.Models.Category;
+import com.example.egar.Models.Offer;
 import com.example.egar.Models.Product;
 import com.example.egar.Models.Provider;
 import com.example.egar.R;
@@ -27,6 +28,7 @@ import com.example.egar.adapters.ProviderAdapter.ProviderAdapter;
 
 import com.example.egar.adapters.offers.OffersAdapter;
 import com.example.egar.adapters.productHome.ProductHomeAdapter;
+import com.example.egar.controllers.OfferController;
 import com.example.egar.controllers.ProductController;
 
 import com.example.egar.controllers.ServiceProviderController;
@@ -34,6 +36,7 @@ import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.ItemCallbackProvider;
 import com.example.egar.interfaces.OnItemClickListener;
+import com.example.egar.interfaces.OnOfferFetchListener;
 import com.example.egar.interfaces.OnServiceProviderFetchListener;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProductCallback;
@@ -48,7 +51,10 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private List<Product> products = new ArrayList<>();
     private List<Provider> providers = new ArrayList<>();
 
+    private List<Offer> offerList = new ArrayList<>();
+
     //private List<Offer> offers = new ArrayList<>();
+    OfferController offerController =new OfferController();
     private CategoryAdapter categoryAdapter;
     private ProductHomeAdapter productHomeAdapter;
     private ProviderAdapter providerAdapter;
@@ -89,6 +95,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         setOnclick();
         getProduct();
         getProvider();
+        getOffer();
         initializeRecyclerAdapter();
     }
     private void initializeRecyclerAdapter(){
@@ -107,9 +114,9 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.recyclerTopRatedStores.setAdapter(providerAdapter);
         binding.recyclerTopRatedStores.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
-       // offersAdapter =new OffersAdapter(offers);
-       // binding.recyclerOffers.setAdapter(offersAdapter);
-       // binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        offersAdapter =new OffersAdapter(offerList);
+        binding.recyclerOffers.setAdapter(offersAdapter);
+        binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
 
 
@@ -208,20 +215,62 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         });
     }
 
-/*    private void getOffer(){
-        OfferController offerController =new OfferController();
-        offerController.getAllOffers(new ProcessCallback() {
+    private void getOffer(){
+        offerController.getAllOffers(new OnOfferFetchListener() {
             @Override
-            public void onSuccess(String message) {
+            public void onAddOfferSuccess(String offerId) {
 
             }
 
             @Override
-            public void onFailure(String message) {
+            public void onAddOfferFailure(String message) {
+
+            }
+
+            @Override
+            public void onUpdateOfferSuccess() {
+
+            }
+
+            @Override
+            public void onUpdateOfferFailure(String message) {
+
+            }
+
+            @Override
+            public void onDeleteOfferSuccess() {
+
+            }
+
+            @Override
+            public void onDeleteOfferFailure(String message) {
+
+            }
+
+            @Override
+            public void onGetOffersByServiceProviderIdSuccess(List<Offer> offers) {
+
+            }
+
+            @Override
+            public void onGetOffersByServiceProviderIdFailure(String message) {
+
+            }
+
+            @Override
+            public void onListFetchSuccess(List<Offer> offersList) {
+                offerList.clear();
+                offerList.addAll(offersList);
+                offersAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onListFetchFailure(String message) {
 
             }
         });
-    }*/
+    }
 
 
 
