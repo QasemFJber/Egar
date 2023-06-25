@@ -16,6 +16,7 @@ import com.example.egar.Activities.Notifications;
 import com.example.egar.Activities.Service_Provider_Store_Details;
 import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
+import com.example.egar.Activities.ShowService_Offer_Details;
 import com.example.egar.Activities.ShowService_Product_Details;
 import com.example.egar.Models.Category;
 import com.example.egar.Models.Offer;
@@ -33,6 +34,7 @@ import com.example.egar.controllers.ProductController;
 
 import com.example.egar.controllers.ServiceProviderController;
 import com.example.egar.databinding.FragmentHomeBinding;
+import com.example.egar.interfaces.ItemCallbackOffer;
 import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.ItemCallbackProvider;
 import com.example.egar.interfaces.OnItemClickListener;
@@ -46,7 +48,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener, ItemCallbackProvider, ItemCallbackProduct {
+public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener, ItemCallbackProvider, ItemCallbackProduct, ItemCallbackOffer {
     private FragmentHomeBinding binding;
     private List<Category> categoryList ;
     private List<Product> products = new ArrayList<>();
@@ -116,6 +118,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.recyclerTopRatedStores.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
         offersAdapter =new OffersAdapter(offerList);
+        offersAdapter.setCallbackOffer(this::onItemClick);
         binding.recyclerOffers.setAdapter(offersAdapter);
         binding.recyclerOffers.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
@@ -251,6 +254,14 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     public void onItemClick(Product product) {
         Intent intent = new Intent(getActivity(), ShowService_Product_Details .class);
         intent.putExtra("product", (Serializable) product);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onItemClick(Offer offer) {
+        Intent intent = new Intent(getActivity(), ShowService_Offer_Details.class);
+        intent.putExtra("offer", (Serializable) offer);
         startActivity(intent);
 
     }

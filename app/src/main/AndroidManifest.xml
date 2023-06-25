@@ -67,6 +67,9 @@
             android:name=".Activities.ShowService_Product_Details"
             android:exported="false" />
         <activity
+            android:name=".Activities.ShowService_Offer_Details"
+            android:exported="false" />
+        <activity
             android:name=".Activities.HomeActivity"
             android:exported="false" />
         <activity
