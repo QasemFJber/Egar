@@ -12,6 +12,7 @@ import com.example.egar.Models.Product;
 import com.example.egar.Models.Provider;
 import com.example.egar.interfaces.OnProductFetchListener;
 
+import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProductCallback;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -43,6 +44,19 @@ public class ProductController {
         return instance;
     }
 
+
+    public void updateProductFavoriteStatus(String productId, boolean isFavorite, ProcessCallback callback) {
+        CollectionReference productsCollection = FirebaseFirestore.getInstance().collection("products");
+
+        productsCollection.document(productId)
+                .update("isFavorite", isFavorite)
+                .addOnSuccessListener(aVoid -> {
+                    callback.onSuccess("Product favorite status updated successfully.");
+                })
+                .addOnFailureListener(e -> {
+                    callback.onFailure(e.getMessage());
+                });
+    }
 
     public void getAllProductsByProviderId(String providerId, OnProductFetchListener listener) {
         db.collection("products")
