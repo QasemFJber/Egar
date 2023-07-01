@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_provider"
+                android:id="@+id/image_Provider"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginStart="@dimen/_15sdp"
@@ -38,8 +38,8 @@
                 android:textColor="@color/active"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/image_provider"
-                app:layout_constraintTop_toTopOf="@+id/image_provider" />
+                app:layout_constraintStart_toEndOf="@+id/image_Provider"
+                app:layout_constraintTop_toTopOf="@+id/image_Provider" />
 
             <TextView
                 android:id="@+id/text_providerType"
@@ -50,7 +50,7 @@
                 android:text="Provider Type"
                 android:textColor="@color/category"
                 android:textSize="@dimen/_14ssp"
-                app:layout_constraintStart_toEndOf="@+id/image_provider"
+                app:layout_constraintStart_toEndOf="@+id/image_Provider"
                 app:layout_constraintTop_toBottomOf="@+id/text_nameProvider" />
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_provider"
+                app:layout_constraintTop_toBottomOf="@+id/image_Provider"
                 app:srcCompat="@drawable/icon_star" />
 
 

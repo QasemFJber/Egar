@@ -29,6 +29,9 @@
         android:theme="@style/Theme.Egar"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.DetermineTheCalibratorActivity"
             android:exported="false" />
         <activity

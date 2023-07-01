@@ -72,7 +72,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_provider"
+                android:id="@+id/image_user"
                 android:layout_width="@dimen/_55sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginStart="@dimen/_12sdp"

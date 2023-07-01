@@ -8,10 +8,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        app:civ_border_width="2dp"
-        android:id="@+id/image_provider"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        app:civ_border_width="@dimen/_1sdp"
+        android:id="@+id/image_user"
         android:layout_marginStart="@dimen/_19sdp"
         android:layout_marginTop="@dimen/_33sdp"
         android:src="@drawable/avatar"
@@ -21,31 +21,25 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_11sdp"
+        android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_66sdp"
-        android:layout_marginEnd="0dp"
         android:text="David Spade"
-        android:textSize="@dimen/_18ssp"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
-        app:layout_constraintStart_toEndOf="@+id/image_provider"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintStart_toEndOf="@+id/image_user"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/text_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
         android:layout_marginTop="2dp"
         android:text="qasemjber@gmail.com"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toStartOf="@+id/text_name"
+        app:layout_constraintTop_toBottomOf="@+id/text_name" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_personal_information"
@@ -57,7 +51,7 @@
         android:layout_margin="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_provider" >
+        app:layout_constraintTop_toBottomOf="@+id/image_user" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -156,7 +150,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/favorite"
+        android:id="@+id/favorite_p"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_44sdp"
         android:layout_margin="@dimen/_20sdp"
@@ -218,7 +212,7 @@
         app:cardElevation="@dimen/_3sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favorite">
+        app:layout_constraintTop_toBottomOf="@+id/favorite_p">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.egar.Models.Offer;
+import com.example.egar.R;
 import com.example.egar.databinding.ItemOffersBinding;
 import com.example.egar.interfaces.ItemCallbackOffer;
 import com.squareup.picasso.Picasso;
@@ -26,6 +27,13 @@ public class OffersViewHolder extends RecyclerView.ViewHolder {
         Picasso.get().load(offer.getProduct().getImageUrl()).into(binding.imageProduct);
         Picasso.get().load(offer.getProduct().getProvider().getImage()).into(binding.imageProvider);
 
+        if (offer.getProduct().isFavorite()){
+            binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_24);
+
+        }else if(!offer.getProduct().isFavorite()){
+            binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
+
+        }
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
