@@ -21,8 +21,13 @@ public class OffersViewHolder extends RecyclerView.ViewHolder {
 
     public void savaData(Offer offer){
         binding.textNameProduct.setText(offer.getProduct().getName());
-        binding.textPrice.setText(String.valueOf(offer.getPrice()));
-        binding.textDiscountPercentage.setText("10-");
+        binding.textPrice.setText(String.valueOf(offer.getProduct().getPrice()));
+        //نسبة الخصم = ((السعر القديم - السعر الجديد) / السعر القديم) × 100
+        double rate = ((offer.getProduct().getPrice() - offer.getPrice())/offer.getProduct().getPrice())*100;
+
+        //binding.textDiscountPercentage.setText(String.valueOf(rate));
+        binding.textDiscountPercentage.setText(String.valueOf(Math.round(rate)));
+
         binding.textPriceDiscount.setText(String.valueOf(offer.getPrice()));
         Picasso.get().load(offer.getProduct().getImageUrl()).into(binding.imageProduct);
         Picasso.get().load(offer.getProduct().getProvider().getImage()).into(binding.imageProvider);

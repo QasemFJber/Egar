@@ -41,9 +41,11 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
         binding.tvProviderName.setText(product.getProvider().getName());
         binding.tvProviderType.setText(product.getProvider().getProviderType());
         Picasso.get().load(product.getImageUrl()).into(binding.imgProduct);
-        if(product.isFavorite()){
+
+        if (product.isFavorite()){
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_24);
-        }else{
+
+        }else if(!product.isFavorite()){
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
         }
 
@@ -53,10 +55,16 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
                 boolean isClick;
                 if (product.isFavorite()){
                     isClick = false;
+                    binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
+                    setProductFavorite(product,product.getId(),isClick);
+
                 }else{
                     isClick =true;
+                    binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_24);
+                    setProductFavorite(product,product.getId(),isClick);
+
                 }
-                setProductFavorite(product,product.getId(),isClick);
+               // setProductFavorite(product,product.getId(),isClick);
             }
         });
 

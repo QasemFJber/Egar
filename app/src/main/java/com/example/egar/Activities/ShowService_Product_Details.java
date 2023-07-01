@@ -63,5 +63,11 @@ public class ShowService_Product_Details extends AppCompatActivity {
         binding.tvTextproviderName.setText(product().getProvider().getName());
         Picasso.get().load(product().getImageUrl()).into(binding.productImg);
         Picasso.get().load(product().getProvider().getImage()).into(binding.imageProviderImg);
+        if (product().isFavorite()){
+            binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_24);
+
+        }else if(!product().isFavorite()){
+            binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
+        }
     }
 }

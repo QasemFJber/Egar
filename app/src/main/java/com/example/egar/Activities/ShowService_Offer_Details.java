@@ -48,5 +48,12 @@ public class ShowService_Offer_Details extends AppCompatActivity {
         Picasso.get().load(offer().getProduct().getImageUrl()).into(binding.productImg);
         Picasso.get().load(offer().getProduct().getProvider().getImage()).into(binding.imageProviderImg);
 
+        if (offer().getProduct().isFavorite()){
+            binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_24);
+
+        }else if(!offer().getProduct().isFavorite()){
+            binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
+
+        }
     }
 }
