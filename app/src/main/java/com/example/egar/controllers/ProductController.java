@@ -51,6 +51,7 @@ public class ProductController {
         productsCollection.document(productId)
                 .update("isFavorite", isFavorite)
                 .addOnSuccessListener(aVoid -> {
+
                     callback.onSuccess("Product favorite status updated successfully.");
                 })
                 .addOnFailureListener(e -> {
