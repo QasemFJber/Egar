@@ -234,14 +234,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             }
         });
     }
-
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+    
 
     @Override
     public void onItemClick(Provider provider) {

@@ -11,7 +11,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -117,6 +119,38 @@ public class FirebaseAuthController {
         });
     }
 
+    public void changePassword(String previousPassword, String newPassword, String confirmPassword, ProcessCallback callback) {
+        if (!newPassword.equals(confirmPassword)) {
+            callback.onFailure("تأكيد كلمة المرور الجديدة غير صحيح");
+            return;
+        }
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), previousPassword);
+            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    callback.onSuccess("تم تغيير كلمة المرور بنجاح");
+                                } else {
+                                    callback.onFailure(task.getException().getMessage());
+                                }
+                            }
+                        });
+                    } else {
+                        callback.onFailure("كلمة المرور السابقة غير صحيحة");
+                    }
+                }
+            });
+        } else {
+            callback.onFailure("فشل في الحصول على معلومات المستخدم الحالي");
+        }
+    }
 
 
     public void forgetPassword(String email, ProcessCallback callback) {

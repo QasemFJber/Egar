@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import com.example.egar.Activities.FavoriteActivity;
 import com.example.egar.Activities.Login;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
+import com.example.egar.FirebaseManger.FirebaseFetchingDataController;
 import com.example.egar.R;
 import com.example.egar.databinding.FragmentHomeBinding;
 import com.example.egar.databinding.FragmentProfileBinding;
+import com.example.egar.interfaces.UserDataCallBack;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
@@ -49,13 +51,25 @@ public class Profile extends Fragment  implements View.OnClickListener {
     }
 
     private void setProfile(){
-        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        String photo= String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl());
+        //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        //String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        //String photo= String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl());
 
-        binding.textName.setText(name);
-        binding.textEmail.setText(email);
-        Picasso.get().load(photo).into(binding.imageUser);
+        FirebaseFetchingDataController.getInstance().getCurrentUserData(new UserDataCallBack() {
+            @Override
+            public void onSuccess(String name, String address, String number, String providerImage, String email) {
+                binding.textName.setText(name);
+                binding.textEmail.setText(email);
+                Picasso.get().load(providerImage).into(binding.imageUser);
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+        });
+
+
     }
 
     @Override

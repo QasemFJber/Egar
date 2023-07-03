@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 
-import com.example.egar.Activities.ui.home.HomeFragment;
+
 import com.example.egar.Fragments.BottomNavigationFragments.CartFragment;
 import com.example.egar.Fragments.BottomNavigationFragments.Categories;
 import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             if (selectedTab !=1){
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragmentView,HomeFragment.class,null)
+                        .replace(R.id.fragmentView,Home.class,null)
                         .commit();
 
                 binding.tvCart.setVisibility(View.GONE);
