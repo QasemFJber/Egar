@@ -91,6 +91,47 @@ public class ProductController {
                 });
     }
 
+    public void getProductById(String productId, ProductCallback callback) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference productRef = db.collection("products").document(productId);
+
+        productRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String id = documentSnapshot.getId();
+                String name = documentSnapshot.getString("name");
+                String description = documentSnapshot.getString("description");
+                double price = documentSnapshot.getDouble("price");
+                boolean isFavorite = documentSnapshot.getBoolean("isFavorite");
+                int quantityInCart = documentSnapshot.getLong("quantityInCart").intValue();
+                String category = documentSnapshot.getString("category");
+                String providerId = documentSnapshot.getString("provider.id");
+                String imageUrl = documentSnapshot.getString("imageUrl");
+
+                DocumentReference providerRef = db.collection("serviceproviders").document(providerId);
+                providerRef.get().addOnSuccessListener(providerDocumentSnapshot -> {
+                    if (providerDocumentSnapshot.exists()) {
+                        String providerName = providerDocumentSnapshot.getString("name");
+                        String providerEmail = providerDocumentSnapshot.getString("email");
+                        String providerPhoneNumber = providerDocumentSnapshot.getString("phoneNumber");
+
+                        Provider provider = new Provider(providerId, providerName, providerEmail, providerPhoneNumber);
+
+                        Product product = new Product(id, name, description, price, isFavorite, quantityInCart, category, provider, imageUrl);
+                        callback.onProductFetchSuccess(product);
+                    } else {
+                        callback.onFailure("Provider document does not exist");
+                    }
+                }).addOnFailureListener(e -> {
+                    callback.onFailure(e.getMessage());
+                });
+            } else {
+                callback.onFailure("Product document does not exist");
+            }
+        }).addOnFailureListener(e -> {
+            callback.onFailure(e.getMessage());
+        });
+    }
+
     public void getAllProducts(ProductCallback callback) {
         CollectionReference productsCollection = FirebaseFirestore.getInstance().collection("products");
         CollectionReference providersCollection = FirebaseFirestore.getInstance().collection("serviceproviders");
