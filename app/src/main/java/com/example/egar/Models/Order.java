@@ -12,16 +12,16 @@ public class Order {
     private String serviceProviderId;
     private int quantity;
     private double totalAmount;
-    private Date orderDate;
+    private String orderDate;
     private OrderStatus orderStatus;
     private String paymentMethod;
-    private Location shippingLocation;
+    private String shippingLocation;
 
     public Order() {
         // Required empty constructor for Firebase
     }
 
-    public Order(String orderId, String userId, String serviceProviderId, int quantity, double totalAmount, Date orderDate, OrderStatus orderStatus, String paymentMethod, Location shippingLocation) {
+    public Order(String orderId, String userId, String serviceProviderId, int quantity, double totalAmount, String orderDate, OrderStatus orderStatus, String paymentMethod, String shippingLocation) {
         this.orderId = orderId;
         this.userId = userId;
         this.serviceProviderId = serviceProviderId;
@@ -75,11 +75,11 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -99,11 +99,11 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
-    public Location getShippingLocation() {
+    public String getShippingLocation() {
         return shippingLocation;
     }
 
-    public void setShippingLocation(Location shippingLocation) {
+    public void setShippingLocation(String shippingLocation) {
         this.shippingLocation = shippingLocation;
     }
 }

@@ -5,7 +5,9 @@ import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.egar.Models.Offer;
 import com.example.egar.Models.Product;
@@ -13,7 +15,7 @@ import com.example.egar.R;
 import com.example.egar.databinding.ActivityShowServiceProductDetailsBinding;
 import com.squareup.picasso.Picasso;
 
-public class ShowService_Product_Details extends AppCompatActivity {
+public class ShowService_Product_Details extends AppCompatActivity implements View.OnClickListener {
 
     ActivityShowServiceProductDetailsBinding binding;
 
@@ -23,6 +25,7 @@ public class ShowService_Product_Details extends AppCompatActivity {
         binding = ActivityShowServiceProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getDetails();
+        setOnClick();
        // getOffer();
 
     }
@@ -39,6 +42,10 @@ public class ShowService_Product_Details extends AppCompatActivity {
     private Product product(){
         Product product = (Product) getIntent().getSerializableExtra("product");
         return product;
+    }
+
+    private  void setOnClick() {
+        binding.buttonToSet.setOnClickListener(this::onClick);
     }
 
 /*    private Offer offer(){
@@ -68,6 +75,15 @@ public class ShowService_Product_Details extends AppCompatActivity {
 
         }else if(!product().isFavorite()){
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.button_toSet){
+            Intent intent =new Intent(getApplicationContext(), DetermineRentStandardsActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 }
