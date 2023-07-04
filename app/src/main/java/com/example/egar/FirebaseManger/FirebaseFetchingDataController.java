@@ -37,7 +37,7 @@ public class FirebaseFetchingDataController {
                     String name = documentSnapshot.getString("name");
                     String id = documentSnapshot.getString("id");
                     String phoneNumber = documentSnapshot.getString("phoneNumber");
-                    String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+                    String profileImageUrl = documentSnapshot.getString("profileImageUri");
                     String email = currentUser.getEmail();
 
                     callback.onSuccess(name, id, phoneNumber, profileImageUrl, email);
