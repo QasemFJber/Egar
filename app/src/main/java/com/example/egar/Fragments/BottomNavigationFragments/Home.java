@@ -173,6 +173,11 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             public void onFailure(String message) {
 
             }
+
+            @Override
+            public void onProductFetchSuccess(Product product) {
+
+            }
         });
 
 /*
