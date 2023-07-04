@@ -240,17 +240,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             @Override
                             public void onProviderSignedIn() {
-//                                showServiceProvidersDialog();
+                                Snackbar.make(binding.getRoot(),"Please Register User Your Account",Snackbar.LENGTH_LONG).show();
+
                             }
 
                             @Override
                             public void onUserNotSignedIn() {
-                                if (auth.getCurrentUser() != null){
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                                    startActivity(intent);
-                                }else {
                                     Snackbar.make(binding.getRoot(),"Please Register Your Account",Snackbar.LENGTH_LONG).show();
-                                }
+
                             }
                         });
                     }
