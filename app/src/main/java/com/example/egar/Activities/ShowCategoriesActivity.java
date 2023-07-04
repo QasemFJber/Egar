@@ -77,6 +77,11 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
             public void onFailure(String message) {
 
             }
+
+            @Override
+            public void onProductFetchSuccess(Product product) {
+
+            }
         });
     }
 
