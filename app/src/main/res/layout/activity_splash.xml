@@ -4,51 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".Activities.Splash">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_222sdp"
-        android:layout_marginTop="@dimen/_44sdp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/rere" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Egar "
-        android:textSize="@dimen/_33ssp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_222sdp"
-        android:layout_margin="@dimen/_15sdp"
-        android:padding="@dimen/_11sdp"
-        android:textStyle="bold"
-        android:textColor="@color/blue_grey"
-        android:textSize="@dimen/_15ssp"
-        android:text="Welcome to our rental app! Find the perfect home, office, car, equipment, or attire for any occasion with just a few clicks. Our user-friendly interface and friendly customer support team make renting a breeze. Thank you for choosing us!"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:background="#8C0B35AB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo_app" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
