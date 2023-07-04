@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.egar.Activities.ChangePasswordActivity;
 import com.example.egar.Activities.FavoriteActivity;
 import com.example.egar.Activities.Login;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
@@ -46,7 +47,9 @@ public class Profile extends Fragment  implements View.OnClickListener {
     private void  setOnClick(){
         binding.btnUpdate.setOnClickListener(this::onClick);
         binding.logout.setOnClickListener(this);
+        binding.changepassword.setOnClickListener(this);
         binding.favoriteP.setOnClickListener(this);
+
 
     }
 
@@ -90,6 +93,10 @@ public class Profile extends Fragment  implements View.OnClickListener {
             case R.id.favorite_p:
                 Intent intent1 = new Intent(getActivity(), FavoriteActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.changepassword:
+                Intent intent3 = new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(intent3);
                 break;
         }
 
