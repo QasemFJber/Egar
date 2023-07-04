@@ -106,7 +106,6 @@ public class FirebaseAuthController {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
-                        //TODO: Login success, Navigate to home screen (FROM UI)
                         callback.onSuccess("Logged in successfully");
                     } else {
                         auth.signOut();
@@ -170,51 +169,51 @@ public class FirebaseAuthController {
         auth.signOut();
     }
 
-//    public boolean isSignedIn(){
-//        return auth != null;
-//    }
-//    public void isSignedIn(final SignInStatusListener listener) {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if (user != null) {
-//            String userId = user.getUid();
-//
-//            FirebaseFirestore db = FirebaseFirestore.getInstance();
-//
-//            DocumentReference userRef = db.collection("users").document(userId);
-//            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                @Override
-//                public void onSuccess(DocumentSnapshot userSnapshot) {
-//                    if (userSnapshot.exists()) {
-//                        listener.onUserSignedInAsRegularUser(userId);
-//                    } else {
-//                        DocumentReference serviceProviderRef = db.collection("serviceproviders").document(userId);
-//                        serviceProviderRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onSuccess(DocumentSnapshot serviceProviderSnapshot) {
-//                                if (serviceProviderSnapshot.exists()) {
-//                                    listener.onUserSignedInAsAdminUser(userId);
-//                                } else {
-//                                    listener.onUserNotSignedIn(userId);
-//                                }
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                // Handle the error
-//                            }
-//                        });
-//                    }
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    // Handle the error
-//                }
-//            });
-//        } else {
-//            listener.onUserNotSignedIn(null);
-//        }
-//    }
+    public boolean isSignedIn(){
+        return auth != null;
+    }
+    public void isSignedIn(final SignInStatusListener listener) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            DocumentReference userRef = db.collection("users").document(userId);
+            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot userSnapshot) {
+                    if (userSnapshot.exists()) {
+                        listener.onUserSignedInAsRegularUser(userId);
+                    } else {
+                        DocumentReference serviceProviderRef = db.collection("serviceproviders").document(userId);
+                        serviceProviderRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot serviceProviderSnapshot) {
+                                if (serviceProviderSnapshot.exists()) {
+                                    listener.onUserSignedInAsAdminUser(userId);
+                                } else {
+                                    listener.onUserNotSignedIn(userId);
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle the error
+                            }
+                        });
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Handle the error
+                }
+            });
+        } else {
+            listener.onUserNotSignedIn(null);
+        }
+    }
 
 
 
