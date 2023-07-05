@@ -47,7 +47,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Toast.makeText(this, AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun",false)+"Result", Toast.LENGTH_SHORT).show();
         screenOperations();
 
     }

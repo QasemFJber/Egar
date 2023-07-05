@@ -33,7 +33,6 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Toast.makeText(this, AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun",false)+"Result", Toast.LENGTH_SHORT).show();
 
 
     }
