@@ -173,8 +173,6 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         ProductController.getInstance().getAllProducts(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> productList) {
-              //  Toast.makeText(getActivity(), "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), productList.size()+"size", Toast.LENGTH_SHORT).show();
                 products.clear();
                 products.addAll(productList);
                 productHomeAdapter.notifyDataSetChanged();
@@ -183,11 +181,14 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
             @Override
             public void onFailure(String message) {
+                Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onProductFetchSuccess(Product product) {
+                Toast.makeText(getActivity(), product.getName()+"product", Toast.LENGTH_SHORT).show();
+
 
             }
         });
