@@ -8,158 +8,31 @@
     app:cardElevation="@dimen/_10sdp"
     android:layout_height="@dimen/_150sdp">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_150sdp">
 
+        <!-- المحتوى الأصلي للعنصر -->
+        <androidx.cardview.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="@dimen/_15sdp"
+            android:layout_margin="@dimen/_5sdp"
+            app:cardElevation="@dimen/_10sdp"
+            android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image_product"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wordspace" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#40000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <!-- المحتوى الأصلي للعنصر -->
 
-    <TextView
-        android:id="@+id/text_discount_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FF0000"
-        android:padding="@dimen/_2sdp"
-        android:paddingEnd="@dimen/_8sdp"
-        android:paddingStart="@dimen/_5sdp"
-        android:text="-30"
-        android:textSize="@dimen/_16ssp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_65sdp"
-        android:background="@drawable/shape_bac"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/text_nameProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_80sdp"
-            android:text="name product"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
-        <TextView
-            android:id="@+id/text_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:padding="@dimen/_2sdp"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingEnd="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:text="200"
-            android:textColor="@color/active"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:background="@drawable/shape_bac_offers"
-            android:orientation="horizontal"
-            android:padding="@dimen/_1sdp"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/text_price">
-
-            <TextView
-                android:id="@+id/text_price_discount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="200"
-                android:textColor="@color/active"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_2sdp"
-                android:text="$"
-                android:textColor="@color/active"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="2dp"
-            android:background="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/text_price"
-            app:layout_constraintEnd_toEndOf="@+id/text_price"
-            app:layout_constraintStart_toStartOf="@+id/text_price"
-            app:layout_constraintTop_toTopOf="@+id/text_price" />
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/img_favorite"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_favorite" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_Provider"
-        android:layout_width="@dimen/_55sdp"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_22sdp"
-        android:src="@drawable/avatar"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518"
-        tools:ignore="MissingConstraints" />
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
