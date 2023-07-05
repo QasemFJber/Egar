@@ -33,7 +33,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Toast.makeText(Splash.this, AppSharedPreferences.getInstance().getSharedPreferences().getString("isFirstRun","no"), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun",false)+"Result", Toast.LENGTH_SHORT).show();
 
 
     }
@@ -49,9 +49,9 @@ public class Splash extends AppCompatActivity {
             public void run() {
 
                 AppSharedPreferences appSharedPreferences = AppSharedPreferences.getInstance();
-                String isFirstRun = appSharedPreferences.getSharedPreferences().getString("isFirstRun", "no");
+                boolean isFirstRun = appSharedPreferences.getSharedPreferences().getBoolean("isFirstRun", false);
 
-                if (isFirstRun.equals("yse")) {
+                if (isFirstRun) {
                     FirebaseAuthController.getInstance().isSignedIn(new SignInStatusListener() {
                         @Override
                         public void onUserSignedInAsRegularUser(String id) {
@@ -74,12 +74,13 @@ public class Splash extends AppCompatActivity {
                         }
                     });
 
-                } else if (isFirstRun.equals("no")) {
+                } else if (!isFirstRun) {
                     Intent intent = new Intent(Splash.this, Pager_GetStarted.class);
                     startActivity(intent);
                 }else {
                     Toast.makeText(Splash.this, "Pager Error", Toast.LENGTH_SHORT).show();
-                }            }
+                }
+            }
         }, 3000);
     }
 
@@ -108,23 +109,6 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-    }
-    private boolean showViewPagerAndGoToNextScreenIfNeeded() {
-        boolean isFirstRun = AppSharedPreferences.getInstance().getSharedPreferences().getBoolean("isFirstRun", true);
-        if (isFirstRun) {
-            // عرض ViewPager
-            Intent intent = new Intent(getApplicationContext(), Pager_GetStarted.class);
-            startActivity(intent);
-
-            // ...
-            // تحديث حالة عرض الـViewPager
-            AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", false).apply();
-            return true;
-        } else {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            return false;
-        }
     }
 
 }

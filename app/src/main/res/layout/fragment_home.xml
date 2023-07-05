@@ -16,24 +16,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search" />-->
 
-    <EditText
+    <SearchView
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:background="@drawable/home_round"
-        android:drawableStart="@drawable/baseline_search"
-        android:drawablePadding="@dimen/_5sdp"
-        android:hint="search products"
-        android:paddingStart="@dimen/_15sdp"
-        android:paddingEnd="@dimen/_15sdp"
-        android:textColor="@color/active"
-        android:textColorHint="@color/active"
         android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toStartOf="@+id/img_notifications"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search products"
+        app:searchIcon="@drawable/baseline_search"
+        app:submitBackground="@drawable/home_round"
+        app:queryBackground="@null"
+         >
 
+    </SearchView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_360sdp"
+        android:layout_marginTop="0dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/img_notifications"

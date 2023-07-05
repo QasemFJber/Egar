@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.egar.Activities.Notifications;
@@ -29,6 +30,7 @@ import com.example.egar.adapters.ProviderAdapter.ProviderAdapter;
 
 
 import com.example.egar.adapters.offers.OffersAdapter;
+import com.example.egar.adapters.productHome.ProductAdapter;
 import com.example.egar.adapters.productHome.ProductHomeAdapter;
 import com.example.egar.controllers.OfferController;
 import com.example.egar.controllers.ProductController;
@@ -40,10 +42,15 @@ import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.ItemCallbackProvider;
 import com.example.egar.interfaces.OnItemClickListener;
 import com.example.egar.interfaces.OnOfferFetchListener;
+import com.example.egar.interfaces.OnProductFetchListener;
 import com.example.egar.interfaces.OnServiceProviderFetchListener;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProductCallback;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -64,6 +71,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
     private ProviderAdapter providerAdapter;
 
     private OffersAdapter offersAdapter;
+    private ProductAdapter productSearchAdapter;
 
 
 
@@ -101,6 +109,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         getProvider();
         getOffer();
         initializeRecyclerAdapter();
+        searchOnAllProductsInDatabase();
     }
     private void initializeRecyclerAdapter(){
         categoryAdapter = new CategoryAdapter(categoryList,this);
@@ -138,6 +147,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.tvCategoryShowAll.setOnClickListener(this::onClick);
         binding.tvOffersShowAll2.setOnClickListener(this::onClick);
         binding.imgNotifications.setOnClickListener(this::onClick);
+
     }
 
 
@@ -264,5 +274,99 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         intent.putExtra("offer", (Serializable) offer);
         startActivity(intent);
 
+    }
+    private void searchOnAllProductsInDatabase() {
+
+        binding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                // Perform the search operation in the database
+                searchProductInDatabase(s, new OnProductFetchListener() {
+                    @Override
+                    public void onFetchLListSuccess(ArrayList<Product> list) {
+                        Toast.makeText(getActivity(), "size"+list.size(), Toast.LENGTH_SHORT).show();
+
+                        productSearchAdapter = new ProductAdapter(list);
+                        binding.rvSearch.setAdapter(productSearchAdapter);
+                        binding.rvSearch.setHasFixedSize(true);
+                        binding.rvSearch.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        productSearchAdapter.notifyItemRangeInserted(0,list.size());
+
+                    }
+
+                    @Override
+                    public void onFetchSuccess(Product product) {
+
+                    }
+
+                    @Override
+                    public void onFetchFailure(String message) {
+
+                    }
+                });
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                // You can also perform the search operation as the user types
+                searchProductInDatabase(s, new OnProductFetchListener() {
+                    @Override
+                    public void onFetchLListSuccess(ArrayList<Product> list) {
+                        Toast.makeText(getActivity(), "size"+list.size(), Toast.LENGTH_SHORT).show();
+                        productSearchAdapter = new ProductAdapter(list);
+                        binding.rvSearch.setAdapter(productSearchAdapter);
+                        binding.rvSearch.setHasFixedSize(true);
+                        binding.rvSearch.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        productSearchAdapter.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onFetchSuccess(Product product) {
+
+                    }
+
+                    @Override
+                    public void onFetchFailure(String message) {
+                        Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+
+                    }
+                });
+                return true;
+            }
+        });
+    }
+
+    private void searchProductInDatabase(String searchText, OnProductFetchListener listener) {
+        // Assuming you are using Firebase Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Perform the search query
+        db.collection("products")
+                .whereGreaterThanOrEqualTo("name", searchText)
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    List<Product> productList = new ArrayList<>();
+
+                    // Handle the search results
+                    // You can update the UI or do further processing here
+                    for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                        // Retrieve the product data and create a Product object
+                        String productName = document.getString("name");
+                        String productCategory = document.getString("category");
+                        double productPrice = document.getDouble("price");
+                        String productDescription = document.getString("description");
+                        Product product = new Product(productName, productCategory, productPrice, productDescription);
+                        productList.add(product);
+                    }
+
+                    // Notify the listener with the resulting product list
+                    listener.onFetchLListSuccess((ArrayList<Product>) productList);
+                })
+                .addOnFailureListener(e -> {
+                    // Notify the listener with the failure
+                    listener.onFetchFailure(String.valueOf(e));
+                });
     }
 }

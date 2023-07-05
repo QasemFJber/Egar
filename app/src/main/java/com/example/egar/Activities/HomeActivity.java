@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         setSupportActionBar(binding.appBarHome.toolbar);
         /*binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
             @Override

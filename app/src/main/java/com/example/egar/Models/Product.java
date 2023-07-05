@@ -62,6 +62,15 @@ public class Product implements Serializable {
         this.provider = provider;
     }
 
+    public Product(String productName, String productCategory, double productPrice, String productDescription) {
+        this.name = productName;
+        this.description = productDescription;
+        this.category = productCategory;
+        this.price = productPrice;
+
+
+    }
+
 
     public com.example.egar.Models.Provider getProvider() {
         return provider;

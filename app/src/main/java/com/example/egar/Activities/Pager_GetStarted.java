@@ -33,10 +33,10 @@ public class Pager_GetStarted extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pager_get_started);
         backbtn = findViewById(R.id.backbtn);
+        AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", true).apply();
         nextbtn = findViewById(R.id.nextbtn);
-        AppSharedPreferences.getInstance().getEditor().putString("isFirstRun", "yse").commit();
-
         skipbtn = findViewById(R.id.skipButton);
+
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,8 +201,7 @@ public class Pager_GetStarted extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", false).apply();
-
+        AppSharedPreferences.getInstance().getEditor().putBoolean("isFirstRun", true).apply();
     }
 
     @Override
