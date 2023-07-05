@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.egar.Models.Category;
 import com.example.egar.R;
@@ -31,6 +33,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Toast.makeText(Splash.this, AppSharedPreferences.getInstance().getSharedPreferences().getString("isFirstRun","no"), Toast.LENGTH_LONG).show();
 
 
     }
@@ -40,30 +43,43 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-              FirebaseAuthController.getInstance().isSignedIn(new SignInStatusListener() {
-                  @Override
-                  public void onUserSignedInAsRegularUser(String id) {
-                      Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                      startActivity(intent);
-                  }
 
-                  @Override
-                  public void onUserSignedInAsAdminUser(String id) {
-                      Snackbar.make(binding.getRoot(),""+id,Snackbar.LENGTH_LONG).show();
-                  }
+                AppSharedPreferences appSharedPreferences = AppSharedPreferences.getInstance();
+                String isFirstRun = appSharedPreferences.getSharedPreferences().getString("isFirstRun", "no");
 
-                  @Override
-                  public void onUserNotSignedIn(String uid) {
-                      Intent intent = new Intent(getApplicationContext(), Login.class);
-                      startActivity(intent);
-                  }
-              });
-            }
+                if (isFirstRun.equals("yse")) {
+                    FirebaseAuthController.getInstance().isSignedIn(new SignInStatusListener() {
+                        @Override
+                        public void onUserSignedInAsRegularUser(String id) {
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onUserSignedInAsAdminUser(String id) {
+                            Snackbar.make(binding.getRoot(),"Please Create User Account",Snackbar.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(),Login.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onUserNotSignedIn(String uid) {
+                            Snackbar.make(binding.getRoot(),"Please Create  Account",Snackbar.LENGTH_LONG).show();
+                            Intent intent =new Intent(getApplicationContext(),Login.class);
+                            startActivity(intent);
+                        }
+                    });
+
+                } else if (isFirstRun.equals("no")) {
+                    Intent intent = new Intent(Splash.this, Pager_GetStarted.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(Splash.this, "Pager Error", Toast.LENGTH_SHORT).show();
+                }            }
         }, 3000);
     }
 

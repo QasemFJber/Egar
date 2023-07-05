@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.egar.Activities.Notifications;
 import com.example.egar.Activities.Service_Provider_Store_Details;
@@ -163,6 +164,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             @Override
             public void onSuccess(List<Product> productList) {
               //  Toast.makeText(getActivity(), "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), productList.size()+"size", Toast.LENGTH_SHORT).show();
                 products.clear();
                 products.addAll(productList);
                 productHomeAdapter.notifyDataSetChanged();

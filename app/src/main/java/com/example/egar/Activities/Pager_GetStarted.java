@@ -34,6 +34,8 @@ public class Pager_GetStarted extends AppCompatActivity {
         setContentView(R.layout.activity_pager_get_started);
         backbtn = findViewById(R.id.backbtn);
         nextbtn = findViewById(R.id.nextbtn);
+        AppSharedPreferences.getInstance().getEditor().putString("isFirstRun", "yse").commit();
+
         skipbtn = findViewById(R.id.skipButton);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
