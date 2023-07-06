@@ -61,6 +61,7 @@ public class ShowCategoriesActivity extends AppCompatActivity implements View.On
 
     private void setOnclick(){
         binding.btnBackCategory.setOnClickListener(this::onClick);
+
     }
 
     private void getAllProducts(){

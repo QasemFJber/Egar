@@ -70,15 +70,467 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rec_days"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_reservation_period"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:padding="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:text="Reservation"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_Month" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_reservation_period">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_pager"
+                android:padding="@dimen/_10sdp">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:singleLine="false"
+                    app:singleSelection="true">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/checkBox_Per_day"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:text="Per day"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/checkBox_In_month"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="In month"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox_Per_day" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/checkBox_in_year"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="in the year"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox_In_month" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/date_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18sdp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/chipGroup"
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+                <LinearLayout
+                    android:id="@+id/layout_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroup">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/et_start_date"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_45sdp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:background="@drawable/shape_bac_edit_text"
+                            android:drawableStart="@drawable/baseline_date_range"
+                            android:text="date start"
+                            android:textSize="@dimen/_14ssp"
+                            android:padding="@dimen/_5sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_30sdp"
+                        app:layout_constraintStart_toStartOf="@+id/chipGroup"
+                        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/et_end_date"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_bac_edit_text"
+                        android:drawableStart="@drawable/baseline_date_range"
+                        android:text="date end"
+                        android:textSize="@dimen/_14ssp"
+                        android:padding="@dimen/_5sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+                <!--                <ScrollView
+                                    android:id="@+id/scroll_data_day"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="horizontal"
+                                    android:visibility="gone"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/chipGroup">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:padding="@dimen/_5sdp">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView18"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Saturday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView19"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Sunday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView23"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Monday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView21"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Tuesday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView22"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Wednesday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView24"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Thursday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="@dimen/_65sdp"
+                                            android:layout_height="@dimen/_60sdp"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            app:cardCornerRadius="@dimen/_10sdp"
+                                            app:cardElevation="@dimen/_10sdp">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/sh_card">
+
+                                                <TextView
+                                                    android:id="@+id/textView25"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Friday"
+                                                    android:textColor="@color/active"
+                                                    android:textSize="@dimen/_14sdp"
+                                                    app:layout_constraintBottom_toBottomOf="parent"
+                                                    app:layout_constraintEnd_toEndOf="parent"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                                        </androidx.cardview.widget.CardView>
+                                    </LinearLayout>
+
+
+                                </ScrollView>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rec_month"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_100sdp"
+                                    android:padding="@dimen/_5sdp"
+                                    android:visibility="gone"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/chipGroup" />-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_pager"
+                android:padding="@dimen/_10sdp">
+
+
+                <TextView
+                    android:id="@+id/tex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terms and Conditions"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tex_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textColor="@color/active"
+                    android:textSize="@dimen/_18sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+        <!--
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_Month" />
+        -->
 
 
         <!--

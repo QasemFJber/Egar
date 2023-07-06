@@ -10,10 +10,7 @@
         android:layout_height="@dimen/_110sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shimmer_angle="0"
-        app:shimmer_color="@color/shimmer_color"
         app:shimmer_duration="1000"
-        app:shimmer_repeat_count="infinite"
         tools:ignore="MissingConstraints">
 
         <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

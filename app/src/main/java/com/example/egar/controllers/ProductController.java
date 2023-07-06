@@ -112,9 +112,14 @@ public class ProductController {
                     if (providerDocumentSnapshot.exists()) {
                         String providerName = providerDocumentSnapshot.getString("name");
                         String providerEmail = providerDocumentSnapshot.getString("email");
+                        String providerType = providerDocumentSnapshot.getString("providerType");
                         String providerPhoneNumber = providerDocumentSnapshot.getString("phoneNumber");
+                        String providerAddress = providerDocumentSnapshot.getString("address");
+                        String providerCity = providerDocumentSnapshot.getString("city");
+                        String providerBio = providerDocumentSnapshot.getString("bio");
+                        String providerImage = providerDocumentSnapshot.getString("image");
 
-                        Provider provider = new Provider(providerId, providerName, providerEmail, providerPhoneNumber);
+                        Provider provider = new Provider(providerId, providerName, providerEmail, providerType, providerPhoneNumber, providerAddress, providerCity, providerBio, providerImage);
 
                         Product product = new Product(id, name, description, price, isFavorite, quantityInCart, category, provider, imageUrl);
                         callback.onProductFetchSuccess(product);

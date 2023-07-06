@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 
 
-import com.example.egar.Fragments.BottomNavigationFragments.CartFragment;
+import com.example.egar.Fragments.BottomNavigationFragments.RentalsFragment;
 import com.example.egar.Fragments.BottomNavigationFragments.Categories;
 import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
 import com.example.egar.Fragments.BottomNavigationFragments.Home;
@@ -40,35 +40,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
 
 
-/*
-        binding.bottmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                item.setChecked(true);
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        item.setIcon(R.drawable.homeyi);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,home).commit();
-                        break;
-                    case R.id.profile:
-                        item.setIcon(R.drawable.useryi);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,profile).commit();
-                        break;
-                    case R.id.favorite:
-                        item.setIcon(R.drawable.baseline_favoriteyi_24);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,favorite).commit();
-                        break;
-                    case R.id.category:
-                        item.setIcon(R.drawable.baseline_categoryyl_24);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,categories).commit();
-                        break;
-                }
-
-                return false;
-            }
-        });
-*/
-
 
     }
 
@@ -92,7 +63,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     .commit();
 
 
-            binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart_selected);
+            binding.cartImage.setBackgroundResource(R.drawable.baseline_calendar);
             binding.categoryImage.setBackgroundResource(R.drawable.baseline_category_selected);
             binding.personImage.setBackgroundResource(R.drawable.baseline_person_selected);
 
@@ -115,10 +86,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         if (selectedTab ==3){
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.fragmentView,Favorite.class,null)
+                    .replace(R.id.fragmentView, RentalsFragment.class,null)
                     .commit();
             binding.tvCart.setVisibility(View.VISIBLE);
-            binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart_selected);
+            binding.cartImage.setBackgroundResource(R.drawable.baseline_calendar);
             binding.cartLayout.setBackgroundResource(R.drawable.home_round);
         }
 
@@ -209,7 +180,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             if (selectedTab !=3){
                 getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragmentView, CartFragment.class,null)
+                        .replace(R.id.fragmentView, RentalsFragment.class,null)
                         .commit();
                 binding.tvHome.setVisibility(View.GONE);
                 binding.tvPerson.setVisibility(View.GONE);
@@ -224,7 +195,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 binding.categoryLayout.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
                 binding.tvCart.setVisibility(View.VISIBLE);
-                binding.cartImage.setBackgroundResource(R.drawable.baseline_shopping_cart_selected);
+                binding.cartImage.setBackgroundResource(R.drawable.baseline_calendar);
                 binding.cartLayout.setBackgroundResource(R.drawable.home_round);
 
                 ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f,1f,1f, Animation.RELATIVE_TO_SELF,1f);
