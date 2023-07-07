@@ -15,6 +15,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.egar.Activities.Notifications;
+import com.example.egar.Activities.SearchActivity;
 import com.example.egar.Activities.Service_Provider_Store_Details;
 import com.example.egar.Activities.ShowAll_Items;
 import com.example.egar.Activities.ShowCategoriesActivity;
@@ -109,7 +110,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         getProvider();
         getOffer();
         initializeRecyclerAdapter();
-        searchOnAllProductsInDatabase();
+        //searchOnAllProductsInDatabase();
     }
     private void initializeRecyclerAdapter(){
         categoryAdapter = new CategoryAdapter(categoryList,this);
@@ -147,6 +148,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding.tvCategoryShowAll.setOnClickListener(this::onClick);
         binding.tvOffersShowAll2.setOnClickListener(this::onClick);
         binding.imgNotifications.setOnClickListener(this::onClick);
+        binding.search.setOnClickListener(this::onClick);
 
     }
 
@@ -165,6 +167,9 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
         }if (v.getId() == R.id.tv_offers_show_all2){
 
+        }if (v.getId() == R.id.search){
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -276,7 +281,10 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         startActivity(intent);
 
     }
-    private void searchOnAllProductsInDatabase() {
+
+
+
+/*    private void searchOnAllProductsInDatabase() {
 
         binding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -369,5 +377,5 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
                     // Notify the listener with the failure
                     listener.onFetchFailure(String.valueOf(e));
                 });
-    }
+    }*/
 }
