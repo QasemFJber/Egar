@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
                 android:paddingStart="@dimen/_5sdp"
-                android:text="RadioButton" />
+                android:text="Prices are from high to low" />
 
             <RadioButton
                 android:id="@+id/radioButton7"
@@ -66,7 +66,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_14ssp"
                 android:paddingStart="@dimen/_5sdp"
-                android:text="RadioButton" />
+                android:text="Prices are from lowest to highest" />
 
             <RadioButton
                 android:id="@+id/radioButton8"
@@ -75,7 +75,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_14ssp"
                 android:paddingStart="@dimen/_5sdp"
-                android:text="RadioButton" />
+                android:text="Recently Arrived" />
 
             <RadioButton
                 android:id="@+id/radioButton9"
@@ -84,7 +84,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:textSize="@dimen/_14ssp"
                 android:paddingStart="@dimen/_5sdp"
-                android:text="RadioButton" />
+                android:text="Highest Rated" />
         </RadioGroup>
     </LinearLayout>
 

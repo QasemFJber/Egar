@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.egar.Models.Product;
 import com.example.egar.databinding.ItemProductsBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.binding.tvProviderType.setText(product.getCategory());
         holder.binding.tvPrinc.setText(String.valueOf(product.getPrice()));
         holder.binding.tvProductName.setText(product.getDescription());
+        Picasso.get().load(product.getImageUrl()).into(holder.binding.imgProduct);
+
     }
 
     @Override

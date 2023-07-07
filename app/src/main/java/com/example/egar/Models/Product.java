@@ -15,7 +15,16 @@ public class Product implements Serializable {
     private String category;
 
     private Provider provider;
+    public Product(String productName, String productCategory, String productDescription, double productPrice, String productImage) {
+        this.name = productName;
+        this.description = productDescription;
+        this.category = productCategory;
+        this.price = productPrice;
+        this.imageUrl = productImage;
+    }
+
     public Product() {
+        // Default constructor required for Firestore deserialization
     }
 
     public Product(String serviceProviderId , String name, String description, double price, String imageUrl, int quantityInCart, String category, com.example.egar.Models.Provider provider) {
