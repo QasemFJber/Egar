@@ -46,6 +46,7 @@ public class OrderController {
 
         HashMap<String, Object> orderData = new HashMap<>();
 
+        orderData.put("orderId", ordersCollection.document().getId());
         orderData.put("userId", order.getUserId());
         orderData.put("serviceProviderId", order.getServiceProviderId());
         orderData.put("quantity", order.getQuantity());
@@ -57,6 +58,7 @@ public class OrderController {
 
         ordersCollection.add(orderData)
                 .addOnSuccessListener(documentReference -> {
+
                     orderData.put("orderId", documentReference.getId());
                     Log.d(TAG, "Order added with ID: " + documentReference.getId());
                     listener.onAddOrderSuccess(documentReference.getId());
@@ -81,6 +83,7 @@ public class OrderController {
                         "paymentMethod", order.getPaymentMethod(),
                         "shippingLocation", order.getShippingLocation())
                 .addOnSuccessListener(aVoid -> {
+
                     listener.onDeleteOrderSuccess();
                     Log.d(TAG, "Order updated successfully");
                 })
@@ -128,6 +131,29 @@ public class OrderController {
                     }
                 });
     }
+    public void getOrdersByServiceProviderId(String serviceProviderId, String orderStatus, OnOrderFetchListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference ordersCollection = db.collection("orders");
+
+        Query query = ordersCollection.whereEqualTo("serviceProviderId", serviceProviderId)
+                .whereEqualTo("orderStatus", orderStatus);
+
+        query.get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<Order> orders = new ArrayList<>();
+                        for (DocumentSnapshot document : task.getResult()) {
+                            Order order = document.toObject(Order.class);
+                            orders.add(order);
+                        }
+                        listener.onGetOrdersByServiceProviderIdSuccess(orders);
+                    } else {
+                        Log.w(TAG, "Error getting orders by service provider ID", task.getException());
+                        listener.onGetOrdersByServiceProviderIdFailure(task.getException().getMessage());
+                    }
+                });
+    }
+
 
 }
 

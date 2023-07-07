@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -16,15 +17,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-            // قم بمعالجة البيانات المستلمة هنا
-            // يمكنك تنفيذ إجراءات مخصصة استنادًا إلى البيانات التي تم استلامها
-            // مثلاً، يمكنك إنشاء إشعار أو تنفيذ إجراءات أخرى
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("notifications")
+                    .add(remoteMessage.getData())
+                    .addOnSuccessListener(documentReference -> {
+                        Log.d(TAG, "Notification added with ID: " + documentReference.getId());
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.w(TAG, "Error adding notification", e);
+                    });
         }
 
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            // قم بمعالجة جسم الإشعار هنا
-            // يمكنك عرض إشعار للمستخدم أو تنفيذ إجراءات أخرى استنادًا إلى جسم الإشعار المستلم
+            // Process the notification body
+            // You can show a notification to the user or execute other actions based on the received notification body
         }
     }
 

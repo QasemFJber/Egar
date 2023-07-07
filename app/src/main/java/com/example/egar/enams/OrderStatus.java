@@ -2,7 +2,7 @@ package com.example.egar.enams;
 
 public enum OrderStatus {
     PENDING("Pending"),
-    IN_PROGRESS("In Progress"),
+    IN_PROGRESS("InProgress"),
     COMPLETED("Completed"),
     CANCELLED("Cancelled");
 
