@@ -12,8 +12,10 @@ import com.example.egar.Dialog.MyDialogFragment;
 import com.example.egar.Models.Product;
 import com.example.egar.R;
 import com.example.egar.adapters.productHome.ProductAdapter;
+import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivitySearchBinding;
 import com.example.egar.interfaces.OnProductFetchListener;
+import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,6 +37,9 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         onSearchTextSub();
         setupRecyclerView();
+        binding.imgBack.setOnClickListener(view -> {
+            onBackPressed();
+        });
 
         binding.imgSort.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +57,25 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(){
-        productAdapter = new ProductAdapter(products);
-        binding.rvSearch.setAdapter(productAdapter);
-        binding.rvSearch.setLayoutManager(new GridLayoutManager(this,2));
+        ProductController.getInstance().getAllProducts(new ProductCallback() {
+            @Override
+            public void onSuccess(List<Product> productList) {
+                productAdapter = new ProductAdapter(productList);
+                binding.rvSearch.setAdapter(productAdapter);
+                binding.rvSearch.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+
+            @Override
+            public void onProductFetchSuccess(Product product) {
+
+            }
+        });
+
     }
     private void searchProductInDatabase(String searchText, OnProductFetchListener listener) {
         // Assuming you are using Firebase Firestore
@@ -94,7 +115,6 @@ public class SearchActivity extends AppCompatActivity {
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
                 // Perform the search operation in the database
                 searchProductInDatabase(query, new OnProductFetchListener() {
                     @Override

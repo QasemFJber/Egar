@@ -224,7 +224,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 new ProcessCallback() {
                     @Override
                     public void onSuccess(String message) {
-                        Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_LONG).show();
                         checkProviderTypeAndRedirect(new ProviderTypeCallback() {
                             @Override
                             public void onRegularUserSignedIn() {
@@ -240,7 +239,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             @Override
                             public void onProviderSignedIn() {
-                                Snackbar.make(binding.getRoot(),"Please Register User Your Account",Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(binding.getRoot(),"Please Register User Account",Snackbar.LENGTH_LONG).show();
 
                             }
 

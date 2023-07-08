@@ -69,6 +69,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     }
     private void setOnClick(){
         binding.btnSave.setOnClickListener(this);
+        binding.tvBack.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -76,6 +77,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
             if (checkDataINTextFiled()) {
                 changePassword();
             }
+        }else if (view.getId() == R.id.tv_back){
+            onBackPressed();
         }
     }
 }
