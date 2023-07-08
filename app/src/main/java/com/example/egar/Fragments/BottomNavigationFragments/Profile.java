@@ -32,16 +32,24 @@ public class Profile extends Fragment  implements View.OnClickListener {
     }
 
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        initializeView();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding  = FragmentProfileBinding.inflate(inflater,container,false);
+
+        return binding.getRoot();
+    }
+
+    private void initializeView(){
         setOnClick();
         setProfile();
-        return binding.getRoot();
     }
 
     private void  setOnClick(){

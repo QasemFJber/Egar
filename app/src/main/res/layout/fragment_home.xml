@@ -67,6 +67,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp">
 
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp"
+                android:src="@drawable/img_app_logo"
+                android:scaleType="centerCrop"
+                android:elevation="@dimen/_10sdp"
+
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_category"
                 android:layout_width="match_parent"
@@ -85,11 +101,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Categories"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:textColor="#000000"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
             <TextView
                 android:id="@+id/tv_category_show_all"
@@ -101,7 +118,7 @@
                 android:textColor="@color/light_blue_grey"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="@+id/recycler_category"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/text1" />
 
             <ImageView
                 android:id="@+id/imageView2"

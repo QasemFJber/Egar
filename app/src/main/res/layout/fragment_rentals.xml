@@ -41,6 +41,37 @@
         app:layout_constraintTop_toBottomOf="@+id/textView22">
 
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/active"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabIndicatorGravity="stretch"
+            android:background="@drawable/sh_card"
+            android:padding="@dimen/_3sdp"
+            app:tabIndicator="@drawable/sh_card"
+            android:layout_margin="@dimen/_5sdp"
+            app:tabIndicatorColor="@color/category"
+            app:tabRippleColor="@color/category_20"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pagerRentals"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

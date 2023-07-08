@@ -14,6 +14,11 @@ public class Category {
         this.icon = icon;
     }
 
+    public Category(String name, int imageUrl) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
     public int getIcon() {
         return icon;
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">إيجار</string>
+    <string name="app_name">Egar</string>
     //Headings
     <string name="heading_one">Quick &amp; Easy Payments</string>
     <string name="heading_two">Instant Notifications</string>
@@ -25,6 +25,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="evaluation">Evaluation</string>
+    <string name="choose_your_preferred_payment_n_method">Choose your preferred payment \n method</string>
+    <string name="the_total_amount">The total amount</string>
+    <string name="value_rent">Value rent</string>
+    <string name="confirmation_the_egar">Confirmation The Egar</string>
+    <string name="egar">Egar</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 
