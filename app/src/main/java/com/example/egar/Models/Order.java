@@ -1,14 +1,12 @@
 package com.example.egar.Models;
 
-import android.location.Location;
 
 import com.example.egar.enams.OrderStatus;
 
-import java.util.Date;
 
 public class Order {
     private String orderId;
-    private String userId;
+    private User user;
     private  Product product;
     private int quantity;
     private double totalAmount;
@@ -21,9 +19,9 @@ public class Order {
         // Required empty constructor for Firebase
     }
 
-    public Order(String orderId, String userId, Product product, int quantity, double totalAmount, String orderDate, OrderStatus orderStatus, String paymentMethod, String shippingLocation) {
+    public Order(String orderId, User userId, Product product, int quantity, double totalAmount, String orderDate, OrderStatus orderStatus, String paymentMethod, String shippingLocation) {
         this.orderId = orderId;
-        this.userId = userId;
+        this.user = userId;
         this.product = product;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
@@ -33,8 +31,8 @@ public class Order {
         this.shippingLocation = shippingLocation;
     }
 
-    public Order(String uid, Product product, int i, double amount, String date, OrderStatus pending, String payPal, String address) {
-        this.userId = uid;
+    public Order(User user, Product product, int i, double amount, String date, OrderStatus pending, String payPal, String address) {
+        this.user = user;
         this.product = product;
         this.quantity = i;
         this.totalAmount = amount;
@@ -54,12 +52,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Product getProduct() {

@@ -7,7 +7,9 @@ public class User {
     private String password;
     private String phoneNumber;
     private String profileImageUri;
-
+    public User() {
+        // بناء بدون معامل
+    }
     public User(String id, String name, String email, String password, String phoneNumber, String profileImageUri) {
         this.id = id;
         this.name = name;
