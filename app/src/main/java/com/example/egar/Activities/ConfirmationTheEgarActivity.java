@@ -16,6 +16,7 @@ import com.example.egar.databinding.ActivityConfirmationTheEgarBinding;
 import com.example.egar.enams.OrderStatus;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.example.egar.interfaces.ProductCallback;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -60,6 +61,7 @@ public class ConfirmationTheEgarActivity extends AppCompatActivity implements Vi
     }
 
     private void getProduct(){
+
         ProductController.getInstance().getProductById(getIntent().getStringExtra("id_product"), new ProductCallback() {
             @Override
             public void onSuccess(List<Product> productList) {
@@ -92,7 +94,7 @@ public class ConfirmationTheEgarActivity extends AppCompatActivity implements Vi
 
                 //(String orderId, String userId, String serviceProviderId, int quantity, double totalAmount, String orderDate, OrderStatus orderStatus, String paymentMethod, String shippingLocation)
 
-                order = new Order("",product.getId(),product.getProvider().getId(),1,amount,date, OrderStatus.PENDING,"PayPal",product.getProvider().getAddress());
+                order = new Order(FirebaseAuth.getInstance().getUid(),product,1,amount,date, OrderStatus.PENDING,"PayPal",product.getProvider().getAddress());
 
 
             }

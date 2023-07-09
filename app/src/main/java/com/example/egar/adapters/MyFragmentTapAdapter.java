@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.egar.Fragments.pagerRentals.CancelledFragment;
 import com.example.egar.Fragments.pagerRentals.CompletedFragment;
 import com.example.egar.Fragments.pagerRentals.InProgressFragment;
 import com.example.egar.Fragments.pagerRentals.PendingFragment;
@@ -31,14 +32,17 @@ public class MyFragmentTapAdapter extends FragmentStateAdapter {
             return new PendingFragment();
         }else if (position == 1){
             return new InProgressFragment();
-        }
+        }else if (position == 2){
             return new CompletedFragment();
+
+        }
+            return new CancelledFragment();
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }

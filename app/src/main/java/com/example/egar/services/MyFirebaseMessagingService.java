@@ -20,6 +20,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("notifications")
+
                     .add(remoteMessage.getData())
                     .addOnSuccessListener(documentReference -> {
                         Log.d(TAG, "Notification added with ID: " + documentReference.getId());

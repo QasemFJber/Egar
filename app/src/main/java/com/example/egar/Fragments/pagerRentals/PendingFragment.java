@@ -7,8 +7,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.egar.Models.Order;
 import com.example.egar.R;
+import com.example.egar.controllers.OrderController;
+import com.example.egar.databinding.FragmentPendingBinding;
+import com.example.egar.enams.OrderStatus;
+import com.example.egar.interfaces.OnOrderFetchListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +31,9 @@ public class PendingFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    FragmentPendingBinding binding;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +74,53 @@ public class PendingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pending, container, false);
+        binding = FragmentPendingBinding.inflate(inflater);
+        getOrdersByStates();
+        return binding.getRoot();
+    }
+    private void getOrdersByStates(){
+        OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.PENDING), new OnOrderFetchListener() {
+            @Override
+            public void onAddOrderSuccess(String orderId) {
+
+            }
+
+            @Override
+            public void onAddOrderFailure(String message) {
+
+            }
+
+            @Override
+            public void onUpdateOrderSuccess() {
+
+            }
+
+            @Override
+            public void onUpdateOrderFailure(String message) {
+
+            }
+
+            @Override
+            public void onDeleteOrderSuccess() {
+
+            }
+
+            @Override
+            public void onDeleteOrderFailure(String message) {
+
+            }
+
+            @Override
+            public void onGetOrdersByServiceProviderIdSuccess(List<Order> orders) {
+                Toast.makeText(getActivity(), orders.size()+"size", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onGetOrdersByServiceProviderIdFailure(String message) {
+                Snackbar.make(binding.getRoot(),message,Snackbar.LENGTH_LONG).show();
+
+            }
+        });
     }
 }

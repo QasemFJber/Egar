@@ -48,7 +48,7 @@ public class OrderController {
 
         orderData.put("orderId", ordersCollection.document().getId());
         orderData.put("userId", order.getUserId());
-        orderData.put("serviceProviderId", order.getServiceProviderId());
+        orderData.put("product", order.getProduct());
         orderData.put("quantity", order.getQuantity());
         orderData.put("totalAmount", order.getTotalAmount());
         orderData.put("orderDate", order.getOrderDate());
@@ -58,8 +58,8 @@ public class OrderController {
 
         ordersCollection.add(orderData)
                 .addOnSuccessListener(documentReference -> {
-
                     orderData.put("orderId", documentReference.getId());
+
                     Log.d(TAG, "Order added with ID: " + documentReference.getId());
                     listener.onAddOrderSuccess(documentReference.getId());
                 })
@@ -75,7 +75,7 @@ public class OrderController {
         DocumentReference orderRef = db.collection("orders").document(order.getOrderId());
 
         orderRef.update("userId", order.getUserId(),
-                        "serviceProviderId", order.getServiceProviderId(),
+                        "product", order.getProduct(),
                         "quantity", order.getQuantity(),
                         "totalAmount", order.getTotalAmount(),
                         "orderDate", order.getOrderDate(),
@@ -131,11 +131,11 @@ public class OrderController {
                     }
                 });
     }
-    public void getOrdersByServiceProviderId(String serviceProviderId, String orderStatus, OnOrderFetchListener listener) {
+    public void getOrdersByServiceProviderIdAndOrderStatus(String userId, String orderStatus, OnOrderFetchListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference ordersCollection = db.collection("orders");
 
-        Query query = ordersCollection.whereEqualTo("serviceProviderId", serviceProviderId)
+        Query query = ordersCollection.whereEqualTo("userId", userId)
                 .whereEqualTo("orderStatus", orderStatus);
 
         query.get()

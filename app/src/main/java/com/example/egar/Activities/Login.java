@@ -25,6 +25,7 @@ import com.example.egar.controllers.CategoryController;
 import com.example.egar.databinding.ActivityLoginBinding;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.ProviderTypeCallback;
+import com.example.egar.interfaces.SignInStatusListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -87,7 +88,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void screenOperations (){
         setOnClick();
        setDataInInputFieldFromRegister();
+        AppSharedPreferences appSharedPreferences = AppSharedPreferences.getInstance();
+        boolean isFirstRun = appSharedPreferences.getSharedPreferences().getBoolean("isFirstRun", false);
+
+        if (isFirstRun) {
             addCategoriesToDatabase();
+        }else {
+            Toast.makeText(Login.this, "Category Not Added", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

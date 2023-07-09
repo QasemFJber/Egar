@@ -9,7 +9,7 @@ import java.util.Date;
 public class Order {
     private String orderId;
     private String userId;
-    private String serviceProviderId;
+    private  Product product;
     private int quantity;
     private double totalAmount;
     private String orderDate;
@@ -21,16 +21,27 @@ public class Order {
         // Required empty constructor for Firebase
     }
 
-    public Order(String orderId, String userId, String serviceProviderId, int quantity, double totalAmount, String orderDate, OrderStatus orderStatus, String paymentMethod, String shippingLocation) {
+    public Order(String orderId, String userId, Product product, int quantity, double totalAmount, String orderDate, OrderStatus orderStatus, String paymentMethod, String shippingLocation) {
         this.orderId = orderId;
         this.userId = userId;
-        this.serviceProviderId = serviceProviderId;
+        this.product = product;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.paymentMethod = paymentMethod;
         this.shippingLocation = shippingLocation;
+    }
+
+    public Order(String uid, Product product, int i, double amount, String date, OrderStatus pending, String payPal, String address) {
+        this.userId = uid;
+        this.product = product;
+        this.quantity = i;
+        this.totalAmount = amount;
+        this.orderDate = date;
+        this.orderStatus = pending;
+        this.paymentMethod = payPal;
+        this.shippingLocation = address;
     }
 
     // Getters and Setters
@@ -51,12 +62,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getServiceProviderId() {
-        return serviceProviderId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setServiceProviderId(String serviceProviderId) {
-        this.serviceProviderId = serviceProviderId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {

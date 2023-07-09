@@ -35,8 +35,9 @@ public class RentalsFragment extends Fragment {
         // Inflate the layout for this fragment
 
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Pending"));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Progress"));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("InProgress"));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Completed"));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Cancelled"));
 
 
          FragmentManager fragmentManager = getParentFragmentManager();
