@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.example.egar.Models.User;
 import com.example.egar.R;
@@ -23,6 +24,8 @@ import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,6 +51,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private void screenOperations (){
         setOnClick();
         setupActivityResults();
+        List<String> gazaGovernorates = new ArrayList<>();
+        gazaGovernorates.add("محافظة شمال غزة");
+        gazaGovernorates.add(" محافظة غزة");
+        gazaGovernorates.add("محافظة الوسطى");
+        gazaGovernorates.add(" محافظة خان يونس");
+        gazaGovernorates.add("محافظة رفح");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, gazaGovernorates);
+        binding.spinner.setAdapter(adapter);
+
 
     }
     private boolean isValidPalestinianPhoneNumber() {
@@ -186,7 +199,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String email =binding.etEmail.getText().toString().trim();
         String pass =binding.etPassword.getText().toString().trim();
         String phone =binding.etPhoneNumber.getText().toString().trim();
-        User user = new User(name,email,pass,phone);
+        String selectedGovernorate = binding.spinner.getSelectedItem().toString();
+
+        User user = new User(name,email,selectedGovernorate,pass,phone);
         FirebaseAuthController.getInstance().createAccount(user, pickedImageUri, new ProcessCallback() {
             @Override
             public void onSuccess(String message) {

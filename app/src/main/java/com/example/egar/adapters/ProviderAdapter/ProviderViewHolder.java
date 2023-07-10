@@ -26,6 +26,7 @@ public class ProviderViewHolder extends RecyclerView.ViewHolder {
         //binding.imageProvider.setBackgroundResource(provider.getImage());
         binding.textNameProvider.setText(provider.getName());
         binding.textProviderType.setText(provider.getProviderType());
+        binding.tvPhone.setText(provider.getPhoneNumber());
         Picasso.get().load(provider.getImage()).into(binding.imageProvider);
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

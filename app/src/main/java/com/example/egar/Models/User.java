@@ -7,32 +7,15 @@ public class User {
     private String password;
     private String phoneNumber;
     private String profileImageUri;
-    public User() {
-        // بناء بدون معامل
-    }
-    public User(String id, String name, String email, String password, String phoneNumber, String profileImageUri) {
-        this.id = id;
+    private String governorate ;
+    public User(String name, String email, String selectedGovernorate, String pass, String phone) {
         this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.profileImageUri = profileImageUri;
+        this.email =email;
+        this.governorate=selectedGovernorate;
+        this.password=pass;
+        this.phoneNumber=phone;
     }
 
-    public User(String id, String name, String email, String pass, String phone) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = pass;
-        this.phoneNumber = phone;
-    }
-
-    public User(String name, String email, String pass, String phone) {
-        this.name = name;
-        this.email = email;
-        this.password = pass;
-        this.phoneNumber = phone;
-    }
 
     public String getId() {
         return id;

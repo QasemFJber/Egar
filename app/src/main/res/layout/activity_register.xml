@@ -32,6 +32,7 @@
             android:id="@+id/scrooll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout">
@@ -40,15 +41,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/image"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:src="@drawable/img_add_image"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
@@ -59,8 +59,8 @@
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:src="@drawable/img_add_image"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:lottie_autoPlay="true"
@@ -107,7 +107,7 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_gover" />
 
                 <EditText
                     android:id="@+id/et_password"
@@ -239,6 +239,27 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+                <TextView
+                    android:id="@+id/tv_gover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Governorate"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/et_phone_number"
+                    app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="@dimen/_190sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_gover"
+                    app:layout_constraintEnd_toEndOf="@+id/et_phone_number"
+                    app:layout_constraintStart_toEndOf="@+id/tv_gover"
+                    app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
