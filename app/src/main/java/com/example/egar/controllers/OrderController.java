@@ -153,7 +153,7 @@ public class OrderController {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference ordersCollection = db.collection("orders");
 
-        Query query = ordersCollection.whereEqualTo("userId", userId)
+        Query query = ordersCollection.whereEqualTo("user.id", userId)
                 .whereEqualTo("orderStatus", orderStatus);
 
         query.get()

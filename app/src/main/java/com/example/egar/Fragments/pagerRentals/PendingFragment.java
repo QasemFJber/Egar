@@ -97,6 +97,7 @@ public class PendingFragment extends Fragment {
 
             @Override
             public void onGetOrdersByServiceProviderIdSuccess(List<Order> orders) {
+                Toast.makeText(getActivity(), orders.size()+"size", Toast.LENGTH_SHORT).show();
                 orderList.clear();
                 orderList.addAll(orders);
                 adapter.notifyDataSetChanged();
