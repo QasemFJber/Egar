@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -14,12 +15,14 @@ import com.example.egar.R;
 import com.example.egar.adapters.productHome.ProductAdapter;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivitySearchBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.OnProductFetchListener;
 import com.example.egar.interfaces.ProductCallback;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,9 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
         onSearchTextSub();
         setupRecyclerView();
         binding.imgBack.setOnClickListener(view -> {
@@ -60,7 +66,15 @@ public class SearchActivity extends AppCompatActivity {
         ProductController.getInstance().getAllProducts(new ProductCallback() {
             @Override
             public void onSuccess(List<Product> productList) {
-                productAdapter = new ProductAdapter(productList);
+                productAdapter = new ProductAdapter(productList, new ItemCallbackProduct() {
+                    @Override
+                    public void onItemClick(Product product) {
+                        Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details .class);
+                        intent.putExtra("product", (Serializable) product);
+                        startActivity(intent);
+
+                    }
+                });
                 binding.rvSearch.setAdapter(productAdapter);
                 binding.rvSearch.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
             }
@@ -119,7 +133,14 @@ public class SearchActivity extends AppCompatActivity {
                 searchProductInDatabase(query, new OnProductFetchListener() {
                     @Override
                     public void onFetchLListSuccess(ArrayList<Product> productList) {
-                        productAdapter = new ProductAdapter(productList);
+                        productAdapter = new ProductAdapter(productList, new ItemCallbackProduct() {
+                            @Override
+                            public void onItemClick(Product product) {
+                                Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details .class);
+                                intent.putExtra("product", (Serializable) product);
+                                startActivity(intent);
+                            }
+                        });
                         binding.rvSearch.setAdapter(productAdapter);
                         productAdapter.notifyDataSetChanged();
 
@@ -147,7 +168,14 @@ public class SearchActivity extends AppCompatActivity {
                 searchProductInDatabase(newText, new OnProductFetchListener() {
                     @Override
                     public void onFetchLListSuccess(ArrayList<Product> productList) {
-                        productAdapter = new ProductAdapter(productList);
+                        productAdapter = new ProductAdapter(productList, new ItemCallbackProduct() {
+                            @Override
+                            public void onItemClick(Product product) {
+                                Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details .class);
+                                intent.putExtra("product", (Serializable) product);
+                                startActivity(intent);
+                            }
+                        });
                         binding.rvSearch.setAdapter(productAdapter);
                         productAdapter.notifyDataSetChanged();
                     }
@@ -169,5 +197,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

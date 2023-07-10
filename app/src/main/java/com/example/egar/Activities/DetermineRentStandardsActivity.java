@@ -70,6 +70,7 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         binding.etEndDate.setOnClickListener(this::onClick);
     }
 
+/*
     private List<Days> addDataToRecyclerView(){
         daysList = new ArrayList<>();
         daysList.add(new Days(String.valueOf(month_+1)));
@@ -79,16 +80,19 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         daysList.add(new Days(String.valueOf(month_+5)));
         daysList.add(new Days(String.valueOf(month_+6)));
         daysList.add(new Days(String.valueOf(month_+7)));
+*/
 /*        daysList.add(new Days("Sunday"));
         daysList.add(new Days("Monday"));
         daysList.add(new Days("Tuesday"));
         daysList.add(new Days("Wednesday"));
         daysList.add(new Days("Thursday"));
-        daysList.add(new Days("Friday"));*/
+        daysList.add(new Days("Friday"));*//*
+
 
         return  daysList;
 
     }
+*/
 
 
 
