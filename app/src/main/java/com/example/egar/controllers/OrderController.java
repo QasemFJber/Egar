@@ -6,10 +6,13 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.egar.Models.Order;
+import com.example.egar.enams.OrderStatus;
 import com.example.egar.interfaces.OnOrderFetchListener;
+import com.example.egar.interfaces.ProcessCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,6 +41,21 @@ public class OrderController {
             }
         }
         return instance;
+    }
+    public void updateOrderStatus(String orderId, OrderStatus newStatus, final ProcessCallback callback) {
+        DocumentReference orderRef = FirebaseFirestore.getInstance().collection("orders").document(orderId);
+
+        orderRef.update("orderStatus", newStatus.toString())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            callback.onSuccess(task.getResult().toString());
+                        } else {
+                            callback.onFailure(task.getException().getMessage());
+                        }
+                    }
+                });
     }
 
     public void addOrder(Order order, OnOrderFetchListener listener) {
