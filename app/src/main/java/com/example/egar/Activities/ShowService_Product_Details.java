@@ -2,6 +2,9 @@ package com.example.egar.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,22 +15,31 @@ import android.view.View;
 import com.example.egar.Models.Offer;
 import com.example.egar.Models.Product;
 import com.example.egar.R;
+import com.example.egar.adapters.product.ProductAdapter;
+import com.example.egar.adapters.productHome.ProductHomeAdapter;
+import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivityShowServiceProductDetailsBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
+import com.example.egar.interfaces.ProductCallback;
 import com.squareup.picasso.Picasso;
 
-public class ShowService_Product_Details extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShowService_Product_Details extends AppCompatActivity implements View.OnClickListener, ItemCallbackProduct {
 
     ActivityShowServiceProductDetailsBinding binding;
+
+    List<Product> products = new ArrayList<>();
+    private ProductHomeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityShowServiceProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getDetails();
-        setOnClick();
-       // getOffer();
-
+        initializeView();
     }
     private void operationsSccren() {
         getWindow().setStatusBarColor(ContextCompat.getColor(ShowService_Product_Details.this, R.color.black));
@@ -39,6 +51,13 @@ public class ShowService_Product_Details extends AppCompatActivity implements Vi
        // operationsSccren();
     }
 
+    private void initializeView() {
+        initializeRecyclerAdapter();
+        getDetails();
+        getAllProducts();
+        setOnClick();
+    }
+
     private Product product(){
         Product product = (Product) getIntent().getSerializableExtra("product");
         return product;
@@ -48,20 +67,37 @@ public class ShowService_Product_Details extends AppCompatActivity implements Vi
         binding.buttonToSet.setOnClickListener(this::onClick);
     }
 
-/*    private Offer offer(){
-        Offer offer = (Offer) getIntent().getSerializableExtra("offer");
-        return offer;
-    }*/
 
-/*    private void getOffer(){
-        binding.tvTextProductName.setText(offer().getProduct().getName());
-        binding.tvTextDescription.setText(offer().getProduct().getDescription());
-        binding.tvPrice.setText(String.valueOf(offer().getProduct().getPrice()));
-        binding.tvTextproviderName.setText(offer().getProduct().getProvider().getName());
-        Picasso.get().load(offer().getProduct().getImageUrl()).into(binding.productImg);
-        Picasso.get().load(offer().getProduct().getProvider().getImage()).into(binding.imageProviderImg);
+    private void initializeRecyclerAdapter() {
+        adapter = new ProductHomeAdapter(products);
+        adapter.setCallback(this::onItemClick);
+        binding.recyclerMostRelevant.setAdapter(adapter);
+        binding.recyclerMostRelevant.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+    }
 
-    }*/
+    private void getAllProducts(){
+        ProductController.getInstance().getProductsByCategory(product().getCategory(), new ProductCallback() {
+            @Override
+            public void onSuccess(List<Product> productList) {
+                // Toast.makeText(ShowCategoriesActivity.this, "list size is "+productList.size(), Toast.LENGTH_SHORT).show();
+                products.clear();
+                products.addAll(productList);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+
+            @Override
+            public void onProductFetchSuccess(Product product) {
+
+            }
+        });
+    }
+
+
 
     private void getDetails(){
         binding.tvTextProductName.setText(product().getName());
@@ -86,5 +122,15 @@ public class ShowService_Product_Details extends AppCompatActivity implements Vi
             startActivity(intent);
             finish();
         }
+    }
+
+    @Override
+    public void onItemClick(Product product) {
+
+        Intent intent = new Intent(getApplicationContext(), ShowService_Product_Details.class);
+        intent.putExtra("product", (Serializable) product);
+        startActivity(intent);
+
+
     }
 }

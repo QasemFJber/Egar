@@ -7,6 +7,8 @@
     android:background="@color/active"
     tools:context=".Fragments.BottomNavigationFragments.Home">
 
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -67,21 +69,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp">
 
-
-            <ImageView
-                android:id="@+id/imageView6"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_110sdp"
-                android:src="@drawable/img_app_logo"
-                android:scaleType="centerCrop"
-                android:elevation="@dimen/_10sdp"
-
+                android:layout_height="@dimen/_125sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_category"
@@ -106,7 +105,7 @@
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                app:layout_constraintTop_toBottomOf="@+id/pager" />
 
             <TextView
                 android:id="@+id/tv_category_show_all"

@@ -26,7 +26,7 @@ public class OffersViewHolder extends RecyclerView.ViewHolder {
         double rate = ((offer.getProduct().getPrice() - offer.getPrice())/offer.getProduct().getPrice())*100;
 
         //binding.textDiscountPercentage.setText(String.valueOf(rate));
-        binding.textDiscountPercentage.setText(String.valueOf(Math.round(rate)));
+        binding.textDiscountPercentage.setText("-"+Math.round(rate));
 
         binding.textPriceDiscount.setText(String.valueOf(offer.getPrice()));
         Picasso.get().load(offer.getProduct().getImageUrl()).into(binding.imageProduct);

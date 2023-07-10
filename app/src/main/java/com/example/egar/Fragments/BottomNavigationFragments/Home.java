@@ -26,6 +26,7 @@ import com.example.egar.Models.Offer;
 import com.example.egar.Models.Product;
 import com.example.egar.Models.Provider;
 import com.example.egar.R;
+import com.example.egar.adapters.AdvAdapterPager;
 import com.example.egar.adapters.CategoryAdapter;
 import com.example.egar.adapters.ProviderAdapter.ProviderAdapter;
 
@@ -56,6 +57,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Home extends Fragment  implements OnItemClickListener ,View.OnClickListener, ItemCallbackProvider, ItemCallbackProduct, ItemCallbackOffer {
     private FragmentHomeBinding binding;
@@ -73,6 +76,8 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
     private OffersAdapter offersAdapter;
     private ProductAdapter productSearchAdapter;
+    ArrayList<Integer> images = new ArrayList<>();
+    AdvAdapterPager advAdapterPager;
 
 
 
@@ -87,6 +92,33 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
         binding  = FragmentHomeBinding.inflate(inflater,container,false);
         addDataToRecyclerView();
         initializeView();
+
+        images.add(R.drawable.img_app_logo);
+        images.add(R.drawable.img_app_logo2);
+        advAdapterPager = new AdvAdapterPager(getActivity(),images);
+
+
+        binding.pager.setAdapter(advAdapterPager);
+
+        Timer timer = new Timer();
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                switch (binding.pager.getCurrentItem()){
+                    case 0:
+                        binding.pager.setCurrentItem(binding.pager.getCurrentItem()+1);
+                        break;
+                    case 1:
+                        binding.pager.setCurrentItem(binding.pager.getCurrentItem()-1);
+                        break;
+
+                }
+            }
+        },10000,15000);
+
+
 
         return binding.getRoot();
     }
