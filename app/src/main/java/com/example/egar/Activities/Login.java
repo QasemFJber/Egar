@@ -183,7 +183,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent3);
                 break;
             case R.id.btn_visitor:
-                Toast.makeText(this, "نحن سعداء بإعلامك أننا سنقوم بإضافة ميزة جديدة في التحديث القادم! انتظر الجديد واستعد لتحسين تجربتك معنا.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "نحن سعداء بإعلامك أننا سنقوم بإضافة هذه الميزة  في التحديث القادم! انتظر الجديد واستعد لتحسين تجربتك معنا.", Toast.LENGTH_LONG).show();
                 break;
 
         }

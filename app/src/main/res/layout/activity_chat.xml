@@ -11,12 +11,11 @@
         android:id="@+id/animationView"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_250sdp"
-        android:layout_marginTop="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_88sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/chat" />
 
@@ -28,6 +27,7 @@
         android:layout_marginEnd="@dimen/_11sdp"
         android:background="@drawable/chat_al"
         android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_33sdp"
         android:gravity="center"
         android:text="نحن سعداء بإعلامك أننا سنقوم بإضافة هذه  الميزة  في التحديث القادم! انتظر الجديد واستعد لتحسين تجربتك معنا."
         android:textSize="@dimen/_15ssp"
