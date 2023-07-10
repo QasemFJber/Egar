@@ -1,6 +1,7 @@
 package com.example.egar.adapters.productHome;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,15 +9,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.egar.Models.Product;
 import com.example.egar.databinding.ItemProductsBinding;
+import com.example.egar.interfaces.ItemCallbackProduct;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private List<Product> productList;
+    ItemCallbackProduct callbackProduct;
 
-    public ProductAdapter(List<Product> productList) {
+
+    public ProductAdapter(List<Product> productList,ItemCallbackProduct callbackProduct) {
         this.productList = productList;
+        this.callbackProduct=callbackProduct;
+    }
+
+    public void setCallbackProduct(ItemCallbackProduct callbackProduct) {
+        this.callbackProduct = callbackProduct;
     }
 
     @NonNull
@@ -35,6 +44,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.binding.tvPrinc.setText(String.valueOf(product.getPrice()));
         holder.binding.tvProductName.setText(product.getDescription());
         Picasso.get().load(product.getImageUrl()).into(holder.binding.imgProduct);
+
+        holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callbackProduct.onItemClick(product);
+            }
+        });
 
     }
 

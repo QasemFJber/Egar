@@ -1,6 +1,8 @@
 package com.example.egar.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -12,7 +14,7 @@ import com.example.egar.databinding.ActivityShowServiceOfferDetailsBinding;
 import com.example.egar.databinding.ActivityShowServiceProductDetailsBinding;
 import com.squareup.picasso.Picasso;
 
-public class ShowService_Offer_Details extends AppCompatActivity {
+public class ShowService_Offer_Details extends AppCompatActivity implements View.OnClickListener {
 
     ActivityShowServiceOfferDetailsBinding binding;
 
@@ -22,6 +24,7 @@ public class ShowService_Offer_Details extends AppCompatActivity {
         binding = ActivityShowServiceOfferDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getOffer();
+        setOnClick();
 
     }
     private void operationsSccren() {
@@ -40,6 +43,10 @@ public class ShowService_Offer_Details extends AppCompatActivity {
         return offer;
     }
 
+    private  void setOnClick() {
+        binding.buttonToSet.setOnClickListener(this::onClick);
+    }
+
     private void getOffer(){
         binding.tvTextProductName.setText(offer().getProduct().getName());
         binding.tvTextDescription.setText(offer().getProduct().getDescription());
@@ -54,6 +61,16 @@ public class ShowService_Offer_Details extends AppCompatActivity {
         }else if(!offer().getProduct().isFavorite()){
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite);
 
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.button_toSet){
+            Intent intent =new Intent(getApplicationContext(), DetermineRentStandardsActivity.class);
+            intent.putExtra("id_product",offer().getProduct().getId());
+            startActivity(intent);
+            finish();
         }
     }
 }
