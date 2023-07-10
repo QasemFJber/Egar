@@ -3,7 +3,6 @@ package com.example.egar.Fragments.pagerRentals;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.egar.Models.Order;
-import com.example.egar.adapters.order.OrderAdapter;
+import com.example.egar.R;
 import com.example.egar.controllers.OrderController;
 import com.example.egar.databinding.FragmentInProgressBinding;
-import com.example.egar.enums.OrderStatus;
+import com.example.egar.enams.OrderStatus;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,9 +32,6 @@ public class InProgressFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     FragmentInProgressBinding binding;
-    List<Order> orderList = new ArrayList<>();
-
-    OrderAdapter adapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -79,17 +74,10 @@ public class InProgressFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentInProgressBinding.inflate(inflater);
         getOrdersByStates();
-        Toast.makeText(getActivity(), String.valueOf(OrderStatus.IN_PROGRESS), Toast.LENGTH_SHORT).show();
-        initializeRecyclerAdapter();
         return binding.getRoot();
     }
-    private void initializeRecyclerAdapter() {
-        adapter = new OrderAdapter(orderList);
-        binding.rvOrdersInProgress.setAdapter(adapter);
-        binding.rvOrdersInProgress.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
     private void getOrdersByStates(){
-        OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(),String.valueOf(OrderStatus.IN_PROGRESS), new OnOrderFetchListener() {
+        OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.IN_PROGRESS), new OnOrderFetchListener() {
             @Override
             public void onAddOrderSuccess(String orderId) {
 
@@ -122,9 +110,8 @@ public class InProgressFragment extends Fragment {
 
             @Override
             public void onGetOrdersByServiceProviderIdSuccess(List<Order> orders) {
-                orderList.clear();
-                orderList.addAll(orders);
-                adapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(), orders.size()+"size", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
