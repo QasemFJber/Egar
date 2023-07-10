@@ -1,4 +1,4 @@
-package com.example.egar.enams;
+package com.example.egar.enums;
 
 public enum OrderStatus {
     PENDING("Pending"),

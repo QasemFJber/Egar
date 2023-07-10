@@ -1,7 +1,7 @@
 package com.example.egar.Models;
 
 
-import com.example.egar.enams.OrderStatus;
+import com.example.egar.enums.OrderStatus;
 
 
 public class Order {

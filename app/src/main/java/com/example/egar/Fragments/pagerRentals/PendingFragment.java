@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.egar.Models.Order;
-import com.example.egar.R;
-import com.example.egar.adapters.offers.OffersAdapter;
 import com.example.egar.adapters.order.OrderAdapter;
 import com.example.egar.controllers.OrderController;
 import com.example.egar.databinding.FragmentPendingBinding;
-import com.example.egar.enams.OrderStatus;
+import com.example.egar.enums.OrderStatus;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -99,11 +97,9 @@ public class PendingFragment extends Fragment {
 
             @Override
             public void onGetOrdersByServiceProviderIdSuccess(List<Order> orders) {
-                Toast.makeText(getActivity(), orders.size()+"size", Toast.LENGTH_SHORT).show();
                 orderList.clear();
                 orderList.addAll(orders);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getActivity(), orders.size()+"size", Toast.LENGTH_SHORT).show();
 
             }
 

@@ -15,7 +15,7 @@ import com.example.egar.R;
 import com.example.egar.controllers.OrderController;
 import com.example.egar.controllers.ProductController;
 import com.example.egar.databinding.ActivityConfirmationTheEgarBinding;
-import com.example.egar.enams.OrderStatus;
+import com.example.egar.enums.OrderStatus;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.example.egar.interfaces.ProductCallback;
 import com.example.egar.interfaces.UserCallback;
