@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.egar.Activities.ChangePasswordActivity;
+import com.example.egar.Activities.ChatActivity;
 import com.example.egar.Activities.FavoriteActivity;
 import com.example.egar.Activities.Login;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
@@ -53,10 +54,10 @@ public class Profile extends Fragment  implements View.OnClickListener {
     }
 
     private void  setOnClick(){
-        binding.btnUpdate.setOnClickListener(this::onClick);
         binding.logout.setOnClickListener(this);
         binding.changepassword.setOnClickListener(this);
         binding.favoriteP.setOnClickListener(this);
+        binding.conversations.setOnClickListener(this);
 
 
     }
@@ -86,12 +87,6 @@ public class Profile extends Fragment  implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_update:
-                binding.tvInformation.setEnabled(true);
-                binding.tvConversations.setEnabled(true);
-                binding.tvLanguage.setEnabled(true);
-                break;
-
             case R.id.logout:
                 FirebaseAuthController.getInstance().signOut();
                 getActivity().finish();
@@ -105,6 +100,10 @@ public class Profile extends Fragment  implements View.OnClickListener {
             case R.id.changepassword:
                 Intent intent3 = new Intent(getActivity(), ChangePasswordActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.conversations:
+                Intent intent4 = new Intent(getActivity(), ChatActivity.class);
+                startActivity(intent4);
                 break;
         }
 

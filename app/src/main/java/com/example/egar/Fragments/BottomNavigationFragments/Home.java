@@ -116,7 +116,7 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
                 }
             }
-        },10000,15000);
+        },5000,5000);
 
 
 

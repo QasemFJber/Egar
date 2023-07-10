@@ -92,9 +92,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         boolean isFirstRun = appSharedPreferences.getSharedPreferences().getBoolean("isFirstRun", false);
 
         if (isFirstRun) {
-            addCategoriesToDatabase();
         }else {
-            Toast.makeText(Login.this, "Category Not Added", Toast.LENGTH_SHORT).show();
+            addCategoriesToDatabase();
         }
 
     }
@@ -184,9 +183,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent3);
                 break;
             case R.id.btn_visitor:
-                Intent visitorIntent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(visitorIntent);
-                overridePendingTransition(R.anim.slid_in, R.anim.slid_out);
+                Toast.makeText(this, "نحن سعداء بإعلامك أننا سنقوم بإضافة ميزة جديدة في التحديث القادم! انتظر الجديد واستعد لتحسين تجربتك معنا.", Toast.LENGTH_LONG).show();
                 break;
 
         }

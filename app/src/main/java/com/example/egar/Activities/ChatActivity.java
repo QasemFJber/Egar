@@ -3,6 +3,7 @@ package com.example.egar.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.egar.R;
 
@@ -12,5 +13,12 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        Toast.makeText(this, "نحن سعداء بإعلامك أننا سنقوم بإضافة ميزة جديدة في التحديث القادم! انتظر الجديد واستعد لتحسين تجربتك معنا.", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }
