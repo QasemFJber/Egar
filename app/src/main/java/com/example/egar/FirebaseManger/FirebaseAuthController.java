@@ -151,6 +151,19 @@ public class FirebaseAuthController {
         }
     }
 
+    public void updateUserData(String userId, User updatedUser, ProcessCallback callback) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("users").document(userId);
+
+        userRef.set(updatedUser)
+                .addOnSuccessListener(aVoid -> {
+                    callback.onSuccess("User data updated successfully");
+                })
+                .addOnFailureListener(e -> {
+                    callback.onFailure(e.getMessage());
+                });
+    }
+
 
     public void forgetPassword(String email, ProcessCallback callback) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
