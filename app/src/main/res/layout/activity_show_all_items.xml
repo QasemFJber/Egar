@@ -20,31 +20,32 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/componant"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_55sdp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/white"
+        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_items"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_no_data"
             android:layout_width="@dimen/_222sdp"
             android:layout_height="@dimen/_222sdp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/rv_items"
             app:srcCompat="@drawable/check" />
@@ -55,23 +56,21 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot your password"
+        android:text="  "
         android:textColor="@color/white"
+        android:layout_marginTop="@dimen/_15sdp"
         android:textSize="@dimen/_19sdp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/componant"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btn_back"
         android:layout_width="@dimen/_23sdp"
         android:layout_height="@dimen/_23sdp"
         android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_24" />

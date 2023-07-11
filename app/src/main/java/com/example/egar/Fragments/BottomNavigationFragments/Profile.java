@@ -13,6 +13,7 @@ import com.example.egar.Activities.ChangePasswordActivity;
 import com.example.egar.Activities.ChatActivity;
 import com.example.egar.Activities.FavoriteActivity;
 import com.example.egar.Activities.Login;
+import com.example.egar.Activities.Personal_InformationActivity;
 import com.example.egar.FirebaseManger.FirebaseAuthController;
 import com.example.egar.FirebaseManger.FirebaseFetchingDataController;
 import com.example.egar.R;
@@ -58,15 +59,12 @@ public class Profile extends Fragment  implements View.OnClickListener {
         binding.changepassword.setOnClickListener(this);
         binding.favoriteP.setOnClickListener(this);
         binding.conversations.setOnClickListener(this);
+        binding.cardPersonalInformation.setOnClickListener(this);
 
 
     }
 
     private void setProfile(){
-        //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        //String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        //String photo= String.valueOf(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl());
-
         FirebaseFetchingDataController.getInstance().getCurrentUserData(new UserDataCallBack() {
             @Override
             public void onSuccess(String name, String address, String number, String providerImage, String email) {
@@ -104,6 +102,10 @@ public class Profile extends Fragment  implements View.OnClickListener {
             case R.id.conversations:
                 Intent intent4 = new Intent(getActivity(), ChatActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.card_personal_information:
+                Intent intent5 = new Intent(getActivity(), Personal_InformationActivity.class);
+                startActivity(intent5);
                 break;
         }
 

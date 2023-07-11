@@ -107,18 +107,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pager" />
 
-            <TextView
-                android:id="@+id/tv_category_show_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:padding="@dimen/_5sdp"
-                android:text="show all"
-                android:textColor="@color/light_blue_grey"
-                android:textSize="@dimen/_11ssp"
-                app:layout_constraintEnd_toEndOf="@+id/recycler_category"
-                app:layout_constraintTop_toTopOf="@+id/text1" />
-
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="@dimen/_80sdp"

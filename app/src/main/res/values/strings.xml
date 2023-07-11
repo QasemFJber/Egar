@@ -34,6 +34,17 @@
     <string name="value_rent">Value rent</string>
     <string name="confirmation_the_egar">Confirmation The Egar</string>
     <string name="egar">Egar</string>
+    <string name="offers">Offers</string>
+    <string name="modify_personal_information">Modify personal information</string>
+    <string name="name">name</string>
+    <string name="email">email</string>
+    <string name="phone_number">phone number</string>
+    <string name="update">Update</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="reservation">Reservation :</string>
+    <string name="delivery_request">Delivery request</string>
+    <string name="add_a_title">Add a title</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

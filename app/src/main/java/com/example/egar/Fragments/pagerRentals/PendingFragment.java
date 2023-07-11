@@ -63,7 +63,7 @@ public class PendingFragment extends Fragment {
 
     private void getOrdersByStates(){
 
-        Toast.makeText(getActivity(), ""+FirebaseAuth.getInstance().getUid(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), ""+FirebaseAuth.getInstance().getUid(), Toast.LENGTH_SHORT).show();
         OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.PENDING), new OnOrderFetchListener() {
             @Override
             public void onAddOrderSuccess(String orderId) {

@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     .replace(R.id.fragmentView, Home.class,null)
                     .commit();
 
-
             binding.cartImage.setBackgroundResource(R.drawable.baseline_calendar);
             binding.categoryImage.setBackgroundResource(R.drawable.baseline_category_selected);
             binding.personImage.setBackgroundResource(R.drawable.baseline_person_selected);

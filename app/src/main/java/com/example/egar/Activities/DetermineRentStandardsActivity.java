@@ -57,8 +57,9 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         month_ = now.get(Calendar.MONTH) + 1;
 
         binding.textMonth.setText(month);
-        Toast.makeText(this, ""+getSelectedChipText(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, ""+getSelectedChipText(), Toast.LENGTH_SHORT).show();
 
+        //Toast.makeText(this, ""+ getIntent().getStringExtra("category"), Toast.LENGTH_SHORT).show();
 
         //addDataToRecyclerView();
         initializeView();
@@ -69,30 +70,6 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         binding.etStartDate.setOnClickListener(this::onClick);
         binding.etEndDate.setOnClickListener(this::onClick);
     }
-
-/*
-    private List<Days> addDataToRecyclerView(){
-        daysList = new ArrayList<>();
-        daysList.add(new Days(String.valueOf(month_+1)));
-        daysList.add(new Days(String.valueOf(month_+2)));
-        daysList.add(new Days(String.valueOf(month_+3)));
-        daysList.add(new Days(String.valueOf(month_+4)));
-        daysList.add(new Days(String.valueOf(month_+5)));
-        daysList.add(new Days(String.valueOf(month_+6)));
-        daysList.add(new Days(String.valueOf(month_+7)));
-*/
-/*        daysList.add(new Days("Sunday"));
-        daysList.add(new Days("Monday"));
-        daysList.add(new Days("Tuesday"));
-        daysList.add(new Days("Wednesday"));
-        daysList.add(new Days("Thursday"));
-        daysList.add(new Days("Friday"));*//*
-
-
-        return  daysList;
-
-    }
-*/
 
 
 
@@ -121,6 +98,19 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         }
     }
 
+    public String getSelectedChipText2() {
+
+        int checkedChipId = binding.chipGroupDelivery.getCheckedChipId();
+
+        if (checkedChipId != View.NO_ID) {
+            Chip checkedChip = binding.chipGroupDelivery.findViewById(checkedChipId);
+            return checkedChip.getText().toString();
+        } else {
+            Snackbar.make(binding.getRoot(),"Select The Store Type ",Snackbar.LENGTH_LONG).show();
+            return null;
+        }
+    }
+
     public void visibilityDate(){
 
         binding.chipGroup.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
@@ -129,74 +119,86 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
 
 
                 if (Objects.equals(getSelectedChipText(), "Per day")) {
-
-                    DatePickerDialog dpd = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
-                                                                            @Override
-                                                                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                                                                binding.dateDay.setVisibility(View.VISIBLE);
-                                                                                binding.dateDay.setText(String.valueOf(dayOfMonth));
-                                                                            }
-                                                                        },
-                            now.get(Calendar.YEAR), // Initial year selection
-                            now.get(Calendar.MONTH), // Initial month selection
-                            now.get(Calendar.DAY_OF_MONTH) // Inital day selection
-
-                    );
-                    dpd.show(getSupportFragmentManager(),"Datepickerdialog");
+                    binding.layoutDate.setVisibility(View.VISIBLE);
 
 
                 }else if (Objects.equals(getSelectedChipText(), "In month")){
                     binding.dateDay.setVisibility(View.GONE);
                     binding.layoutDate.setVisibility(View.VISIBLE);
-                    binding.etEndDate.setText(null);
-                    binding.etStartDate.setText(null);
+                    //binding.etEndDate.setText(null);
+                   // binding.etStartDate.setText(null);
 
                 }else if (Objects.equals(getSelectedChipText(), "in the year")){
                     binding.dateDay.setVisibility(View.GONE);
-                    binding.etEndDate.setText(null);
-                    binding.etStartDate.setText(null);
-                    binding.layoutDate.setVisibility(View.VISIBLE);
+                    //binding.etEndDate.setText(null);
+                    //binding.etStartDate.setText(null);
+                    //binding.layoutDate.setVisibility(View.VISIBLE);
 
                 }
 
+            }
+        });
 
+        String category= getIntent().getStringExtra("category");
+        if (category.equals("cars") || category.equals("Woman Clothes") || category.equals("Equipment") || category.equals("Wedding clothes") ){
+            binding.cardDelivery.setVisibility(View.VISIBLE);
+        }
 
+        binding.chipGroupDelivery.setOnCheckedStateChangeListener(new ChipGroup.OnCheckedStateChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull ChipGroup group, @NonNull List<Integer> checkedIds) {
+                if (Objects.equals(getSelectedChipText2(), "Yes")) {
+                    //binding.layoutDate.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(getApplicationContext(), AddATitleActivity.class);
+                    startActivity(intent);
 
-/*                if (Objects.equals(getSelectedChipText(), "Per day")){
-                    //binding.scrollDataDay.setVisibility(View.VISIBLE);
-                    //binding.recMonth.setVisibility(View.GONE);
+                }
 
-                }else if (Objects.equals(getSelectedChipText(), "In month")){
-                    //binding.scrollDataDay.setVisibility(View.GONE);
-                    //binding.recMonth.setVisibility(View.VISIBLE);
-
-                }else if (Objects.equals(getSelectedChipText(), "in the year")){
-                    //binding.scrollDataDay.setVisibility(View.GONE);
-                    //binding.recMonth.setVisibility(View.GONE);
-                }*/
             }
         });
 
 
+    }
 
+
+    private void date(){
+        String id_product = getIntent().getStringExtra("id_product");
+        Intent intent =new Intent(getApplicationContext(), ConfirmationTheEgarActivity.class);
+        intent.putExtra("id_product",id_product);
+        if (!binding.etStartDate.getText().toString().isEmpty()) {
+            intent.putExtra("date_start", binding.etStartDate.getText().toString());
+
+        } if (!binding.etEndDate.getText().toString().isEmpty()){
+            intent.putExtra("date_end", binding.etEndDate.getText().toString());
+        }
+        startActivity(intent);
+    }
+
+    private boolean dataCheck (){
+        String dateS = binding.etStartDate.getText().toString();
+        String dateE = binding.etEndDate.getText().toString();
+        if (dateS.isEmpty()) {
+            binding.etStartDate.setError("StartDate field is Required");
+            return false;
+        } else if (dateE.isEmpty()) {
+            binding.etEndDate.setError("EndDate field is Required");
+            return false;
+        }
+        return true;
+    }
+    private void form(){
+        if (dataCheck()){
+            date();
+        }
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_next){
-            String id_product = getIntent().getStringExtra("id_product");
-            Intent intent =new Intent(getApplicationContext(), ConfirmationTheEgarActivity.class);
-            intent.putExtra("id_product",id_product);
-            if (!binding.etStartDate.getText().toString().isEmpty()) {
-                intent.putExtra("date_start", binding.etStartDate.getText().toString());
-            } if (!binding.etEndDate.getText().toString().isEmpty()){
-                intent.putExtra("date_end", binding.etEndDate.getText().toString());
-            }if (!binding.dateDay.getText().toString().isEmpty()) {
-                intent.putExtra("date_day", binding.dateDay.getText().toString());
+          form();
 
-            }
-            startActivity(intent);
-        }if (v.getId() == R.id.et_start_date){
+        }
+        if (v.getId() == R.id.et_start_date){
             DatePickerDialog dpd = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
@@ -210,13 +212,14 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
             );
             dpd.show(getSupportFragmentManager(),"Datepickerdialog");
 
-        }if (v.getId() == R.id.et_end_date){
+        }
+        if (v.getId() == R.id.et_end_date){
             DatePickerDialog dpd = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                    binding.etEndDate.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
-                }
-                },
+                      @Override
+                      public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                          binding.etEndDate.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                      }
+                  },
                     now.get(Calendar.YEAR), // Initial year selection
                     now.get(Calendar.MONTH), // Initial month selection
                     now.get(Calendar.DAY_OF_MONTH) // Inital day selection

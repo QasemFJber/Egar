@@ -177,8 +177,8 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
 
     }
     private void setOnclick(){
-        binding.tvCategoryShowAll.setOnClickListener(this::onClick);
         binding.tvOffersShowAll2.setOnClickListener(this::onClick);
+        binding.tvTopRatedStoresShowAll.setOnClickListener(this::onClick);
         binding.imgNotifications.setOnClickListener(this::onClick);
         binding.search.setOnClickListener(this::onClick);
 
@@ -192,14 +192,18 @@ public class Home extends Fragment  implements OnItemClickListener ,View.OnClick
             startActivity(intent);
 
         }
-        if (v.getId() == R.id.tv_category_show_all){
+        if (v.getId() == R.id.tv_offers_show_all2){
             Intent intent = new Intent(getActivity(), ShowAll_Items.class);
-            intent.putExtra("category","Categories");
+            intent.putExtra("SHOW_ALL","Offers");
             startActivity(intent);
 
-        }if (v.getId() == R.id.tv_offers_show_all2){
+        }if (v.getId() == R.id.tv_Top_rated_stores_show_all){
+            Intent intent = new Intent(getActivity(), ShowAll_Items.class);
+            intent.putExtra("SHOW_ALL","Services Provider");
+            startActivity(intent);
+        }
 
-        }if (v.getId() == R.id.search){
+        if (v.getId() == R.id.search){
             Intent intent = new Intent(getActivity(), SearchActivity.class);
             startActivity(intent);
         }

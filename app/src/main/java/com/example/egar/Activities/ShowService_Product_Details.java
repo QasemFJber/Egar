@@ -119,6 +119,7 @@ public class ShowService_Product_Details extends AppCompatActivity implements Vi
         if (v.getId() == R.id.button_toSet){
             Intent intent =new Intent(getApplicationContext(), DetermineRentStandardsActivity.class);
             intent.putExtra("id_product",product().getId());
+            intent.putExtra("category",product().getCategory());
             startActivity(intent);
             finish();
         }

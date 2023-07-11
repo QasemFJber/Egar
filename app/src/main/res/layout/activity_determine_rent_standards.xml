@@ -63,7 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Month"
-            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textColor="@color/active"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_15sdp"
             android:textSize="@dimen/_16ssp"
@@ -75,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
-            android:text="Reservation"
+            android:text="@string/reservation"
             android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
@@ -89,8 +90,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            app:cardCornerRadius="@dimen/_20sdp"
-            app:cardElevation="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_reservation_period">
@@ -98,7 +98,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_pager"
+                android:background="@drawable/shape_bac_edit_text"
                 android:padding="@dimen/_10sdp">
 
                 <com.google.android.material.chip.ChipGroup
@@ -468,13 +468,14 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_delivery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_20sdp"
-            app:cardElevation="@dimen/_15sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView4">
@@ -482,33 +483,56 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_pager"
+                android:background="@drawable/shape_bac_edit_text"
                 android:padding="@dimen/_10sdp">
 
 
                 <TextView
-                    android:id="@+id/tex"
+                    android:id="@+id/tv_Delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Terms and Conditions"
+                    android:text="@string/delivery_request"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_18sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tex_show"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup_Delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Show"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:textColor="@color/active"
-                    android:textSize="@dimen/_18sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="@dimen/_5sdp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_Delivery"
+                    app:singleLine="false"
+                    app:singleSelection="true">
 
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/checkBox_yes"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:text="@string/yes"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/checkBox_no"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox_yes" />
+
+
+                </com.google.android.material.chip.ChipGroup>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

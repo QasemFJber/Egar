@@ -8,6 +8,12 @@ public class User {
     private String phoneNumber;
     private String profileImageUri;
     private String governorate ;
+
+    public User() {
+    }
+
+
+
     public User(String name, String email, String selectedGovernorate, String pass, String phone) {
         this.name = name;
         this.email =email;
@@ -16,6 +22,20 @@ public class User {
         this.phoneNumber=phone;
     }
 
+    public User(String name, String email, String phoneNumber, String profileImageUri) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.profileImageUri = profileImageUri;
+    }
+
+    public User(String id, String name, String email, String phoneNumber, String profileImageUri, String governorate) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.profileImageUri = profileImageUri;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getId() {
         return id;

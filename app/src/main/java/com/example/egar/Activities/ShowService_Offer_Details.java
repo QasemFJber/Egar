@@ -69,6 +69,7 @@ public class ShowService_Offer_Details extends AppCompatActivity implements View
         if (v.getId() == R.id.button_toSet){
             Intent intent =new Intent(getApplicationContext(), DetermineRentStandardsActivity.class);
             intent.putExtra("id_product",offer().getProduct().getId());
+            intent.putExtra("category",offer().getProduct().getCategory());
             startActivity(intent);
             finish();
         }
