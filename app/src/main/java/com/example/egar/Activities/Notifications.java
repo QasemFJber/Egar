@@ -38,16 +38,11 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
 
 
     private void  setOnClick(){
-        binding.backToMain.setOnClickListener(this::onClick);
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.back_to_main:
-                onBackPressed();
-                break;
-        }
+
     }
 }

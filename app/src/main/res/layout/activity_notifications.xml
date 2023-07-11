@@ -9,34 +9,32 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
-        android:layout_width="@dimen/_222sdp"
-        android:layout_height="@dimen/_222sdp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        android:layout_marginTop="@dimen/_88sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/notification" />
+        app:lottie_rawRes="@raw/notefication" />
 
-    <ImageView
-        android:id="@+id/back_to_main"
-        android:layout_width="@dimen/_27sdp"
-        android:layout_height="@dimen/_27sdp"
-        android:layout_margin="@dimen/_22sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_bac_24" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_55sdp"
+        android:layout_marginEnd="@dimen/_55sdp"
+        android:background="@drawable/chat_al"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_33sdp"
+        android:gravity="center"
+        android:text=" لا يوجد اشعارات جديدة"
+        android:textSize="@dimen/_15ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/animationView"
+        app:layout_constraintVertical_bias="0.177" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
