@@ -56,7 +56,7 @@ public class ConfirmationTheEgarActivity extends AppCompatActivity implements Vi
         Log.d("CONABD", "date_end:"+getIntent().getStringExtra("date_end"));
         Log.d("CONABD", "date_day:"+getIntent().getStringExtra("date_day"));
 
-        date = getIntent().getStringExtra("date_start")+" - "+getIntent().getStringExtra("date_end");
+        date = getIntent().getStringExtra("date_start");//+" - "+getIntent().getStringExtra("date_end");
         binding.textdate.setText(date);
 
         initializeView();

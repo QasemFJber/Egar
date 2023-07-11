@@ -81,7 +81,6 @@ public class DeliveredDialogFragment extends Fragment {
 
 
 
-
         return binding.getRoot();
     }
 }

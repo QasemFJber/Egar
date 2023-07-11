@@ -68,7 +68,7 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
     private  void setOnClick() {
         binding.buttonNext.setOnClickListener(this::onClick);
         binding.etStartDate.setOnClickListener(this::onClick);
-        binding.etEndDate.setOnClickListener(this::onClick);
+       // binding.etEndDate.setOnClickListener(this::onClick);
     }
 
 
@@ -167,23 +167,24 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         intent.putExtra("id_product",id_product);
         if (!binding.etStartDate.getText().toString().isEmpty()) {
             intent.putExtra("date_start", binding.etStartDate.getText().toString());
+            //intent.putExtra("date_end", );
 
-        } if (!binding.etEndDate.getText().toString().isEmpty()){
+        }/* if (!binding.etEndDate.getText().toString().isEmpty()){
             intent.putExtra("date_end", binding.etEndDate.getText().toString());
-        }
+        }*/
         startActivity(intent);
     }
 
     private boolean dataCheck (){
         String dateS = binding.etStartDate.getText().toString();
-        String dateE = binding.etEndDate.getText().toString();
+        //String dateE = binding.etEndDate.getText().toString();
         if (dateS.isEmpty()) {
             binding.etStartDate.setError("StartDate field is Required");
             return false;
-        } else if (dateE.isEmpty()) {
+        } /*else if (dateE.isEmpty()) {
             binding.etEndDate.setError("EndDate field is Required");
             return false;
-        }
+        }*/
         return true;
     }
     private void form(){
@@ -213,11 +214,11 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
             dpd.show(getSupportFragmentManager(),"Datepickerdialog");
 
         }
-        if (v.getId() == R.id.et_end_date){
+        /*if (v.getId() == R.id.et_end_date){
             DatePickerDialog dpd = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
                       @Override
                       public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                          binding.etEndDate.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+                          //binding.etEndDate.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
                       }
                   },
                     now.get(Calendar.YEAR), // Initial year selection
@@ -227,6 +228,6 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
             );
             dpd.show(getSupportFragmentManager(),"Datepickerdialog");
 
-        }
+        }*/
     }
 }
