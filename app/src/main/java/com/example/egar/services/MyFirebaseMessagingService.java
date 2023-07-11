@@ -3,13 +3,11 @@ package com.example.egar.services;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-
 import com.example.egar.Models.Notification;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.CollectionReference;
-
 import java.util.HashMap;
 import java.util.Map;
 
