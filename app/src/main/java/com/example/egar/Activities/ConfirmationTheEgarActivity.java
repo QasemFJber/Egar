@@ -131,8 +131,10 @@ public class ConfirmationTheEgarActivity extends AppCompatActivity implements Vi
         OrderController.getInstance().addOrder(order, new OnOrderFetchListener() {
             @Override
             public void onAddOrderSuccess(String orderId) {
-                //onAddOrderSuccess
 
+
+
+                //onAddOrderSuccess
                 dialogReservationConfirmationFragment= DialogReservationConfirmationFragment.newInstance(""+p.getName()+" "+date+"\n"+p.getProvider().getName());
                 dialogReservationConfirmationFragment.show(getSupportFragmentManager(),null);
 

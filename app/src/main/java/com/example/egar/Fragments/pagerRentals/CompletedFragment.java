@@ -10,11 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.egar.Dialog.DeliveredDialogFragment;
+import com.example.egar.Dialog.MyDialogFragment;
 import com.example.egar.Models.Order;
 import com.example.egar.adapters.order.OrderAdapter;
+import com.example.egar.adapters.order.OrderCompletedAdapter;
 import com.example.egar.controllers.OrderController;
 import com.example.egar.databinding.FragmentCompletedBinding;
 import com.example.egar.enums.OrderStatus;
+import com.example.egar.interfaces.DialogListener;
+import com.example.egar.interfaces.ItemCallbackOrder;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,12 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CompletedFragment extends Fragment {
+public class CompletedFragment extends Fragment implements ItemCallbackOrder , DialogListener {
 
     FragmentCompletedBinding binding;
     List<Order> orderList = new ArrayList<>();
 
-    OrderAdapter adapter;
+    OrderCompletedAdapter adapter;
+    DeliveredDialogFragment dialogFragment;
 
 
 
@@ -44,11 +50,13 @@ public class CompletedFragment extends Fragment {
         binding = FragmentCompletedBinding.inflate(inflater);
         getOrdersByStates();
         initializeRecyclerAdapter();
+
         return binding.getRoot();
     }
     private void initializeRecyclerAdapter() {
-        adapter = new OrderAdapter(orderList);
+        adapter = new OrderCompletedAdapter(orderList);
         binding.rvOrdersCompleted.setAdapter(adapter);
+        adapter.setCallbackOrder(this::onItemClick);
         binding.rvOrdersCompleted.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
     private void getOrdersByStates(){
@@ -96,5 +104,19 @@ public class CompletedFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Order order) {
+        Toast.makeText(getActivity(), "تقيم", Toast.LENGTH_SHORT).show();
+
+        //dialogFragment= DeliveredDialogFragment.newInstance("",2);
+       // dialogFragment.
+    }
+
+    @Override
+    public void onOkDialogListener(String date) {
+
+
     }
 }
