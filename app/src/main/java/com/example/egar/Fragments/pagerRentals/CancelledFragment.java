@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.egar.Models.Order;
 import com.example.egar.adapters.order.OrderAdapter;
@@ -90,7 +89,7 @@ public class CancelledFragment extends Fragment {
     private void getOrdersByStates(){
         OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.CANCELLED), new OnOrderFetchListener() {
             @Override
-            public void onAddOrderSuccess(String orderId) {
+            public void onAddOrderSuccess(String orderId, String id) {
 
             }
 
@@ -99,15 +98,6 @@ public class CancelledFragment extends Fragment {
 
             }
 
-            @Override
-            public void onUpdateOrderSuccess() {
-
-            }
-
-            @Override
-            public void onUpdateOrderFailure(String message) {
-
-            }
 
             @Override
             public void onDeleteOrderSuccess() {

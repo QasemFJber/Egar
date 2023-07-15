@@ -81,7 +81,8 @@ public class OrderController {
                     orderData.put("orderId", documentReference.getId());
 
                     Log.d(TAG, "Order added with ID: " + documentReference.getId());
-                    listener.onAddOrderSuccess(documentReference.getId());
+
+                    listener.onAddOrderSuccess(documentReference.getId(),order.getProduct().getProvider().getId());
                 })
                 .addOnFailureListener(e -> {
                     // On failure, log an error message to the console

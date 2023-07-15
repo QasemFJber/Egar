@@ -9,12 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.egar.Activities.OrderDetailsActivity;
-import com.example.egar.Activities.ShowService_Product_Details;
 import com.example.egar.Models.Order;
-import com.example.egar.R;
 import com.example.egar.adapters.order.OrderAdapter;
 import com.example.egar.controllers.OrderController;
 import com.example.egar.databinding.FragmentInProgressBinding;
@@ -57,7 +54,7 @@ public class InProgressFragment extends Fragment implements ItemCallbackOrder {
     private void getOrdersByStates(){
         OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.IN_PROGRESS), new OnOrderFetchListener() {
             @Override
-            public void onAddOrderSuccess(String orderId) {
+            public void onAddOrderSuccess(String orderId, String id) {
 
             }
 
@@ -66,15 +63,6 @@ public class InProgressFragment extends Fragment implements ItemCallbackOrder {
 
             }
 
-            @Override
-            public void onUpdateOrderSuccess() {
-
-            }
-
-            @Override
-            public void onUpdateOrderFailure(String message) {
-
-            }
 
             @Override
             public void onDeleteOrderSuccess() {

@@ -1,6 +1,6 @@
 package com.example.egar.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,8 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.egar.Dialog.DialogReservationConfirmationFragment;
-import com.example.egar.Dialog.MyDialogFragment;
 import com.example.egar.Models.Order;
 import com.example.egar.Models.Product;
 import com.example.egar.Models.User;
@@ -22,12 +23,9 @@ import com.example.egar.enums.OrderStatus;
 import com.example.egar.interfaces.DialogListener;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.example.egar.interfaces.ProductCallback;
-import com.example.egar.interfaces.UserCallback;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -130,30 +128,16 @@ public class ConfirmationTheEgarActivity extends AppCompatActivity implements Vi
     private void addOrder(){
         OrderController.getInstance().addOrder(order, new OnOrderFetchListener() {
             @Override
-            public void onAddOrderSuccess(String orderId) {
-
-
-
-                //onAddOrderSuccess
+            public void onAddOrderSuccess(String orderId, String id) {
+                Toast.makeText(ConfirmationTheEgarActivity.this, "Id"+id, Toast.LENGTH_SHORT).show();
+                sendNotificationToUser(id,"لديك طلب جديد ","لقد تم طلب منتج من منتجاتك من قبل عميل داحل التطبيق");
                 dialogReservationConfirmationFragment= DialogReservationConfirmationFragment.newInstance(""+p.getName()+" "+date+"\n"+p.getProvider().getName());
                 dialogReservationConfirmationFragment.show(getSupportFragmentManager(),null);
-
-
 
             }
 
             @Override
             public void onAddOrderFailure(String message) {
-
-            }
-
-            @Override
-            public void onUpdateOrderSuccess() {
-
-            }
-
-            @Override
-            public void onUpdateOrderFailure(String message) {
 
             }
 
@@ -179,6 +163,21 @@ public class ConfirmationTheEgarActivity extends AppCompatActivity implements Vi
         });
     }
 
+
+    private void sendNotificationToUser(String userId, String title, String message) {
+        String topic = "user_" + userId;
+
+        RemoteMessage.Builder builder = new RemoteMessage.Builder(topic);
+        builder.addData("title", title);
+        builder.addData("message", message);
+
+        try {
+            FirebaseMessaging.getInstance().send(builder.build());
+            Log.d(TAG, "Notification sent successfully!");
+        } catch (Exception e) {
+            Log.e(TAG, "Notification sending failed: " + e.getMessage());
+        }
+    }
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_pay){

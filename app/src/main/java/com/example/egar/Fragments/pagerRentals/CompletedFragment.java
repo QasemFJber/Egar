@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.egar.Dialog.DeliveredDialogFragment;
 import com.example.egar.Models.Order;
@@ -20,15 +19,12 @@ import com.example.egar.controllers.OrderController;
 import com.example.egar.controllers.RatingController;
 import com.example.egar.databinding.FragmentCompletedBinding;
 import com.example.egar.enums.OrderStatus;
-import com.example.egar.interfaces.DialogRatingListener;
 import com.example.egar.interfaces.ItemCallbackOrder;
 import com.example.egar.interfaces.OnOrderFetchListener;
-import com.example.egar.interfaces.OnRatingOperationListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import java.util.List;
 
@@ -72,22 +68,12 @@ public class CompletedFragment extends Fragment implements ItemCallbackOrder /*,
     private void getOrdersByStates(){
         OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.COMPLETED), new OnOrderFetchListener() {
             @Override
-            public void onAddOrderSuccess(String orderId) {
+            public void onAddOrderSuccess(String orderId, String id) {
 
             }
 
             @Override
             public void onAddOrderFailure(String message) {
-
-            }
-
-            @Override
-            public void onUpdateOrderSuccess() {
-
-            }
-
-            @Override
-            public void onUpdateOrderFailure(String message) {
 
             }
 

@@ -63,4 +63,28 @@ public class RatingController {
                     listener.onRatingsFetchFailure(e.getMessage());
                 });
     }
+    public void getRatingsByServiceProviderId(String serviceProviderId, OnRatingsFetchListener listener) {
+        ratingsCollection.whereEqualTo("serviceProviderId", serviceProviderId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Rating> ratings = queryDocumentSnapshots.toObjects(Rating.class);
+                    listener.onRatingsFetched(ratings);
+                })
+                .addOnFailureListener(e -> {
+                    listener.onRatingsFetchFailure(e.getMessage());
+                });
+    }
+
+    public void getRatingsByProductId(String productId, OnRatingsFetchListener listener) {
+        ratingsCollection.whereEqualTo("productId", productId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Rating> ratings = queryDocumentSnapshots.toObjects(Rating.class);
+                    listener.onRatingsFetched(ratings);
+                })
+                .addOnFailureListener(e -> {
+                    listener.onRatingsFetchFailure(e.getMessage());
+                });
+    }
+
 }

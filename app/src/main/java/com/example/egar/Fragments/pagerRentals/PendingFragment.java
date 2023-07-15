@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.egar.Activities.OrderDetailsActivity;
 import com.example.egar.Models.Order;
@@ -71,22 +70,12 @@ public class PendingFragment extends Fragment implements ItemCallbackOrder {
         //Toast.makeText(getActivity(), ""+FirebaseAuth.getInstance().getUid(), Toast.LENGTH_SHORT).show();
         OrderController.getInstance().getOrdersByServiceProviderIdAndOrderStatus(FirebaseAuth.getInstance().getUid(), String.valueOf(OrderStatus.PENDING), new OnOrderFetchListener() {
             @Override
-            public void onAddOrderSuccess(String orderId) {
+            public void onAddOrderSuccess(String orderId, String id) {
 
             }
 
             @Override
             public void onAddOrderFailure(String message) {
-
-            }
-
-            @Override
-            public void onUpdateOrderSuccess() {
-
-            }
-
-            @Override
-            public void onUpdateOrderFailure(String message) {
 
             }
 
