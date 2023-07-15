@@ -77,10 +77,6 @@ public class DeliveredDialogFragment extends DialogFragment {
 
         FragmentDeliveredDialogBinding binding = FragmentDeliveredDialogBinding.inflate(getLayoutInflater());
 
-        //binding.etComment.getText().toString();
-        //binding.ratingBar3.getRating();
-        //String comment = binding.etComment.getText().toString();
-        //float r = binding.ratingBar3.getRating();
 
         binding.buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override

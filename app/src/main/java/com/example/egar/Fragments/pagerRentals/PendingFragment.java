@@ -1,5 +1,6 @@
 package com.example.egar.Fragments.pagerRentals;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,20 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.egar.Activities.OrderDetailsActivity;
 import com.example.egar.Models.Order;
 import com.example.egar.adapters.order.OrderAdapter;
 import com.example.egar.controllers.OrderController;
 import com.example.egar.databinding.FragmentPendingBinding;
 import com.example.egar.enums.OrderStatus;
+import com.example.egar.interfaces.ItemCallbackOrder;
 import com.example.egar.interfaces.OnOrderFetchListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class PendingFragment extends Fragment {
+public class PendingFragment extends Fragment implements ItemCallbackOrder {
 
     FragmentPendingBinding binding;
 
@@ -56,6 +60,7 @@ public class PendingFragment extends Fragment {
 
     private void initializeRecyclerAdapter() {
         adapter = new OrderAdapter(orderList);
+        adapter.setCallbackOrder(this);
         binding.recOrderPending.setAdapter(adapter);
         binding.recOrderPending.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -109,5 +114,12 @@ public class PendingFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Order order) {
+        Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+        intent.putExtra("order", (Serializable) order);
+        startActivity(intent);
     }
 }

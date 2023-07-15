@@ -45,6 +45,8 @@
     <string name="reservation">Reservation :</string>
     <string name="delivery_request">Delivery request</string>
     <string name="add_a_title">Add a title</string>
+    <string name="order_number">Order number</string>
+    <string name="order_details">Order details</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 
