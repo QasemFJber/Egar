@@ -20,7 +20,7 @@ public class RatingController {
         ratingsCollection = db.collection(COLLECTION_NAME);
     }
 
-    public void addRating(Rating rating, OnRatingOperationListener listener) {
+    public void addRating(Rating rating,OnRatingOperationListener listener) {
         ratingsCollection.add(rating)
                 .addOnSuccessListener(documentReference -> {
                     String ratingId = documentReference.getId();
