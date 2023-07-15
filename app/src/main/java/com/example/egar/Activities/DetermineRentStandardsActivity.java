@@ -57,18 +57,12 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
         month_ = now.get(Calendar.MONTH) + 1;
 
         binding.textMonth.setText(month);
-       // Toast.makeText(this, ""+getSelectedChipText(), Toast.LENGTH_SHORT).show();
-
-        //Toast.makeText(this, ""+ getIntent().getStringExtra("category"), Toast.LENGTH_SHORT).show();
-
-        //addDataToRecyclerView();
         initializeView();
     }
 
     private  void setOnClick() {
         binding.buttonNext.setOnClickListener(this::onClick);
         binding.etStartDate.setOnClickListener(this::onClick);
-       // binding.etEndDate.setOnClickListener(this::onClick);
     }
 
 
@@ -125,15 +119,9 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
                 }else if (Objects.equals(getSelectedChipText(), "In month")){
                     binding.dateDay.setVisibility(View.GONE);
                     binding.layoutDate.setVisibility(View.VISIBLE);
-                    //binding.etEndDate.setText(null);
-                   // binding.etStartDate.setText(null);
 
                 }else if (Objects.equals(getSelectedChipText(), "in the year")){
                     binding.dateDay.setVisibility(View.GONE);
-                    //binding.etEndDate.setText(null);
-                    //binding.etStartDate.setText(null);
-                    //binding.layoutDate.setVisibility(View.VISIBLE);
-
                 }
 
             }

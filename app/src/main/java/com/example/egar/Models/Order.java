@@ -3,8 +3,10 @@ package com.example.egar.Models;
 
 import com.example.egar.enums.OrderStatus;
 
+import java.io.Serializable;
 
-public class Order {
+
+public class Order implements Serializable {
     private String orderId;
     private User user;
     private  Product product;

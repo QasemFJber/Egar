@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import com.example.egar.Fragments.BottomNavigationFragments.RentalsFragment;
@@ -14,12 +15,19 @@ import com.example.egar.Fragments.BottomNavigationFragments.Categories;
 import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
 import com.example.egar.Fragments.BottomNavigationFragments.Home;
 import com.example.egar.Fragments.BottomNavigationFragments.Profile;
+import com.example.egar.Models.Order;
+import com.example.egar.Models.Rating;
 import com.example.egar.R;
 
+import com.example.egar.controllers.RatingController;
 import com.example.egar.databinding.ActivityMainBinding;
+import com.example.egar.interfaces.DialogRatingListener;
+import com.example.egar.interfaces.OnRatingOperationListener;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
+import java.util.Calendar;
+
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener, DialogRatingListener {
     //Categories categories = new Categories();
     //Favorite favorite = new Favorite();
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -28,6 +36,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     ActivityMainBinding binding;
     int selectedTab = 1;
+    Rating rating;
+    RatingController ratingController;
 
 
 
@@ -236,6 +246,35 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 selectedTab = 4;
             }
         }
+    }
+
+    @Override
+    public void onOkDialogListener(Order order,String comment, float ratingValue) {
+        ratingController = new RatingController();
+        Calendar calendar = java.util.Calendar.getInstance();
+        int year = calendar.get(java.util.Calendar.YEAR);
+        int month = calendar.get(java.util.Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        //Toast.makeText(getApplicationContext(), "okay"+order, Toast.LENGTH_SHORT).show();
+
+
+        rating = new Rating(order.getOrderId(),order.getProduct().getId(),order.getUser().getId(),ratingValue,comment,day+"/"+month+"/"+year);
+        ratingController.addRating(rating, new OnRatingOperationListener() {
+            @Override
+            public void onRatingOperationSuccess(String ratingId) {
+                Toast.makeText(getApplicationContext(), "add rating", Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+
+            @Override
+            public void onRatingOperationFailure(String message) {
+
+            }
+        });
     }
 
 

@@ -8,10 +8,10 @@ public class Rating {
     private String userId;
     private float ratingValue;
     private String reviewText;
-    private Date date;
+    private String date;
 
 
-    public Rating(String orderId, String productId, String userId, float ratingValue, String reviewText, Date date) {
+    public Rating(String orderId, String productId, String userId, float ratingValue, String reviewText, String date) {
         this.orderId = orderId;
         this.productId = productId;
         this.userId = userId;
@@ -60,11 +60,11 @@ public class Rating {
         this.reviewText = reviewText;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
