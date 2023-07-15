@@ -79,7 +79,7 @@
             android:name=".Activities.ConfirmationTheEgarActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DetermineTheCalibratorActivity"
+            android:name=".Activities.OrderDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".OffersActivity"
