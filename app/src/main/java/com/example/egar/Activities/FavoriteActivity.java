@@ -17,4 +17,13 @@ public class FavoriteActivity extends AppCompatActivity {
         binding = ActivityFavoriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    private void setUpRecycler(){
+
+    }
 }

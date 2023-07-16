@@ -61,12 +61,22 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                dialog.cancel();
+                dialog.dismiss();
 
             }
         },3500);
+
     }
 
+    private void setUpDialog(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+
+            }
+        },1000);
+    }
     private  void setOnClick(){
         binding.homeLayout.setOnClickListener(this::onClick);
         binding.categoryLayout.setOnClickListener(this::onClick);
@@ -347,5 +357,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     protected void onStart() {
         super.onStart();
         dialog.show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setUpDialog();
+
     }
 }
