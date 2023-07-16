@@ -255,18 +255,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         int year = calendar.get(java.util.Calendar.YEAR);
         int month = calendar.get(java.util.Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        //Toast.makeText(getApplicationContext(), "okay"+order, Toast.LENGTH_SHORT).show();
-
-
-        rating = new Rating(order.getOrderId(),order.getProduct().getId(),order.getUser().getId(),ratingValue,comment,day+"/"+month+"/"+year);
+        rating = new Rating(order.getOrderId(),order.getProduct().getId(),order.getUser().getId(),ratingValue,comment,day+"/"+month+"/"+year,order.getProduct().getProvider().getId());
         ratingController.addRating(rating, new OnRatingOperationListener() {
             @Override
             public void onRatingOperationSuccess(String ratingId) {
                 Toast.makeText(getApplicationContext(), "add rating", Toast.LENGTH_SHORT).show();
-
-
-
 
             }
 

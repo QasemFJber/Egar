@@ -6,18 +6,28 @@ public class Rating {
     private String orderId;
     private String productId;
     private String userId;
+    private String serviceProviderID;
     private float ratingValue;
     private String reviewText;
     private String date;
 
 
-    public Rating(String orderId, String productId, String userId, float ratingValue, String reviewText, String date) {
+    public Rating(String orderId, String productId, String userId, float ratingValue, String reviewText, String date, String serviceProviderID) {
         this.orderId = orderId;
         this.productId = productId;
         this.userId = userId;
         this.ratingValue = ratingValue;
         this.reviewText = reviewText;
         this.date = date;
+        this.serviceProviderID=serviceProviderID;
+    }
+
+    public String getServiceProviderID() {
+        return serviceProviderID;
+    }
+
+    public void setServiceProviderID(String serviceProviderID) {
+        this.serviceProviderID = serviceProviderID;
     }
 
     public String getOrderId() {
