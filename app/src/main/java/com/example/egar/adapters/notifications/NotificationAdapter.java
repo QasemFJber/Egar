@@ -16,13 +16,15 @@ import java.util.List;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
     private List<Notification> notificationList = new ArrayList<>();
 
-    public NotificationAdapter(List<Notification> notificationList){};
+    public NotificationAdapter(List<Notification> notificationList) {
+        this.notificationList = notificationList;
+    }
 
     @NonNull
     @Override
     public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         NoteficationsItemBinding binding = NoteficationsItemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
-        return new NotificationViewHolder(binding.getRoot());
+        return new NotificationViewHolder(binding);
     }
 
     @Override

@@ -25,9 +25,11 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -165,14 +167,18 @@ public class DetermineRentStandardsActivity extends AppCompatActivity implements
 
     private boolean dataCheck (){
         String dateS = binding.etStartDate.getText().toString();
-        //String dateE = binding.etEndDate.getText().toString();
+        String datePattern = "^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)$";
+        //String dateString = "2/07/2023";
+
         if (dateS.isEmpty()) {
             binding.etStartDate.setError("StartDate field is Required");
             return false;
-        } /*else if (dateE.isEmpty()) {
-            binding.etEndDate.setError("EndDate field is Required");
+        }if (!dateS.matches(datePattern)) {
+            // التاريخ صالح
+            binding.etStartDate.setError("StartDate DateFormat field is Required");
+           // Toast.makeText(this, "StartDate DateFormat field is Required", Toast.LENGTH_SHORT).show();
             return false;
-        }*/
+        }
         return true;
     }
     private void form(){

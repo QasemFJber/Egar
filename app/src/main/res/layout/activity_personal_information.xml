@@ -73,7 +73,6 @@
         android:layout_marginStart="@dimen/_22sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_22sdp"
-        android:autofillHints="phone"
         android:textColor="@color/active"
         android:background="@drawable/edit_text_login"
         android:hint=""

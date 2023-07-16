@@ -47,6 +47,9 @@
     <string name="add_a_title">Add a title</string>
     <string name="order_number">Order number</string>
     <string name="order_details">Order details</string>
+    <string name="card_holder_name">Card holder name</string>
+    <string name="expiry_date">Expiry date</string>
+    <string name="cvv">CVV</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 
