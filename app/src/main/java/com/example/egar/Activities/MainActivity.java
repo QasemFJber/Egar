@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 dialog.cancel();
 
             }
-        },6000);
+        },3500);
     }
 
     private  void setOnClick(){
