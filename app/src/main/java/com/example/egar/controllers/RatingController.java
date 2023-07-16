@@ -63,6 +63,8 @@ public class RatingController {
                     listener.onRatingsFetchFailure(e.getMessage());
                 });
     }
+
+
     public void getRatingsByServiceProviderId(String serviceProviderId, OnRatingsFetchListener listener) {
         ratingsCollection.whereEqualTo("serviceProviderId", serviceProviderId)
                 .get()

@@ -18,6 +18,7 @@ import com.example.egar.controllers.CategoryController;
 import com.example.egar.databinding.ActivitySplashBinding;
 import com.example.egar.interfaces.ProcessCallback;
 import com.example.egar.interfaces.SignInStatusListener;
+import com.example.egar.services.MyFirebaseMessagingService;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -42,6 +43,8 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Intent intent = new Intent(getApplicationContext(), MyFirebaseMessagingService.class);
+        startService(intent);
 
         new Handler().postDelayed(new Runnable() {
             @Override
