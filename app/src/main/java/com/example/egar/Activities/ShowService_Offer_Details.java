@@ -52,6 +52,7 @@ public class ShowService_Offer_Details extends AppCompatActivity implements View
         binding.tvTextDescription.setText(offer().getProduct().getDescription());
         binding.tvPrice.setText(String.valueOf(offer().getProduct().getPrice()));
         binding.tvTextproviderName.setText(offer().getProduct().getProvider().getName());
+        binding.ratingBar.setRating(4.5f);
         Picasso.get().load(offer().getProduct().getImageUrl()).into(binding.productImg);
         Picasso.get().load(offer().getProduct().getProvider().getImage()).into(binding.imageProviderImg);
 

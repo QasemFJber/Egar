@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.egar.Models.Product;
 import com.example.egar.R;
 import com.example.egar.controllers.ProductController;
+import com.example.egar.controllers.ProductFavoriteController;
 import com.example.egar.databinding.ItemProductsBinding;
 import com.example.egar.interfaces.ItemCallback;
 import com.example.egar.interfaces.ItemCallbackProduct;
 import com.example.egar.interfaces.ProcessCallback;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
@@ -78,7 +80,25 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
         });
     }
 
+
     private void setProductFavorite(Product product, String productId, boolean isFavorite){
+
+        ProductFavoriteController controller = new ProductFavoriteController();
+        controller.addProductToFavorite(product, FirebaseAuth.getInstance().getUid(), new ProcessCallback() {
+            @Override
+            public void onSuccess(String message) {
+                synchronized(product){
+                    product.notify();
+                }
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+        });
+
+/*
         ProductController.getInstance().updateProductFavoriteStatus(productId, isFavorite, new ProcessCallback() {
             @Override
             public void onSuccess(String message) {
@@ -92,6 +112,7 @@ public class ProductHomeViewHolder extends RecyclerView.ViewHolder implements Vi
 
             }
         });
+*/
     }
 
     @Override

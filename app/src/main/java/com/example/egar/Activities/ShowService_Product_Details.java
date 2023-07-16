@@ -105,6 +105,7 @@ public class ShowService_Product_Details extends AppCompatActivity implements Vi
         binding.tvPrice.setText(String.valueOf(product().getPrice()));
         binding.tvTextproviderName.setText(product().getProvider().getName());
         Picasso.get().load(product().getImageUrl()).into(binding.productImg);
+        binding.ratingBar.setRating(4.2f);
         Picasso.get().load(product().getProvider().getImage()).into(binding.imageProviderImg);
         if (product().isFavorite()){
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_24);
