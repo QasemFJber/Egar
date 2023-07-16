@@ -3,6 +3,7 @@ package com.example.egar.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -10,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
+import com.example.egar.Dialog.LoadingDialog;
 import com.example.egar.Fragments.BottomNavigationFragments.RentalsFragment;
 import com.example.egar.Fragments.BottomNavigationFragments.Categories;
 import com.example.egar.Fragments.BottomNavigationFragments.Favorite;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     Rating rating;
     RatingController ratingController;
 
+    private LoadingDialog dialog;
+
 
 
     @Override
@@ -46,17 +50,21 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         initializeView();
-
-
-
 
     }
 
     private void initializeView(){
+        dialog = new LoadingDialog(this);
         onSelectedTab();
         setOnClick();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.cancel();
+
+            }
+        },6000);
     }
 
     private  void setOnClick(){
@@ -334,4 +342,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         }
     }*/
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        dialog.show();
+    }
 }
